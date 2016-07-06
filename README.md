@@ -3,7 +3,7 @@
 <strong><h4>Communication</h4></strong>
 <ul>
 <li><a href="https://lighthouse.slack.com/messages/alpha/">Slack</a></li>
-<li><a href="https://trello.com/b/GBVMYcbc/alpha">Trello</a></li>
+<li><a href="https://trello.com/alpha223">Trello</a></li>
 </ul>
 <br><hr></br>
 <strong><h4>Tech Stack</h4></strong>
