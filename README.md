@@ -18,6 +18,12 @@
 <li>Grab data from market API</li>
 <li>Manipulate quotes into graphable data</li>
 </ul>
+<strong>Front End/JS</strong>
+<ul>
+<li>What framework? Plain JS/Jquery?</li>
+<li>What graphs library?</li>
+<li>What CSS framework?</li>
+</ul>
 <br>
 <hr>
 <br>
