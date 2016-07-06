@@ -10,8 +10,8 @@
 <br>
 <strong>PHP</strong>
 <ul>
-<li>MVC/API - Matt's</li>
-<li>ORM - ???</li>
+<li>MVC/API - Matts</li>
+<li>ORM - ??? (ActiveRecord?)</li>
 </ul>
 <strong>Python</strong>
 <ul>
