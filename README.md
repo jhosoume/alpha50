@@ -29,4 +29,5 @@
 <br>
 <h4><strong>Stock Market Info</h4></strong>
 <br>
-<strong>Primary Security - Stocks/ETFs</strong>
+Primary Security - Stocks/ETFs<br>
+Bloomberg API
