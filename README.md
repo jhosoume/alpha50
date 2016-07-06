@@ -13,6 +13,7 @@
 <li>Hosting - DigitalOcean</li>
 <li>OS - Linux</li>
 <li>Scheduler - Cron</li>
+<li>Datbaase - MySQL</li>
 </ul>
 <strong>PHP</strong>
 <ul>
