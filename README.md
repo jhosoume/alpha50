@@ -18,4 +18,6 @@
 <li>Grab data from market API</li>
 <li>Manipulate quotes into graphable data</li>
 </ul>
+<br>
 <hr>
+<br>
