@@ -8,6 +8,12 @@
 <br><hr></br>
 <strong><h4>Tech Stack</h4></strong>
 <br>
+<strong>Server</strong>
+<ul>
+<li>Hosting - DigitalOcean</li>
+<li>OS - Linux</li>
+<li>Scheduler - Cron</li>
+</ul>
 <strong>PHP</strong>
 <ul>
 <li>MVC/API - Matts</li>
