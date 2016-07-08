@@ -20,8 +20,7 @@
 <li>MVC/API - Matts</li>
 <li>ORM - ??? (ActiveRecord?)</li>
 <li>Package Manager - Composer</li>
-<li>Migrator - Phinx</li>
-<li>
+<li>Migrations - Phinx</li>
 </ul>
 <strong>Python</strong>
 <ul>
