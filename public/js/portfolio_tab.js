@@ -30,10 +30,9 @@ function renderPortfolioSection() {
   var preloader = $("#preloader").html();
   $("div.portfolio-content").append(preloader);
   setTimeout(function() {
-    $('.preloader-wrapper').remove();
+    $('portfolio-content.preloader-wrapper').remove();
     if (location.hash == "") $('#overview-tab, li:has(a[href="#overview-tab"])').addClass('active');
-    // if (location.hash !== "") $(location.hash).addClass('active') ;
-    $(location.hash).addClass('active');
+    if (location.hash !== "") $(location.hash).addClass('active') ;
     $('[href="' + location.hash + '"]').closest('li').addClass('active').siblings().removeClass('active');
   }, 500);
 };
