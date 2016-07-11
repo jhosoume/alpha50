@@ -1,0 +1,5 @@
+{
+    "require": {
+    	"mattbred/spark": "0.1"
+    }
+}
