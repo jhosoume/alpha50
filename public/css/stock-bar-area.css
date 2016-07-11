@@ -1,0 +1,13 @@
+div.stock-side-bar {
+  overflow:hidden;
+}
+
+div.stock-bar-data {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  div.stock-side-bar {
+    display: none;
+  }
+}
