@@ -6,12 +6,12 @@
 
 <?php render_file('/layouts/preloader.php') ?>
 
-<script id="stock-quote-hbs" type='text/x-handlebars-template'>
+<script id="stock-quote-hbs" type='text/x-handlebar-template' >
   <div class="stock-quote">
-  <p>
-    {{stock.name}} - ({{stock.tic}})
-  </p><p>
-    {{stock.price}}
-  </p>
-</div>
+    <p>
+      {{stock.name}} - ({{stock.tic}})
+    </p><p>
+      {{stock.price}}
+    </p>
+  </div>
 </script>
