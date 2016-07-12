@@ -3,3 +3,6 @@ logs/
 *.swp
 *.pyc
 __pycache__
+phinx.yml
+config/db.php
+python/config.py
