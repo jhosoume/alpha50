@@ -40,3 +40,10 @@
 <br>
 Primary Security - Stocks/ETFs<br>
 Bloomberg API
+<br>
+<br>
+To run migrations, use orator.
+Install 
+<code>sudo pip3 install orator</code>
+Inside the python/db folder
+<code>orator migrate</code> 
