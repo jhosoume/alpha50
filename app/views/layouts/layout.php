@@ -9,10 +9,10 @@
     <?= Spark\load_css(); ?>
   </head>
   <body>
-    <?php renderer::render_file('layouts/header.php'); ?>
+    <?php render_file('layouts/header.php'); ?>
     <main>
     <?php renderer::render_view_template(); ?>
     </main>
-    <?php renderer::render_file('layouts/footer.php'); ?>
+    <?php render_file('layouts/footer.php'); ?>
   </body>
 </html>
