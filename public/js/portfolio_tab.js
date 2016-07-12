@@ -1,27 +1,35 @@
 $(function() {
 
-  renderPortfolioSection();
+  $('.portfolio-area').ready(function() {
 
-  var routes = [
-    "#overview-tab",
-    "#all-stocks-tab",
-    "#analysis-tab",
-    "#comparison-tab",
-    "#trades-tab"    
-  ];
+    var allStocks = JSON.parse(JSON.stringify($(".stock-bar-data").data('stock-data')));
 
-  $('.portfolio-nav').on('click','a', function(e) {
-    if ($(this).closest('li').hasClass('active')) {
-      e.preventDefault();
+    renderPortfolioSection();
+
+    var routes = [
+      "#overview-tab",
+      "#all-stocks-tab",
+      "#analysis-tab",
+      "#comparison-tab",
+      "#trades-tab"    
+    ];
+
+    $('.portfolio-nav').on('click','a', function(e) {
+      if ($(this).closest('li').hasClass('active')) {
+        e.preventDefault();
+        return false;
+      };
+    })
+
+    $(window).on('hashchange', function (event) {
+      if (routes.includes(location.hash) && !$(location.hash).hasClass('active')) 
+        renderPortfolioSection();
       return false;
-    };
-  })
+    });
 
-  $(window).on('hashchange', function (event) {
-    if (routes.includes(location.hash) && !$(location.hash).hasClass('active')) 
-      renderPortfolioSection();
-    return false;
   });
+
+  return false; 
 
 })
 

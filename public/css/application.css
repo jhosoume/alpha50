@@ -2,10 +2,15 @@ main {
   height:80vh;
 }
 
-
-div {
-  border:1px solid lightgrey;
+nav .nav-wrapper {
+  padding-left: 10px;
+  padding-right:10px;
 }
+
+
+/*div {
+  border:1px solid lightgrey;
+}*/
 
 #preloader {
   display:none;
