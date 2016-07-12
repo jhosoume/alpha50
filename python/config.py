@@ -10,4 +10,6 @@ config = {
   }
 }
 
+DATABASES = config
+
 db = DatabaseManager(config)
