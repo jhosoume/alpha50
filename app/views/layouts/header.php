@@ -6,12 +6,12 @@
         <li><a href="">About us</a></li>
         <li><a href="">Why join?</a></li>
         <li><a href="">Features</a></li>
-        <li><a href="#log-in-screen" class='btn modal-trigger'>Log in</a></li>
+        <li><a href="#user-log-in" class='btn modal-trigger'>Log in</a></li>
       </ul>
 
     </div>
   </nav>
-        <div id="log-in-screen" class="modal">
+        <div id="user-log-in" class="modal">
           <div class="modal-content">
             <div class="row">
               <form class="col s12">
