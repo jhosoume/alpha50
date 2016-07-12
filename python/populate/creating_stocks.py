@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+
 import json
 import requests
 import csv
@@ -26,4 +31,4 @@ def get_stocks_data(chosen_stocks):
 
 for stock in get_stocks_csv(CSV_FILE):
     if not Stock(stock).save():
-        print("ERROR: not able to save the following stock \n {}".format(stock.serialize()))
+        print("ERROR: not able to save the following stock \n {}".format(stock))
