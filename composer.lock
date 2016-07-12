@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "mattbred/spark",
-            "version": "v0.1.0.2",
+            "version": "v0.1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattBred/spark-mvc.git",
-                "reference": "a9ab570fbd582e50411379590df4d03ec2424d58"
+                "reference": "109eb1b237ca10b97113c48069a8749b625f56a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattBred/spark-mvc/zipball/a9ab570fbd582e50411379590df4d03ec2424d58",
-                "reference": "a9ab570fbd582e50411379590df4d03ec2424d58",
+                "url": "https://api.github.com/repos/MattBred/spark-mvc/zipball/109eb1b237ca10b97113c48069a8749b625f56a1",
+                "reference": "109eb1b237ca10b97113c48069a8749b625f56a1",
                 "shasum": ""
             },
             "require": {
@@ -33,7 +33,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "A light weight php mvc",
-            "time": "2016-07-11 23:41:28"
+            "time": "2016-07-12 00:43:21"
         },
         {
             "name": "php-activerecord/php-activerecord",
