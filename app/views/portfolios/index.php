@@ -7,4 +7,4 @@
 <?php 
 
 render_file('/layouts/preloader.php');
-load_template('/stock-template.hbs');
+load_template('/stock_sidebar.hbs');
