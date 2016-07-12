@@ -6,8 +6,13 @@ div.stock-bar-data {
   display: none;
 }
 
+.stock-side-bar .container {
+  width: 90%;
+  line-height: 10px;
+}
+
 @media (max-width: 600px) {
   div.stock-side-bar {
     display: none;
   }
-}
+
