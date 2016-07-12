@@ -1,7 +1,7 @@
 <head>
   <nav class="top-nav grey darken-2">
     <div class="nav-wrapper">
-      <a href="#" class='brand-logo'>Alpha50</a>
+      <a href="/" class='brand-logo'>Alpha50</a>
       <ul class='right hide-on-med-and-down'>
         <li><a href="">About us</a></li>
         <li><a href="">Why join?</a></li>
