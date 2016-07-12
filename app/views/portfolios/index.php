@@ -4,14 +4,7 @@
   <?php render_file('/portfolios/portfolio-area.php'); ?>
 </div>
 
-<?php render_file('/layouts/preloader.php') ?>
+<?php 
 
-<script id="stock-quote-hbs" type='text/x-handlebar-template' >
-  <div class="stock-quote">
-    <p>
-      {{stock.name}} - ({{stock.tic}})
-    </p><p>
-      {{stock.price}}
-    </p>
-  </div>
-</script>
+render_file('/layouts/preloader.php');
+load_template('/stock_sidebar.hbs');

@@ -1,2 +1,5 @@
 logs/
 /vendor/
+*.swp
+*.pyc
+__pycache__
