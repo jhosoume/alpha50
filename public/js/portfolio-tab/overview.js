@@ -7,14 +7,35 @@ $(function() {
       contentType: 'JSON'
     })
 
+    var dailyDatePrice = [];
+
+
+    //potentially rewrite this as a named function
     quotesRequest.then(function(data) {
-      console.log(data);
-      var dailyQuotes = data[0];
-      var datesDailyQuotes = [];
-      $.each(dailyQuotes,function(idx,arr) {
-        console.log(arr);
+      var dailyQuotesArray = data[0];
+      $.each(dailyQuotesArray,function(idx,quote) {
+        dailyDatePrice.push([Date.parse(quote.date),parseInt(quote.close_price)]);
       });
-      console.log(datesDailyQuotes[0]);
+
+      dailyDatePrice.sort(function(a, b){return a[0]-b[0]});
+
+      $("#portfolio-overview-chart").highcharts('StockChart', {
+        rangeSelector : {
+          selected : 1
+        },
+        title : {
+          text : 'HI'
+        },
+        series : [{
+          name : stock,
+          data : dailyDatePrice,
+          tooltip: {
+            valueDecimals: 2
+          }
+        }]
+      })
     })
+
+
   })
 })
