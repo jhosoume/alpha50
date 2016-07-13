@@ -2,8 +2,6 @@
 
 import requests
 import arrow
-from datetime import datetime
-from dateutil import tz
 from pyquery import PyQuery as pq
 from retrying import retry
 from models.stock import Stock
