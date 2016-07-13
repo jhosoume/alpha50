@@ -1,5 +1,8 @@
 <?php
 class User extends ActiveRecord\Model implements JsonSerializable {
+	static $has_many = array(
+		array('portfolios')
+	);
 
 	public function jsonSerialize()
     {
