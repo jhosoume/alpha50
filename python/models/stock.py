@@ -2,7 +2,7 @@ from orator import Model
 from config import db
 from orator.orm import has_many
 import numbers
-from models.hourly_quote import HourlyQuote
+from models.half_hourly_quote import HalfHourlyQuote
 from models.daily_quote import DailyQuote
 
 Model.set_connection_resolver(db)
@@ -14,8 +14,8 @@ class Stock(Model):
     __timestamps__ = False
 
     @has_many
-    def hourly_quotes(self):
-        return HourlyQuote
+    def half_hourly_quotes(self):
+        return HalfHourlyQuote
 
     @has_many
     def daily_quotes(self):
