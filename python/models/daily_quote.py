@@ -23,9 +23,15 @@ class DailyQuote(Model):
 
     @staticmethod
     def is_valid_date(date):
-        valid = date and isinstance(date, arrow.Arrow) and \
-                date > arrow.get('2008-12-31', 'YYYY-MM-DD').to('PST') and \
-                date < arrow.now().replace(minutes = +5)
+        try:
+            valid = date and isinstance(date, arrow.Arrow) and \
+                    date > arrow.get('2008-12-31', 'YYYY-MM-DD').to('PST') and \
+                    date < arrow.now().replace(minutes = +5)
+        except:
+            valid = date and isinstance(date, arrow.Arrow) and \
+                    date > arrow.get('2008-12-31', 'YYYY-MM-DD').to('US/Pacific') and \
+                    date < arrow.now().replace(minutes = +5)
+
         return True if valid else False
 
     def is_valid(self):
