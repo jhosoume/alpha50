@@ -24,7 +24,7 @@ $(function() {
     
     function createChartArray(jsonData) {
 
-      var dailyQuotesArray = jsonData[0];
+      var dailyQuotesArray = jsonData['daily'];
       $.each(dailyQuotesArray,function(idx,quote) {
         dailyDatePrice.push([Date.parse(quote.date),parseInt(quote.close_price)]);
       });

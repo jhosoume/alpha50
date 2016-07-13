@@ -9,9 +9,14 @@ get('/portfolios', ['function'=>'index']);
 post('/users', ['function' => 'create']);
 
 
+get('/api/stocks', [
+  'function'=>'index',
+  'namespace'=>'api'
+]);
+
 get('/api/stocks/:symbol', [
-	'function'=>'index',
-	'namespace'=>'api'
+  'function'=>'show',
+  'namespace'=>'api'
 ]);
 
 //sessions
