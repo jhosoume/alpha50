@@ -1,5 +1,5 @@
 {
     "require": {
-    	"mattbred/spark": ">=0.1"
+    	"mattbred/spark": ">=0.1.0.6"
     }
 }

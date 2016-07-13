@@ -1,7 +1,7 @@
 <?php
 namespace api;
 
-class StocksController extends \BaseController {
+class StocksController extends \Spark\BaseController {
 	function index() {
 		$params = $this->params;
 		$symbol = $params['symbol'];
