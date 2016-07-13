@@ -1,7 +1,7 @@
 <?php
 class HalfHourlyQuote extends ActiveRecord\Model implements JsonSerializable {
 
-  static $belongs_to = array(array('stock'));
+	static $belongs_to = array(array('stock'));
 	
 	public function jsonSerialize()
     {

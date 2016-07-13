@@ -2,9 +2,6 @@ $(function() {
 
   $('.portfolio-area').ready(function() {
 
-    var allStocks = $(".stock-bar-data").data('stock-data');
-    console.log(allStocks);
-
     renderPortfolioSection();
 
     var routes = [
