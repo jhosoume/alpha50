@@ -6,7 +6,11 @@
         <li><a href="">About us</a></li>
         <li><a href="">Why join?</a></li>
         <li><a href="">Features</a></li>
-        <li><a href="#user-log-in" class='btn modal-trigger'>Log in</a></li>
+        <?php if ($_SESSION['user_id']) {
+          echo('<li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>');
+        } else { 
+          echo('<li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>');
+        } ?>
       </ul>
 
     </div>
@@ -14,22 +18,37 @@
         <div id="user-log-in" class="modal">
           <div class="modal-content">
             <div class="row">
-              <form class="col s12">
+              <form class="col s12" action='/sessions' method='post'>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+                    <input id="user_email" type="email" name='user_email' class="validate">
+                    <label for="user_email">Email</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
+                    <input id="user_password" type="password" name='user_password' class="validate">
+                    <label for="user_password">Password</label>
                   </div>
                 </div>
                 <button class="btn" type="submit" name="action">
                   Log in
                 </button>                
+              </form>
+            </div>
+          </div>
+      </div>
+      <div id="user-log-out" class="modal">
+          <div class="modal-content">
+            <div class="row">
+              <form class="col s12" action='/sessions' method='post'>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <p>Sure?</p>
+                  </div>
+                </div>
+                <input type='hidden' name="_method" value="DELETE">
+                <input type='submit' value="Log out">               
               </form>
             </div>
           </div>

@@ -16,4 +16,5 @@ class UsersController extends BaseController {
 
     $this->render("users/index.php");
   }
+
 }
