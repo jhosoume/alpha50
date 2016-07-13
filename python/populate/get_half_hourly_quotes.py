@@ -25,6 +25,10 @@ INTERVAL = 1000 # in ms
 def reach_google(tickers_list):
     return getQuotes(tickers_list)
 
+def grab_info_google(time, stock, tz):
+    return {'datetime': arrow.get(time + '-04:00').to(tz).replace(second=0),
+            'price': Decimal(stock['LastTradePrice']) }
+
 def get_stocks_real_time_google(tickers_list):
     stocks_info = reach_google(tickers_list)
     stocks_prices = []
@@ -33,11 +37,9 @@ def get_stocks_real_time_google(tickers_list):
         if not time:
             continue
         try:
-            info = {'datetime': arrow.get(time + '-04:00').to('PST'),
-                    'price': Decimal(stock['LastTradePrice']) } 
+            info = grab_info_google(time, stock, 'PST')
         except:
-            info = {'datetime': arrow.get(time + '-04:00').to('US/Pacific'),
-                    'price': Decimal(stock['LastTradePrice']) } 
+            info = grab_info_google(time, stock, 'US/Pacific')
         stocks_prices.append({'ticker': stock['StockSymbol'], 'info': info})
     return stocks_prices
 
@@ -47,6 +49,10 @@ def get_stocks_real_time_google(tickers_list):
 def reach_url(url):
     return requests.get(url) 
 
+def grab_info(stock, tz):
+    return {'datetime': arrow.get(stock['utctime']).to(tz).replace(second=0),
+            'price': Decimal(stock['price']) } 
+
 def get_stocks_real_time(tickers_list):
     stocks_info = reach_url(YAHOO_URL.format(','.join([ str(ticker) for ticker in tickers_list ])))
     stocks_list = json.loads(stocks_info.text)['list']['resources']
@@ -54,11 +60,9 @@ def get_stocks_real_time(tickers_list):
     for stock in stocks_list:
         stock = stock['resource']['fields']
         try:
-            info = {'datetime': arrow.get(stock['utctime']).to('PST'),
-                    'price': Decimal(stock['price']) } 
+            info = grab_info(stock, 'PST')
         except:
-            info = {'datetime': arrow.get(stock['utctime']).to('US/Pacific'),
-                    'price': Decimal(stock['price']) } 
+            info = grab_info(stock, 'US/Pacific')
         stocks_prices.append({'ticker': stock['symbol'], 'info': info})
     return stocks_prices
 
@@ -76,7 +80,8 @@ def populate_stock_real_time():
     for stock_price in stocks_prices:
         stock = Stock.where('ticker', stock_price['ticker']).first()
         if stock:
-            stock.half_hourly_quotes().save(HalfHourlyQuote(stock_price['info']))
+            stock_price['info']['stock_id'] = stock.id
+            HalfHourlyQuote(stock_price['info']).save()
 
 if __name__ == '__main__':
     populate_stock_real_time()

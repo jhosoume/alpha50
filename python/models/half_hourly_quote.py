@@ -8,7 +8,7 @@ Model.set_connection_resolver(db)
 
 class HalfHourlyQuote(Model):
 
-    __fillable__ = ['datetime', 'price']
+    __fillable__ = ['datetime', 'price', 'stock_id']
     __dates__ = ['datetime']
     __timestamps__ = False
 
@@ -52,7 +52,7 @@ class HalfHourlyQuote(Model):
         return True if (count > 0) else False
 
     def has_record(self):
-        count = HalfHourlyQuote.where('stock_id', self.stock_id).where('datetime', self.datetime.datetime).count()
+        count = HalfHourlyQuote.where('stock_id', self.stock_id).where('datetime', self.datetime.format('YYYY-MM-DDTHH:mm:ss')).count()
         return True if (count > 0) else False
 
 HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and not half_hourly_quote.has_record())
