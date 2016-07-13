@@ -15,7 +15,7 @@ def parse_datetime(time):
     minute = int(time[3:5])
     zone = time[-3:] 
     am_pm = time[5:7]
-    if (am_pm.lower() == 'pm'):
+    if (am_pm.lower() == 'pm' and hour + 12 in (range(24))):
         hour += 12
     if (zone != 'EDT'): 
         print('ERROR: problem with timezone')
