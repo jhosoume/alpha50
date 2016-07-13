@@ -7,10 +7,10 @@ sys.path.insert(0,parentdir)
 
 import requests
 import json
+import arrow
+from googlefinance import getQuotes
 from decimal import Decimal
 from retrying import retry
-import arrow
-from stocks_list import stocks
 from models.stock import Stock 
 from models.half_hourly_quote import HalfHourlyQuote
 from yahoo_scraper import scrape_yahoo_site
@@ -18,6 +18,24 @@ from yahoo_scraper import scrape_yahoo_site
 YAHOO_URL = 'http://finance.yahoo.com/webservice/v1/symbols/{}/quote?format=json&view=detail'
 MAX_ATTEMPS = 25
 INTERVAL = 1000 # in ms
+
+@retry(stop_max_attempt_number = MAX_ATTEMPS,
+       wait_random_min = INTERVAL - 10000,
+       wait_random_max = INTERVAL)
+def reach_google(tickers_list):
+    return getQuotes(tickers_list)
+
+def get_stocks_real_time_google(tickers_list):
+    stocks_info = reach_google(tickers_list)
+    stocks_prices = []
+    for stock in stocks_info:
+        time = stock['LastTradeDateTime'][:-1] 
+        if not time:
+            continue
+        info = {'datetime': arrow.get(time + '-04:00').to('PST'),
+                'price': Decimal(stock['LastTradePrice']) } 
+        stocks_prices.append({'ticker': stock['StockSymbol'], 'info': info})
+    return stocks_prices
 
 @retry(stop_max_attempt_number = MAX_ATTEMPS,
        wait_random_min = INTERVAL - 50,

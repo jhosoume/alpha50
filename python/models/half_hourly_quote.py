@@ -1,6 +1,6 @@
 from orator import Model
 from config import db
-from orator.orm import belongs_to
+from orator.orm import belongs_to, scope
 import numbers
 import arrow
 
@@ -44,4 +44,4 @@ class HalfHourlyQuote(Model):
         count = HalfHourlyQuote.where('stock_id', self.stock_id).where('datetime', self.datetime.datetime).count()
         return True if (count > 0) else False
 
-HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and half_hourly_quote.is_new())
+HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and not half_hourly_quote.has_record())
