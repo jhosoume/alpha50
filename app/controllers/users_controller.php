@@ -1,5 +1,5 @@
 <?php
-class UsersController extends BaseController {
+class UsersController extends Spark\BaseController {
   public function create() {
     $user_email = $this->params['user_email'];
     $password_hash = password_hash($this->params['user_password'], PASSWORD_DEFAULT);

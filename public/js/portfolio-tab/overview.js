@@ -3,13 +3,14 @@ $(function() {
     var stock = 'AMZN';
     var quotesRequest = $.ajax({
       url: "/api/stocks/" + stock,
-      data: {'request_type': 'quotes'},
+      data: {'request_type': 'quotes', 'limit': '10'},
       contentType: 'JSON'
     })
 
 
     //potentially rewrite this as a named function
     quotesRequest.then(function(data) {
+      console.log(data);
       createChart(data);
     })
 

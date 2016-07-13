@@ -1,5 +1,5 @@
 <?php
-class SessionsController extends BaseController {
+class SessionsController extends Spark\BaseController {
   public function create() {
     $params = $this->params;
 

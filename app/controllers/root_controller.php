@@ -1,5 +1,5 @@
 <?php
-class RootController extends BaseController {
+class RootController extends Spark\BaseController {
 	public function index() {
 		$this->render("index.php");
 	}
