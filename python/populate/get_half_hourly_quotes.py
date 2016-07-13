@@ -32,8 +32,12 @@ def get_stocks_real_time_google(tickers_list):
         time = stock['LastTradeDateTime'][:-1] 
         if not time:
             continue
-        info = {'datetime': arrow.get(time + '-04:00').to('PST'),
-                'price': Decimal(stock['LastTradePrice']) } 
+        try:
+            info = {'datetime': arrow.get(time + '-04:00').to('PST'),
+                    'price': Decimal(stock['LastTradePrice']) } 
+        except:
+            info = {'datetime': arrow.get(time + '-04:00').to('US/Pacific'),
+                    'price': Decimal(stock['LastTradePrice']) } 
         stocks_prices.append({'ticker': stock['StockSymbol'], 'info': info})
     return stocks_prices
 
@@ -49,8 +53,12 @@ def get_stocks_real_time(tickers_list):
     stocks_prices = []
     for stock in stocks_list:
         stock = stock['resource']['fields']
-        info = {'datetime': arrow.get(stock['utctime']).to('PST'),
-                'price': Decimal(stock['price']) } 
+        try:
+            info = {'datetime': arrow.get(stock['utctime']).to('PST'),
+                    'price': Decimal(stock['price']) } 
+        except:
+            info = {'datetime': arrow.get(stock['utctime']).to('US/Pacific'),
+                    'price': Decimal(stock['price']) } 
         stocks_prices.append({'ticker': stock['symbol'], 'info': info})
     return stocks_prices
 

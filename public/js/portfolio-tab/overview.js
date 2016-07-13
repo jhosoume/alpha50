@@ -3,23 +3,38 @@ $(function() {
     var stock = 'AMZN';
     var quotesRequest = $.ajax({
       url: "/api/stocks/" + stock,
-      data: {'request_type': 'quotes'},
+      data: {'request_type': 'quotes', 'limit': '10'},
       contentType: 'JSON'
     })
-
-    var dailyDatePrice = [];
 
 
     //potentially rewrite this as a named function
     quotesRequest.then(function(data) {
-      var dailyQuotesArray = data[0];
+      console.log(data);
+      createChart(data);
+    })
+
+    function createChart(jsonData) { 
+      var chartArray = createChartArray(jsonData);
+      renderChart(chartArray, $("#portfolio-overview-chart"));
+    }
+
+
+    var dailyDatePrice = [];
+    
+    function createChartArray(jsonData) {
+
+      var dailyQuotesArray = jsonData[0];
       $.each(dailyQuotesArray,function(idx,quote) {
         dailyDatePrice.push([Date.parse(quote.date),parseInt(quote.close_price)]);
       });
 
-      dailyDatePrice.sort(function(a, b){return a[0]-b[0]});
+      return dailyDatePrice.sort(function(a, b){return a[0]-b[0]});   
 
-      $("#portfolio-overview-chart").highcharts('StockChart', {
+    }
+
+    function renderChart(chartArray, container) {
+      container.highcharts('StockChart', {
         rangeSelector : {
           selected : 1
         },
@@ -34,7 +49,7 @@ $(function() {
           }
         }]
       })
-    })
+    }
 
 
   })
