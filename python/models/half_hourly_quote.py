@@ -28,6 +28,10 @@ class HalfHourlyQuote(Model):
         valid = price and isinstance(price, numbers.Number)
         return True if valid else False
 
+    @scope
+    def older(self, query):
+        return query.where('datetime', '<', arrow.now().to('PST').replace(days = +5))
+
     def is_valid(self):
         return HalfHourlyQuote.is_valid_price(self.price) and \
                HalfHourlyQuote.is_valid_datetime(self.datetime)
@@ -36,8 +40,8 @@ class HalfHourlyQuote(Model):
         count = HalfHourlyQuote.where_between('datetime', [arrow.now().to('PST').replace(minutes = -30), arrow.now().to('PST').replace(minutes = +30)]).count() 
         return True if (count > 0) else False
 
-    def is_new(self):
-        count = HalfHourlyQuote.where('datetime', arrow.now().to('PST').floor('hour')).count()
+    def has_record(self):
+        count = HalfHourlyQuote.where('stock_id', self.stock_id).where('datetime', self.datetime.datetime).count()
         return True if (count > 0) else False
 
 HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and half_hourly_quote.is_new())
