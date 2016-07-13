@@ -1,4 +1,9 @@
 <?php
-class User extends ActiveRecord\Model {
+class User extends ActiveRecord\Model implements JsonSerializable {
 
+
+	public function jsonSerialize()
+    {
+        return json_decode($this->to_json());
+    }
 }
