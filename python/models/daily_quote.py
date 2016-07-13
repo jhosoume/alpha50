@@ -38,4 +38,8 @@ class DailyQuote(Model):
         return DailyQuote.is_valid_close_price(self.close_price) and \
                DailyQuote.is_valid_date(self.date)
 
-DailyQuote.saving(lambda daily_quote: daily_quote.is_valid())
+    def has_record(self):
+        count = DailyQuote.where('stock_id', self.stock_id).where('date', self.date.datetime).count()
+        return True if (count > 0) else False
+
+DailyQuote.saving(lambda daily_quote: daily_quote.is_valid() and not daily_quote.has_record())
