@@ -2,7 +2,8 @@ $(function() {
 
   $('.portfolio-area').ready(function() {
 
-    var allStocks = JSON.parse(JSON.stringify($(".stock-bar-data").data('stock-data')));
+    var allStocks = $(".stock-bar-data").data('stock-data');
+    console.log(allStocks);
 
     renderPortfolioSection();
 
