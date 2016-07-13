@@ -6,7 +6,7 @@ import arrow
 
 Model.set_connection_resolver(db)
 
-class HourlyQuote(Model):
+class HalfHourlyQuote(Model):
 
     __fillable__ = ['datetime', 'price']
     __dates__ = ['datetime']
@@ -29,15 +29,15 @@ class HourlyQuote(Model):
         return True if valid else False
 
     def is_valid(self):
-        return HourlyQuote.is_valid_price(self.price) and \
-               HourlyQuote.is_valid_datetime(self.datetime)
+        return HalfHourlyQuote.is_valid_price(self.price) and \
+               HalfHourlyQuote.is_valid_datetime(self.datetime)
 
     def is_new_range(self):
-        count = HourlyQuote.where_between('datetime', [arrow.now().to('PST').replace(minutes = -30), arrow.now().to('PST').replace(minutes = +30)]).count() 
+        count = HalfHourlyQuote.where_between('datetime', [arrow.now().to('PST').replace(minutes = -30), arrow.now().to('PST').replace(minutes = +30)]).count() 
         return True if (count > 0) else False
 
     def is_new(self):
-        count = HourlyQuote.where('datetime', arrow.now().to('PST').floor('hour')).count()
+        count = HalfHourlyQuote.where('datetime', arrow.now().to('PST').floor('hour')).count()
         return True if (count > 0) else False
 
-HourlyQuote.saving(lambda hourly_quote: hourly_quote.is_valid() and hourly_quote.is_new())
+HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and half_hourly_quote.is_new())
