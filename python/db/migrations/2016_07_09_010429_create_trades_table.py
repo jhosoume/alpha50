@@ -9,12 +9,12 @@ class CreateTradesTable(Migration):
         """
         with self.schema.create('trades') as table:
             table.increments('id')
-            table.integer('stock_portfolio_id').unsigned()
-            table.foreign('stock_portfolio_id').references('id').on('stocks_portfolios') 
+            table.integer('stocks_portfolio_id').unsigned()
+            table.foreign('stocks_portfolio_id').references('id').on('stocks_portfolios') 
             table.datetime('datetime')
             table.integer('quantity')
             table.float('price')
-            table.timestamps(use_current=True)
+            table.timestamp('created_at').use_current()
 
     def down(self):
         """
