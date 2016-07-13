@@ -1,4 +1,8 @@
 <?php
-class DailyQuote extends ActiveRecord\Model {
-	
+class DailyQuote extends ActiveRecord\Model implements JsonSerializable {
+
+	public function jsonSerialize()
+    {
+        return json_decode($this->to_json());
+    }
 }
