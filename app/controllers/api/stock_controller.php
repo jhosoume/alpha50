@@ -25,6 +25,6 @@ class StocksController extends \BaseController {
 
 		$quotes = [$daily_quotes, $hourly_quotes];
 
-		$this->render($stock, ['content_type'=>'JSON', 'enable_cors'=>true]);
+		$this->render($quotes, ['content_type'=>'JSON', 'enable_cors'=>true]);
 	}
 }
