@@ -1,7 +1,7 @@
 from orator.migrations import Migration
 
 
-class CreateHalfHourlyQuotes(Migration):
+class CreateHalfHourlyQuotesTable(Migration):
 
     def up(self):
         """
