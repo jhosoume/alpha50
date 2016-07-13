@@ -39,7 +39,7 @@ class DailyQuote(Model):
                DailyQuote.is_valid_date(self.date)
 
     def has_record(self):
-        count = DailyQuote.where('stock_id', self.stock_id).where('date', self.date.datetime).count()
+        count = DailyQuote.where('stock_id', self.stock_id).where('date', self.date.format('YYYY-MM-DDTHH:mm:ss')).count()
         return True if (count > 0) else False
 
 DailyQuote.saving(lambda daily_quote: daily_quote.is_valid() and not daily_quote.has_record())
