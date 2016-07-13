@@ -13,7 +13,7 @@ class CreatePortfoliosTable(Migration):
             table.integer('user_id').unsigned()
             table.foreign('user_id').references('id').on('users')
             table.integer('parent').unsigned().nullable()
-            table.foreign('parant').references('id').on('portfolios')
+            table.foreign('parent').references('id').on('portfolios')
             table.timestamps(use_current=True)
 
     def down(self):
