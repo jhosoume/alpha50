@@ -4,10 +4,9 @@ use PHPUnit\Framework\TestCase;
 class TradeTest extends TestCase {
 
     public function testValidatePortfolioCash() {
-        $stock = Stock::find_by_ticker('aapl');
         $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
         $portfolio = Portfolio::create(['name'=>'PortPortPort','user_id'=>$user->id,'cash'=>200]);
-        $stocks_portfolio = StocksPortfolio::Create(['stock_id'=>$stock->id,'portfolio_id'=>$portfolio->id,'quantity_held'=>0]);
+        $stocks_portfolio = $portfolio->stocks_portfolios[0];
 
         $trade_buy = Trade::create([
             'stocks_portfolio_id'=>$stocks_portfolio->id,
@@ -41,10 +40,9 @@ class TradeTest extends TestCase {
 
 	public function testAfterCreateCallback()
     {
-        $stock = Stock::find_by_ticker('aapl');
         $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
         $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>30000]);
-        $stocks_portfolio = StocksPortfolio::Create(['stock_id'=>$stock->id,'portfolio_id'=>$portfolio->id,'quantity_held'=>0]);
+        $stocks_portfolio = $portfolio->stocks_portfolios[0];
 
     	$trade_1 = Trade::create([
     		'stocks_portfolio_id'=>$stocks_portfolio->id,
@@ -62,7 +60,6 @@ class TradeTest extends TestCase {
         // Test that trades change the portfolio's quantity held.
     	$this->assertEquals(5, $stocks_portfolio->quantity_held);
 
-
 	    $trade_fail = Trade::create([
             'stocks_portfolio_id'=>$stocks_portfolio->id,
             'quantity'=>-6,
@@ -79,6 +76,7 @@ class TradeTest extends TestCase {
     	echo("\nDeleting all that was added to database...\n");
     	User::query('SET FOREIGN_KEY_CHECKS=0;');
         Portfolio::delete_all();
+        StocksPortfolio::delete_all();
         User::delete_all();
         Trade::delete_all();
         User::query('SET FOREIGN_KEY_CHECKS=1;');

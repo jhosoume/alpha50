@@ -1,5 +1,6 @@
 <?php
 class Portfolio extends ActiveRecord\Model implements JsonSerializable {
+	static $after_create = array('create_all_stocks_portfolios');
 	static $has_many = array(
 		array('stocks_portfolios')
 	);
@@ -18,6 +19,18 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
   		['user_id'],
   		['cash']
   	);
+
+  	public function create_all_stocks_portfolios() {
+  		$stocks = Stock::all();
+
+  		foreach($stocks as $stock) {
+  			StocksPortfolio::create([
+  				'stock_id'=>$stock->id,
+  				'portfolio_id'=>$this->id,
+  				'quantity_held'=>0,
+  			]);
+  		}
+  	}
 
 	public function jsonSerialize()
     {

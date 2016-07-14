@@ -28,7 +28,23 @@ class PortfolioTest extends TestCase {
     	]);
 
     	$this->assertEquals('Awesome Port', $monkey->portfolios[0]->parent_portfolio->name);
-    	$this->assertEquals('Awesome Port [Monkey]', $user->portfolios[0]->portfolio->name);   	
+    	$this->assertEquals('Awesome Port [Monkey]', $user->portfolios[0]->portfolio->name);  	
+    }
+
+    public function testCreatesStocksPortfolios() {
+        $user = User::create([
+            'email'=>'asdf@gmail.com',
+            'password'=>'asdfasdf'
+        ]);
+
+        $portfolio = Portfolio::create([
+            'name'=>'port',
+            'user_id'=>$user->id,
+            'cash'=>1000
+        ]);
+        $user->reload();
+
+        $this->assertEquals(50, count($user->portfolios[0]->stocks_portfolios));
     }
 
 
@@ -37,6 +53,7 @@ class PortfolioTest extends TestCase {
     	echo("\nDeleting all that was added to database...\n");
     	User::query('SET FOREIGN_KEY_CHECKS=0;');
         Portfolio::delete_all();
+        StocksPortfolio::delete_all();
         User::delete_all();
         Trade::delete_all();
         User::query('SET FOREIGN_KEY_CHECKS=1;');
