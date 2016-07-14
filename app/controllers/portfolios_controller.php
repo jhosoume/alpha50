@@ -12,4 +12,11 @@ public function show() {
     $this->locals = ['portfolio_id' => $portfolio_id];
     $this->render('portfolios/index.php');
   }
+  
+public function new() {
+  $portfolio = new Portfolio();
+  $this->render('portfolios/new.php');
+  }
+
 }
+

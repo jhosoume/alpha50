@@ -4,6 +4,7 @@ namespace Spark\Config;
 get('/', ['function'=>'index']);
 get('/portfolios', ['function'=>'index']);
 get('/portfolios/:id', ['function'=>'show']);
+get('/portfolios/new', ['function' => 'new']);
 
 //users
 post('/users', ['function' => 'create']);
