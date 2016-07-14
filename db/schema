@@ -44,8 +44,8 @@ stocks_portfolios
 
 
 trades
-	id:					integer
-	stock_portfolio_id:	integer
-	quantity:			integer
-	price:				float
-	created_at:			timestamp
+	id:						integer
+	stocks_portfolio_id:	integer
+	quantity:				integer
+	price:					float
+	created_at:				timestamp
