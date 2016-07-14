@@ -1,4 +1,4 @@
-Users
+users
 	id: 			integer
 	email:			string
 	password_hash: 	string
@@ -6,7 +6,7 @@ Users
 	updated_at:		timestamp
 
 
-Stocks
+stocks
 	id:				integer
 	ticker:			string
 	sector:			string
@@ -14,9 +14,10 @@ Stocks
 	name:			string
 
 
-Portfolios
+portfolios
 	id:				integer
 	name:			string
+    cash:           float
 	user_id:		integer
 	parent:			integer			NULLABLE
 	created_at:		timestamp
@@ -33,6 +34,7 @@ daily_quotes
 half_hourly_quotes
 	id:				integer
 	price:			float
+    datetime:       datetime
 	stock_id:		integer
 
 
@@ -49,3 +51,10 @@ trades
 	quantity:				integer
 	price:					float
 	created_at:				timestamp
+
+
+portfolio_valuations
+    id:                     integer
+    created_at:             timestamp
+    value:                  float
+    portfolio_id:           integer

@@ -10,7 +10,7 @@ import requests
 import csv
 from models.stock import Stock
 
-CSV_FILE = "stock50.csv"
+CSV_FILE = "../csvs/stock50.csv"
 
 def get_stocks_csv(csv_name):
     stocks = []
