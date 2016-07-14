@@ -36,7 +36,7 @@ class HalfHourlyQuote(Model):
     @scope
     def older(self, query):
         def query_older(tz):
-            return query.where('datetime', '>', arrow.now().to(tz).replace(days = -5).format('YYYY-MM-DDTHH:mm:ss')).order_by('datetime', 'asc')
+            return query.where('datetime', '<', arrow.now().to(tz).replace(days = -5).format('YYYY-MM-DDTHH:mm:ss')).order_by('datetime', 'asc')
         try:
             return query_older('PST')
         except:
