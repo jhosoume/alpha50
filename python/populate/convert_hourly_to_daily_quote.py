@@ -12,5 +12,9 @@ def convert_hourly_to_daily():
         for old_quote in older_quotes:
             old_quote.delete()
 
+
+if __name__ == '__main__':
+    convert_hourly_to_daily()
+    
     
 
