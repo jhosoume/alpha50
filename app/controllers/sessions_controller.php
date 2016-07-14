@@ -24,6 +24,6 @@ class SessionsController extends Spark\BaseController {
   public function destroy() {
     // Logged out.
     $_SESSION['user_id'] = null;
-    $this->render('index.php');
+    redirect_to('/');
   }
 }
