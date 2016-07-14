@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d9a7112308adb8126702d94a2e06855f",
-    "content-hash": "0f9c60e54d29bec2a41e57f79ed7da6a",
+    "hash": "4f064a066871a70b6703e2e574e9ae45",
+    "content-hash": "5c3c56547b320305be1e1b9601451359",
     "packages": [
         {
             "name": "mattbred/spark",
