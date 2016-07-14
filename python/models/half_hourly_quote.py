@@ -35,10 +35,12 @@ class HalfHourlyQuote(Model):
 
     @scope
     def older(self, query):
+        def query_older(tz):
+            return query.where('datetime', '<', arrow.now().to(tz).replace(days = -5).format('YYYY-MM-DDTHH:mm:ss')).order_by('datetime', 'asc')
         try:
-            return query.where('datetime', '<', arrow.now().to('PST').replace(days = +5))
+            return query_older('PST')
         except:
-            return query.where('datetime', '<', arrow.now().to('US/Pacific').replace(days = +5))
+            return query_older('US/Pacific')
 
     def is_valid(self):
         return HalfHourlyQuote.is_valid_price(self.price) and \
