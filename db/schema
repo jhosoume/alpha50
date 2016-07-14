@@ -17,7 +17,6 @@ stocks
 portfolios
 	id:				integer
 	name:			string
-    cash:           float
 	user_id:		integer
 	cash:			float
 	parent:			integer			NULLABLE
