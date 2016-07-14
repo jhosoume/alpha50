@@ -16,6 +16,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
   	static $validates_presence_of = array(
   		['name'],
   		['user_id'],
+  		['cash']
   	);
 
 	public function jsonSerialize()
