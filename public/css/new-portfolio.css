@@ -1,26 +1,21 @@
-.container.new-portfolio {
-  height:75vh;
+.new-portfolio-data {
+  height:65vh;
   overflow-y: scroll;
 }
 
-.new-portfolio-overview {
-  position: fixed;
-  width:100%;
-  background: white;
-}
 
-table.new-portfolio {
-  margin-top:150px;
+.new-portfolio-data table {
+  margin-bottom: 5px;
 }
 
 
-table.new-portfolio input {
+.new-portfolio-data table input {
   height:1rem;
   padding: 0;
   margin-bottom:0;
   width:100px;
 }
 
-table.new-portfolio td {
+.new-portfolio-data table td {
   padding: 5px;
 }

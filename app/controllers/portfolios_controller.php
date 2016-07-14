@@ -15,10 +15,10 @@ public function show() {
 
 public function new() {
   $portfolio = new Portfolio();
-  $stocks = \Stock::all();
-  $this->locals = ['stocks' => $stocks];
+  $sql_recent_half_hourly_quotes = sql_recent_half_hourly_quotes();
+  $half_hourly_quotes = \HalfHourlyQuote::find_by_sql($sql_recent_half_hourly_quotes);
+  $this->locals = ['quotes' => $half_hourly_quotes];
   $this->render('portfolios/new.php');
   }
-
 }
 
