@@ -1,30 +1,15 @@
 <?php
 class PortfoliosController extends Spark\BaseController {
 public function index() {
-  // array below is dummy data for test purposes
-    $stocks = json_encode(array(
-      array(
-        'tic' => 'GOOG',
-        'name' => "Google",
-        'industry' => "Tech",
-        'price' => "500.10"
-        ),
-      array(
-        'tic' => 'TCK.B',
-        'name' => "Teck",
-        'industry' => 'materials',
-        'price' => '10.00'
-        ),
-      array(
-        'tic' => 'POT.',
-        'name' => "Potash",
-        'industry' => 'materials',
-        'price' => '20.01')
-      )
-      );
-    $this->locals = array(
-      'stocks'=>$stocks,
-    );
+    //temporary locals assignment
+    $this->locals = ['portfolio_id' => '1'];
     $this->render("portfolios/index.php");
+  }
+
+public function show() {
+    $params = $this->params;
+    $portfolio_id = $params['id'];
+    $this->locals = ['portfolio_id' => $portfolio_id];
+    $this->render('portfolios/index.php');
   }
 }

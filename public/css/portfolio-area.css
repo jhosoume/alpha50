@@ -1,3 +1,6 @@
+.inter-portfoli-nav {
+}
+
 .portfolio-content {
   height:68vh;
   width: 100%;
@@ -16,3 +19,12 @@
   margin: auto;
   margin-top: 30vh;
 }
+
+.portfolio-section .container {
+  width:85%;
+}
+
+#inter-portfolio-nav {
+  width:120px;
+}
+
