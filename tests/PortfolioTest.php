@@ -6,12 +6,12 @@ class PortfolioTest extends TestCase {
     {
     	$user = User::create([
     	  	'email'=>'asdf@gmail.com',
-    	  	'password_hash'=>'asdf'
+    	  	'password'=>'asdfasdf'
     	]);
 
     	$monkey = User::create([
     	  	'email'=>'monkey@ahhah.com',
-    	  	'password_hash'=>'asdf'
+    	  	'password'=>'asdfasdf'
     	]);
 
     	$portfolio_parent = Portfolio::create([

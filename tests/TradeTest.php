@@ -8,7 +8,7 @@ class TradeTest extends TestCase {
 
     	$user = User::create([
     	  	'email'=>'asdf@gmail.com',
-    	  	'password_hash'=>'asdf'
+    	  	'password'=>'asdfasdf'
     	]);
 
     	$portfolio = Portfolio::create([
