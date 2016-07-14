@@ -1,16 +1,16 @@
 from orator.migrations import Migration
 
 
-class CreateHourlyQuotesTable(Migration):
+class CreateHalfHourlyQuotesTable(Migration):
 
     def up(self):
         """
         Run the migrations.
         """
-        with self.schema.create('hourly_quotes') as table:
+        with self.schema.create('half_hourly_quotes') as table:
             table.increments('id')
             table.float('price')
-            table.date('date')
+            table.datetime('datetime')
             table.integer('stock_id').unsigned()
             table.foreign('stock_id').references('id').on('stocks')
 
@@ -18,4 +18,4 @@ class CreateHourlyQuotesTable(Migration):
         """
         Revert the migrations.
         """
-        self.schema.drop('hourly_quotes')
+        self.schema.drop('half_hourly_quotes')

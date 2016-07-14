@@ -10,7 +10,6 @@ $(function() {
 
     //potentially rewrite this as a named function
     quotesRequest.then(function(data) {
-      console.log(data);
       createChart(data);
     })
 

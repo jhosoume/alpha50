@@ -19,7 +19,7 @@ def parse_datetime(time):
         hour += 12
     if (zone != 'EDT'): 
         print('ERROR: problem with timezone')
-    return arrow.now('US/Eastern').replace(hour = hour, minute = minute)
+    return arrow.now('US/Eastern').replace(hour = hour, minute = minute, second = 0)
 
 @retry(stop_max_attempt_number = MAX_ATTEMPS,
        wait_random_min = INTERVAL - 10000,
@@ -32,7 +32,7 @@ def get_info_from_row(row):
     time = parse_datetime(row.children('.col-time').text())
     price = float(row.children('.col-price').text())
     return {'ticker': ticker,
-            'info': {'datetime': time,
+            'info': {'datetime': time.to('US/Pacific'),
                      'price': price
                      }}
 

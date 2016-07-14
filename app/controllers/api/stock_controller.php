@@ -1,9 +1,10 @@
 <?php
 namespace api;
 
-class StocksController extends \BaseController {
-  function index() {
-    $params = $this->params;
+
+class StocksController extends \Spark\BaseController {
+	function index() {
+		$params = $this->params;
     $limit = isset($params['limit']) ? $params['limit'] : null;
     if (isset($params['request_type'])) {
       self::request(null, $params['request_type'], $limit);

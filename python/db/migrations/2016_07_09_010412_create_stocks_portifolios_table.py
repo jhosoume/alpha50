@@ -13,7 +13,7 @@ class CreateStocksPortifoliosTable(Migration):
             table.foreign('stock_id').references('id').on('stocks')
             table.integer('portfolio_id').unsigned()
             table.foreign('portfolio_id').references('id').on('portfolios')
-
+            table.integer('quantity_held').unsigned()
     def down(self):
         """
         Revert the migrations.

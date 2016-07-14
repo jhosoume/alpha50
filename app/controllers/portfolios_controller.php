@@ -1,5 +1,5 @@
 <?php
-class PortfoliosController extends BaseController {
+class PortfoliosController extends Spark\BaseController {
 public function index() {
   // array below is dummy data for test purposes
     $stocks = json_encode(array(
