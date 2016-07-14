@@ -6,7 +6,7 @@ class ApplicationHelpersTest extends TestCase {
     {
     	$this->assertEquals(false, current_user());
 
-    	$user = User::create(['email'=>'asdf@gmail.com', 'password_hash'=>'asdf']);
+    	$user = User::create(['email'=>'asdf@gmail.com', 'password'=>'asdfasdf']);
     	$_SESSION['user_id'] = User::first()->id;
     	$this->assertEquals(User::first(), current_user());
     	$user->delete();
