@@ -9,9 +9,9 @@
 </ul>
 </nav>
 <ul id="inter-portfolio-nav" class="dropdown-content">
-  <li><a href="#!">Portfolio 1</a></li>
-  <li><a href="#!">Portfolio 1</a></li>
-  <li><a href="#!">Portfolio 3</a></li>
-  <li><a href="#!">Portfolio 4</a></li>
-  <li><a href="#!">Portfolio 5</a></li>
+  <li><a href="/portfolios/1">Portfolio 1</a></li>
+  <li><a href="/portfolios/2">Portfolio 1</a></li>
+  <li><a href="/portfolios/3">Portfolio 3</a></li>
+  <li><a href="/portfolios/4">Portfolio 4</a></li>
+  <li><a href="/portfolios/5">Portfolio 5</a></li>
 </ul>
