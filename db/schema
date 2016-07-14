@@ -18,7 +18,7 @@ Portfolios
 	id:				integer
 	name:			string
 	user_id:		integer
-	portfolio_id:	integer
+	parent:			integer			NULLABLE
 	created_at:		timestamp
 	updated_at:		timestamp
 
@@ -46,8 +46,6 @@ stocks_portfolios
 trades
 	id:					integer
 	stock_portfolio_id:	integer
-	datetime:			datetime
 	quantity:			integer
 	price:				float
 	created_at:			timestamp
-	updated_at:			timestamp
