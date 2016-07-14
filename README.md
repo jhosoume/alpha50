@@ -47,3 +47,5 @@ Install
 <code>sudo pip3 install orator</code>
 Inside the python/db folder
 <code>orator migrate</code> 
+
+Wireframes => https://app.moqups.com/aleckaleksandrov@gmail.com/RgVmKTI9NY/edit/page/aac4b6a5c
