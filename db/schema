@@ -19,6 +19,7 @@ portfolios
 	name:			string
     cash:           float
 	user_id:		integer
+	cash:			float
 	parent:			integer			NULLABLE
 	created_at:		timestamp
 	updated_at:		timestamp
