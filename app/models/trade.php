@@ -12,6 +12,20 @@ class Trade extends ActiveRecord\Model implements JsonSerializable {
   		['price']
   	);
 
+  	public function validate() {
+  		$total = $this->quantity * $this->price;
+
+  		// Validate that the portfolio has enough cash if buying.
+  		if ($this->quantity > 0 && $this->stocks_portfolio->portfolio->cash < $total) {
+  			$this->errors->add('portfolio_cash', 'portfolio does not have enough cash');
+  		}
+
+  		// Validate that the portfolio contains enough as it is trying to sell.
+  		if ($this->quantity < 0 && $this->stocks_portfolio->quantity_held < $this->quantity) {
+  			$this->errors->add('portfolio_quantity', 'can not short security');
+  		}
+  	}
+
 	public function adjust_stocks_portfolios_quantity_held() {
 		/* 
 			This adjusts the stocks_portfolio's quantity held.

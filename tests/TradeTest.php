@@ -2,42 +2,74 @@
 use PHPUnit\Framework\TestCase;
 
 class TradeTest extends TestCase {
+
+    public function testValidatePortfolioCash() {
+        $stock = Stock::find_by_ticker('aapl');
+        $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
+        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>200]);
+        $stocks_portfolio = StocksPortfolio::Create(['stock_id'=>$stock->id,'portfolio_id'=>$portfolio->id,'quantity_held'=>0]);
+
+        $trade_buy = Trade::create([
+            'stocks_portfolio_id'=>$stocks_portfolio->id,
+            'quantity'=>10,
+            'price'=>10,
+        ]);
+        // Test that a portfolio can trade if it has enough money.
+        $this->assertEquals(100, $user->portfolios[0]->cash);
+
+        $trade_buy_fail = new Trade([
+            'stocks_portfolio_id'=>$stocks_portfolio->id,
+            'quantity'=>10,
+            'price'=>1000
+        ]);
+        $trade_buy_fail->save();
+
+        // Test that a portfolio can't trade if it doesn't have enough money.
+        $this->assertEquals('portfolio does not have enough cash', $trade2->errors->on('portfolio_cash'));
+
+
+        $trade_sell = Trade::create([
+            'stocks_portfolio_id'=>$stocks_portfolio->id,
+            'quantity'=>-10,
+            'price'=>10,
+        ]);
+
+        // Test that a portfolio's cash raises when it sells.
+        $this->assertEquals(200, $user->portfolios[0]->cash);
+    }
+
 	public function testAfterCreateCallback()
     {
-    	$stock = Stock::find_by_ticker('aapl');
+        $stock = Stock::find_by_ticker('aapl');
+        $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
+        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>300]);
+        $stocks_portfolio = StocksPortfolio::Create(['stock_id'=>$stock->id,'portfolio_id'=>$portfolio->id,'quantity_held'=>0]);
 
-    	$user = User::create([
-    	  	'email'=>'asdf@gmail.com',
-    	  	'password'=>'asdfasdf'
-    	]);
-
-    	$portfolio = Portfolio::create([
-    		'name'=>'Awesome Port',
-    		'user_id'=>$user->id,
-    	]);
-
-    	$stocks_portfolio = StocksPortfolio::Create([
-    		'stock_id'=>$stock->id,
-    		'portfolio_id'=>$portfolio->id,
-    		'quantity_held'=>0
-    	]);
-
-    	$trade = Trade::create([
+    	$trade_1 = Trade::create([
     		'stocks_portfolio_id'=>$stocks_portfolio->id,
     		'quantity'=>10,
     		'price'=>100,
     	]);
 
-    	$trade = Trade::create([
+    	$trade_2 = Trade::create([
     		'stocks_portfolio_id'=>$stocks_portfolio->id,
     		'quantity'=>-5,
     		'price'=>100,
     	]);
-
-
     	$stocks_portfolio = $user->portfolios[0]->stocks_portfolios[0];
 
-    	$this->assertEquals(5, $stocks_portfolio->quantity_held);   	
+        // Test that trades change the portfolio's quantity held.
+    	$this->assertEquals(5, $stocks_portfolio->quantity_held);
+
+
+	    $trade_fail = Trade::create([
+            'stocks_portfolio_id'=>$stocks_portfolio->id,
+            'quantity'=>-6,
+            'price'=>100,
+        ]);
+
+        // Test that you can't sell more than you have.
+        $this->assertEquals('can not short security', $trade_fail->errors->on('porfolio_quantity_held'));
     }
 
 
