@@ -1,6 +1,7 @@
 from orator import Model
 from config import db
 from orator.orm import has_one, belongs_to, has_many_through, has_many
+from models.stocks_portfolio import StocksPortfolio
 import numbers
 
 Model.set_connection_resolver(db)

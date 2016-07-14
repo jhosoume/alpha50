@@ -8,6 +8,7 @@ Model.set_connection_resolver(db)
 class StocksPortfolio(Model):
 
     __fillable__ = ['stock_id', 'portfolio_id', 'quantity_held']
+    __guarded__ = ['id']
     __timestamps__ = False
 
     @belongs_to
@@ -24,16 +25,17 @@ class StocksPortfolio(Model):
 
     @staticmethod
     def is_valid_quantity_held(qty):
-        return qty and isinstance(qty, numbers.Number)
+        valid = qty and isinstance(qty, numbers.Number)
+        return True if valid else False
 
     def is_valid(self):
         return StocksPortfolio.is_valid_quantity_held(self.quantity_held)
 
     def is_unique(self):
         count = StocksPortfolio.where('stock_id', self.stock_id).where('portfolio_id', self.portfolio_id)
-        return True if (count <= 0) else False
+        return True if not count else False
 
-StocksPortfolio.saving(lambda stocks_portfolio: stocks_portfolio.is_valid() and StocksPortfolio.is_unique())
+StocksPortfolio.saving(lambda stocks_portfolio: stocks_portfolio.is_valid() and stocks_portfolio.is_unique())
 
 
 
