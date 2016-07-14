@@ -6,6 +6,13 @@ class Stock extends ActiveRecord\Model implements JsonSerializable {
 		array('stocks_portfolios')
 	);
 
+  	static $validates_presence_of = array(
+  		['name'],
+  		['ticker'],
+  		['sector'],
+  		['market_cap']
+  	);
+
 	public function jsonSerialize()
     {
         return json_decode($this->to_json());
