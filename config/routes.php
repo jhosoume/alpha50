@@ -3,15 +3,20 @@ namespace Spark\Config;
 
 get('/', ['function'=>'index']);
 get('/portfolios', ['function'=>'index']);
-
+get('/portfolios/:id', ['function'=>'show']);
 
 //users
 post('/users', ['function' => 'create']);
 
 
+get('/api/stocks', [
+  'function'=>'index',
+  'namespace'=>'api'
+]);
+
 get('/api/stocks/:symbol', [
-	'function'=>'index',
-	'namespace'=>'api'
+  'function'=>'show',
+  'namespace'=>'api'
 ]);
 
 //sessions

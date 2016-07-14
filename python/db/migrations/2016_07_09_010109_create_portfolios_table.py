@@ -10,6 +10,7 @@ class CreatePortfoliosTable(Migration):
         with self.schema.create('portfolios') as table:
             table.increments('id')
             table.text('name')
+            table.float('cash')
             table.integer('user_id').unsigned()
             table.foreign('user_id').references('id').on('users')
             table.integer('parent').unsigned().nullable()

@@ -9,6 +9,12 @@ div.stock-bar-data {
 .stock-side-bar .container {
   width: 90%;
   line-height: 10px;
+  font-size:10px;
+}
+
+.stock-side-bar .stock-quote-area {
+  height:72vh;
+  overflow-y: scroll;
 }
 
 @media (max-width: 600px) {

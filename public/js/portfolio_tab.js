@@ -1,5 +1,10 @@
 $(function() {
 
+  $('.dropdown-button').dropdown({
+    belowOrigin: true,
+    constrain_width: false
+  })
+
   $('.portfolio-area').ready(function() {
 
     renderPortfolioSection();

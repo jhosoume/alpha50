@@ -1,18 +1,23 @@
 $(function() {
-  $('.portfolio-content').on('click','#test-api', function() {
-    var stock = 'AMZN';
-    var quotesRequest = $.ajax({
-      url: "/api/stocks/" + stock,
-      data: {'request_type': 'quotes', 'limit': '10'},
-      contentType: 'JSON'
-    })
+
+    var stock;
+    var quotesRequest;
+    setTimeout(function() {
+      stock = 'AMZN';
+      quotesRequest = $.ajax({
+        url: "/api/stocks/" + stock,
+        data: {'request_type': 'quotes'},
+        contentType: 'JSON'
+      })
 
 
-    //potentially rewrite this as a named function
-    quotesRequest.then(function(data) {
-      console.log(data);
-      createChart(data);
-    })
+      //potentially rewrite this as a named function
+      quotesRequest.then(function(data) {
+        createChart(data);
+      })
+    },500)
+  
+
 
     function createChart(jsonData) { 
       var chartArray = createChartArray(jsonData);
@@ -24,7 +29,7 @@ $(function() {
     
     function createChartArray(jsonData) {
 
-      var dailyQuotesArray = jsonData[0];
+      var dailyQuotesArray = jsonData['daily'];
       $.each(dailyQuotesArray,function(idx,quote) {
         dailyDatePrice.push([Date.parse(quote.date),parseInt(quote.close_price)]);
       });
@@ -52,5 +57,4 @@ $(function() {
     }
 
 
-  })
 })
