@@ -29,7 +29,7 @@
         <div id="user-log-in" class="modal">
           <div class="modal-content">
             <div class="row">
-              <form class="col s12" action='/sessions' method='post'>
+              <form class="col s12" action='/login' method='post'>
                 <div class="row">
                   <div class="input-field col s12">
                     <input id="user_email" type="email" name='user_email' class="validate">
@@ -52,7 +52,7 @@
       <div id="user-log-out" class="modal">
           <div class="modal-content">
             <div class="row">
-              <form class="col s12" action='/sessions' method='post'>
+              <form class="col s12" action='/logout' method='post'>
                 <div class="row">
                   <div class="input-field col s12">
                     <p>Sure?</p>

@@ -22,5 +22,5 @@ get('/api/stocks/:symbol', [
 ]);
 
 //sessions
-post('/sessions', ['function' => 'create']);
-delete('/sessions', ['function' => 'destroy']);
+post('/login', ['function' => 'create', 'controller'=>'Sessions']);
+delete('/logout', ['function' => 'destroy', 'controller'=>'Sessions']);
