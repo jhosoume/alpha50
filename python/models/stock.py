@@ -21,9 +21,9 @@ class Stock(Model):
     def daily_quotes(self):
         return DailyQuote
 
-    #@has_many
-    #def stocks_portfolios(self):
-        #return 
+    @has_many
+    def stocks_portfolios(self):
+        return StocksPortfolio
     
     @staticmethod
     def is_valid_ticker(ticker):
@@ -55,4 +55,4 @@ class Stock(Model):
     def is_unique(self):
         return True if not Stock.where('ticker', self.ticker).count() else False
 
-Stock.creating(lambda stock: stock.is_valid() and stock.is_unique())
+Stock.saving(lambda stock: stock.is_valid() and stock.is_unique())

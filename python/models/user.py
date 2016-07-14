@@ -1,11 +1,29 @@
 from orator import Model
 from config import db
 from orator.orm import has_many
+import re
 
 Model.set_connection_resolver(db)
 
 class User(Model):
 
+    __fillable__ = ['email']
+    __guarded__ = ['id', 'password_hash']
+    __timestamps__ = True
+
     @has_many
     def portfolios(self):
         return Portfolio
+
+    @staticmethod
+    def is_valid_email(email):
+        valid = email and re.search(r"\w+\@\w+\.\w+", email)
+        return True if valid else False
+    
+    def is_valid(self):
+        return User.is_valid_email(self.email)  
+
+    def is_unique(self):
+        return True if not User.where('email', self.email).count() else False
+
+User.saving(lambda user: user.is_valid() and user.is_unique())
