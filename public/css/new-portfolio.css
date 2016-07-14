@@ -1,0 +1,21 @@
+.new-portfolio-data {
+  height:65vh;
+  overflow-y: scroll;
+}
+
+
+.new-portfolio-data table {
+  margin-bottom: 5px;
+}
+
+
+.new-portfolio-data table input {
+  height:1rem;
+  padding: 0;
+  margin-bottom:0;
+  width:100px;
+}
+
+.new-portfolio-data table td {
+  padding: 5px;
+}
