@@ -1,9 +1,17 @@
 <?php
 class PortfoliosController extends Spark\BaseController {
-public function index() {
-    //temporary locals assignment
-    $this->locals = ['portfolio_id' => '1'];
-    $this->render("portfolios/index.php");
+  public function index() {
+    // if user is not logged in, it redirects to main index
+    if (!current_user()) {
+      redirect_to('/');
+    } else {
+      // Redirects user to either creating a new portfolio, or their first.
+      if (count(current_user()->portfolios) == 0) {
+        redirect_to('/portfolios/new');
+      } else {
+        redirect_to('/portfolios/'.current_user()->portfolios[0]->id);
+      }
+    }
   }
 
 public function show() {
