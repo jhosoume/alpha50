@@ -1,0 +1,53 @@
+Users
+	id: 			integer
+	email:			string
+	password_hash: 	string
+	created_at:		timestamp
+	updated_at:		timestamp
+
+
+Stocks
+	id:				integer
+	ticker:			string
+	sector:			string
+	market_cap:		float
+	name:			string
+
+
+Portfolios
+	id:				integer
+	name:			string
+	user_id:		integer
+	portfolio_id:	integer
+	created_at:		timestamp
+	updated_at:		timestamp
+
+
+daily_quotes
+	id:				integer
+	stock_id:		integer
+	date:			date
+	close_price:	float
+
+
+half_hourly_quotes
+	id:				integer
+	price:			float
+	stock_id:		integer
+
+
+stocks_portfolios
+	id:				integer
+	stock_id:		integer
+	portfolio_id:	integer
+	quantity_held:	integer
+
+
+trades
+	id:					integer
+	stock_portfolio_id:	integer
+	datetime:			datetime
+	quantity:			integer
+	price:				float
+	created_at:			timestamp
+	updated_at:			timestamp
