@@ -12,6 +12,17 @@
           echo('<li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>');
         } ?>
       </ul>
+      <ul id="slide-out" class="side-nav">
+        <?php if ($_SESSION['user_id']) {
+            echo('<li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>');
+          } else { 
+            echo('<li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>');
+          } ?>
+        <li><a href="#!">About Us</a></li>
+        <li><a href="#!">Why join?</a></li>
+        <li><a href="#!">Features</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse trigger-side-nav"><i class="material-icons">menu</i></a>
 
     </div>
   </nav>
