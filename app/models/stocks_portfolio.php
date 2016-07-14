@@ -4,6 +4,12 @@ class StocksPortfolio extends ActiveRecord\Model implements JsonSerializable {
 		array('trades')
 	);
 
+	public function validate() {		
+		if ($this->quantity_held < 0) {
+			$this->errors->add('quantity_held', 'can not be less than 0');
+		}
+	}
+
 	static $belongs_to = array(
 		array('stock'),
 		array('portfolio')
