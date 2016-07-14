@@ -7,5 +7,9 @@ class IndexPortfolioSeeder(Seeder):
         """
         Run the database seeds.
         """
-        self.db.table('portfolios').insert()
+        self.db.table('portfolios').insert({
+            'name': 'Alpha50',
+            'cash': 0.0})
+        
+
 
