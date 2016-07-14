@@ -6,7 +6,7 @@ class TradeTest extends TestCase {
     public function testValidatePortfolioCash() {
         $stock = Stock::find_by_ticker('aapl');
         $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
-        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>200]);
+        $portfolio = Portfolio::create(['name'=>'PortPortPort','user_id'=>$user->id,'cash'=>200]);
         $stocks_portfolio = StocksPortfolio::Create(['stock_id'=>$stock->id,'portfolio_id'=>$portfolio->id,'quantity_held'=>0]);
 
         $trade_buy = Trade::create([
@@ -25,7 +25,7 @@ class TradeTest extends TestCase {
         $trade_buy_fail->save();
 
         // Test that a portfolio can't trade if it doesn't have enough money.
-        $this->assertEquals('portfolio does not have enough cash', $trade2->errors->on('portfolio_cash'));
+        $this->assertEquals('portfolio does not have enough cash', $trade_buy_fail->errors->on('portfolio_cash'));
 
 
         $trade_sell = Trade::create([
@@ -33,6 +33,7 @@ class TradeTest extends TestCase {
             'quantity'=>-10,
             'price'=>10,
         ]);
+        $user->reload();
 
         // Test that a portfolio's cash raises when it sells.
         $this->assertEquals(200, $user->portfolios[0]->cash);
@@ -42,7 +43,7 @@ class TradeTest extends TestCase {
     {
         $stock = Stock::find_by_ticker('aapl');
         $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
-        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>300]);
+        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>30000]);
         $stocks_portfolio = StocksPortfolio::Create(['stock_id'=>$stock->id,'portfolio_id'=>$portfolio->id,'quantity_held'=>0]);
 
     	$trade_1 = Trade::create([
@@ -69,7 +70,7 @@ class TradeTest extends TestCase {
         ]);
 
         // Test that you can't sell more than you have.
-        $this->assertEquals('can not short security', $trade_fail->errors->on('porfolio_quantity_held'));
+        $this->assertEquals('can not short security', $trade_fail->errors->on('portfolio_quantity_held'));
     }
 
 

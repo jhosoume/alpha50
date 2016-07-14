@@ -17,12 +17,14 @@ class PortfolioTest extends TestCase {
     	$portfolio_parent = Portfolio::create([
     		'name'=>'Awesome Port',
     		'user_id'=>$user->id,
+            'cash'=>10000,
     	]);
 
     	$portfolio_monkey = Portfolio::create([
     		'name'=>'Awesome Port [Monkey]',
     		'user_id'=>$monkey->id,
-    		'parent'=>$portfolio_parent->id
+    		'parent'=>$portfolio_parent->id,
+            'cash'=>10000,
     	]);
 
     	$this->assertEquals('Awesome Port', $monkey->portfolios[0]->parent_portfolio->name);
