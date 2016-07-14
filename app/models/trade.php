@@ -6,6 +6,12 @@ class Trade extends ActiveRecord\Model implements JsonSerializable {
 
 	static $after_create = array('adjust_stocks_portfolios_quantity_held');
 
+  	static $validates_presence_of = array(
+  		['stocks_portfolio_id'],
+  		['quantity'],
+  		['price']
+  	);
+
 	public function adjust_stocks_portfolios_quantity_held() {
 		/* 
 			This adjusts the stocks_portfolio's quantity held.

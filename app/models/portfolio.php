@@ -13,6 +13,11 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 		array('parent_portfolio', 'class_name' => 'Portfolio', 'foreign_key' => 'parent')
 	);
 
+  	static $validates_presence_of = array(
+  		['name'],
+  		['user_id'],
+  	);
+
 	public function jsonSerialize()
     {
         return json_decode($this->to_json());
