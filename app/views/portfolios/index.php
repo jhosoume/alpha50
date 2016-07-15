@@ -14,6 +14,7 @@
               <?php render_file ('portfolios/portfolio-tab/comparison.php') ?>
               <?php render_file('/portfolios/portfolio-tab/trades.php') ?>   
             </div>
+            <div class="portfolio-footer"></div>
           </div>
         </div>
       </div>
