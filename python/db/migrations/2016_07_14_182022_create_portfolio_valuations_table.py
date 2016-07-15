@@ -18,4 +18,4 @@ class CreatePortfolioValuationsTable(Migration):
         """
         Revert the migrations.
         """
-        self.schema.drop('able:portfolio_valuations')
+        self.schema.drop('portfolio_valuations')
