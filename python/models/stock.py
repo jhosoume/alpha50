@@ -1,9 +1,12 @@
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+
 from orator import Model
 from config import db
 from orator.orm import has_many
 import numbers
-from models.half_hourly_quote import HalfHourlyQuote
-from models.daily_quote import DailyQuote
 
 Model.set_connection_resolver(db)
 
@@ -15,15 +18,18 @@ class Stock(Model):
 
     @has_many
     def half_hourly_quotes(self):
-        return HalfHourlyQuote
+        import models.half_hourly_quote
+        return models.half_hourly_quote.HalfHourlyQuote
 
     @has_many
     def daily_quotes(self):
-        return DailyQuote
+        import models.daily_quote
+        return models.daily_quote.DailyQuote
 
     @has_many
     def stocks_portfolios(self):
-        return StocksPortfolio
+        import models.stocks_portfolio
+        return models.stocks_portfolio.StocksPortfolio
     
     @staticmethod
     def is_valid_ticker(ticker):

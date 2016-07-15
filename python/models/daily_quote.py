@@ -1,3 +1,8 @@
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+
 from orator import Model
 from config import db
 from orator.orm import belongs_to
@@ -14,7 +19,8 @@ class DailyQuote(Model):
 
     @belongs_to
     def stock(self):
-        return Stock
+        import models.stock
+        return models.stock.Stock
 
     @staticmethod
     def is_valid_close_price(close_price):

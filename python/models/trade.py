@@ -1,7 +1,13 @@
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+
 from orator import Model
 from config import db
 from orator.orm import belongs_to
 import numbers
+import models.stocks_portfolio
 
 Model.set_connection_resolver(db)
 
@@ -13,7 +19,7 @@ class Trade(Model):
 
     @belongs_to
     def stocks_portfolio(self):
-        return StocksPortfolio
+        return models.stocks_portfolio.StocksPortfolio
 
     @staticmethod
     def is_valid_quantity(qty):

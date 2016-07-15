@@ -1,7 +1,13 @@
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+
 from orator import Model
 from config import db
 from orator.orm import has_many
 import re
+import models.portfolio 
 
 Model.set_connection_resolver(db)
 
@@ -13,7 +19,7 @@ class User(Model):
 
     @has_many
     def portfolios(self):
-        return Portfolio
+        return models.portfolio.Portfolio
 
     @staticmethod
     def is_valid_email(email):
