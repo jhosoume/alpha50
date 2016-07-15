@@ -7,7 +7,7 @@ class SessionsController extends Spark\BaseController {
     if ($user && $user->authenticate($params['user_password'])) {
       // Logged in.
       $_SESSION['user_id'] = $user->id;
-      $this->locals = array('message' => $_SESSION['user_id']);
+      $this->locals = array('user' => $user);
 
       if (count(current_user()->portfolios) == 0) {
         redirect_to('/portfolios/new');

@@ -4,6 +4,7 @@
 <ul>
 <li><a href="https://lighthouse.slack.com/messages/alpha/">Slack</a></li>
 <li><a href="https://trello.com/alpha223">Trello</a></li>
+<li><a href="https://app.moqups.com/aleckaleksandrov@gmail.com/RgVmKTI9NY/view/page/aac4b6a5c">Wireframes</li>
 </ul>
 <br><hr></br>
 <strong><h4>Tech Stack</h4></strong>
@@ -47,5 +48,3 @@ Install
 <code>sudo pip3 install orator</code>
 Inside the python/db folder
 <code>orator migrate</code> 
-
-Wireframes => https://app.moqups.com/aleckaleksandrov@gmail.com/RgVmKTI9NY/edit/page/aac4b6a5c

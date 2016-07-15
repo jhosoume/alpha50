@@ -1,26 +1,27 @@
+<?php $user = current_user() ?>
 <head>
   <nav class="top-nav grey darken-2">
     <div class="nav-wrapper">
       <a href="/" class='brand-logo'>Alpha50</a>
       <ul class='right hide-on-med-and-down'>
-        <li><a href="">About us</a></li>
-        <li><a href="">Why join?</a></li>
-        <li><a href="">Features</a></li>
-        <?php if (current_user()) {
-          echo('<li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>');
-        } else { 
-          echo('<li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>');
-        } ?>
+        <?php if (current_user()) { ?>
+          <li><a href="">Welcome, <?= $user->email ?></a></li>
+          <li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>
+        <?php } else { ?>
+          <li><a href="">About us</a></li>
+          <li><a href="">Why join?</a></li>
+          <li><a href="">Features</a></li>
+          <li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>
+        <?php } ?>
       </ul>
       <ul id="slide-out" class="side-nav">
-        <?php if ($_SESSION['user_id']) {
-            echo('<li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>');
-          } else { 
-            echo('<li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>');
-          } ?>
-        <li><a href="#!">About Us</a></li>
-        <li><a href="#!">Why join?</a></li>
-        <li><a href="#!">Features</a></li>
+        <li><a href="#!">Welcome, USER</a></li>
+        <?php if (current_user()) { ?>
+            <li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>
+        <?php } else { ?>
+            <li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>
+        <?php } ?>
+        
       </ul>
       <a href="#" data-activates="slide-out" class="button-collapse trigger-side-nav"><i class="material-icons">menu</i></a>
 

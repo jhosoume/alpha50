@@ -1,8 +1,13 @@
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+
 from orator import Model
 from config import db
 from orator.orm import has_one, belongs_to, has_many_through, has_many
-from models.stocks_portfolio import StocksPortfolio
 import numbers
+import models.stocks_portfolio
 
 Model.set_connection_resolver(db)
 
@@ -17,15 +22,17 @@ class Portfolio(Model):
 
     @belongs_to
     def user(self):
-        return User
+        import models.user
+        return models.user.User
 
     @has_many
     def stocks_portfolios(self):
-        return StocksPortfolio
+        return models.stocks_portfolio.StocksPortfolio
 
-    @has_many_through(StocksPortfolio)
+    @has_many_through(models.stocks_portfolio.StocksPortfolio)
     def trade(self):
-        return Trade
+        import models.trade
+        return models.trade.Trade
 
     @staticmethod
     def is_valid_cash(cash):
