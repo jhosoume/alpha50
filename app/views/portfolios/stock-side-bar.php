@@ -5,6 +5,3 @@
     </div>
   </div>
 </div> 
-
-<div class="stock-bar-data" data-stock-data='<?php echo(Spark\locals()['stocks']) ?>'>
-</div>

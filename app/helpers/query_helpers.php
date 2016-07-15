@@ -32,5 +32,5 @@
       ) c ON a.stock_id = c.id
       ORDER BY a.datetime 
       DESC LIMIT 50;';  
-    } 
+    }
   

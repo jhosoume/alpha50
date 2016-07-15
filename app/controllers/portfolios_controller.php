@@ -16,8 +16,9 @@ class PortfoliosController extends Spark\BaseController {
 
 public function show() {
     $params = $this->params;
-    $portfolio_id = $params['id'];
-    $this->locals = ['portfolio_id' => $portfolio_id];
+    $portfolio_num= intval($params['id']) - 1;
+    $portfolio = \Portfolio::find('all', ['order' => 'created_at asc', 'limit' => 1, 'offset' => $portfolio_num])[0];
+    $this->locals = ['portfolio' => $portfolio];
     $this->render('portfolios/index.php');
   }
 

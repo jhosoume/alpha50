@@ -28,11 +28,11 @@ $(function() {
 
 
   // prevents scrolling parent div when scrolled at the end of .new-portfolio-data
-  var newPortfolio = $('.new-portfolio-data'),
-      height = newPortfolio.height(),
-      scrollHeight = newPortfolio.get(0).scrollHeight;
+  var newPortfolio = $('.new-portfolio-data');
 
   newPortfolio.bind('mousewheel', function(e) {
+    var height = newPortfolio.height();
+    scrollHeight = newPortfolio.get(0).scrollHeight;
     if(this.scrollTop > (scrollHeight - height) && ( e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0 )) {
       e.preventDefault();
     }
