@@ -43,7 +43,5 @@ class StocksPortfolio(Model):
         count = StocksPortfolio.where('stock_id', self.stock_id).where('portfolio_id', self.portfolio_id).count()
         return True if not count else False
 
-StocksPortfolio.saving(lambda stocks_portfolio: stocks_portfolio.is_valid() and stocks_portfolio.is_unique())
-
-
-
+StocksPortfolio.creaing(lambda stocks_portfolio: stocks_portfolio.is_unique())
+StocksPortfolio.saving(lambda stocks_portfolio: stocks_portfolio.is_valid())

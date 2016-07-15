@@ -50,4 +50,5 @@ class Portfolio(Model):
         count = Portfolio.where('user_id', self.user_id).where('name', self.name).count()
         return True if (count <= 0) else False
 
-Portfolio.saving(lambda portfolio: portfolio.is_valid() and portfolio.is_unique())
+Portfolio.creating(lambda portfolio: portfolio.is_unique())
+Portfolio.saving(lambda portfolio: portfolio.is_valid())

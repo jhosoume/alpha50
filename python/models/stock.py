@@ -12,7 +12,7 @@ Model.set_connection_resolver(db)
 
 class Stock(Model):
 
-    __fillable__ = ['name', 'sector', 'ticker', 'market_cap']
+    __fillable__ = ['name', 'sector', 'ticker', 'market_cap', 'latest_price']
     __guarded__ = ['id']
     __timestamps__ = False
 
@@ -35,7 +35,7 @@ class Stock(Model):
     def is_valid_ticker(ticker):
         valid = ticker and ticker.isupper() and len(ticker) < 6
         return True if valid else False
-    
+
     @staticmethod
     def is_valid_sector(sector):
         valid = sector and (sector in ['Consumer Discretionary', 
@@ -61,4 +61,5 @@ class Stock(Model):
     def is_unique(self):
         return True if not Stock.where('ticker', self.ticker).count() else False
 
-Stock.saving(lambda stock: stock.is_valid() and stock.is_unique())
+Stock.creating(lambda stock: stock.is_unique())
+Stock.saving(lambda stock: stock.is_valid())
