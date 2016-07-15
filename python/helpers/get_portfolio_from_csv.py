@@ -6,6 +6,6 @@ def get_portfolio_csv(csv_name):
         reader = csv.reader(fd)
         for row in reader:
             tickers_qty.append({'ticker': row[0],
-                                'quantity': row[1],
-                                'price': row[2]})
+                                'quantity': int(row[1]),
+                                'price': float(row[2])})
     return tickers_qty

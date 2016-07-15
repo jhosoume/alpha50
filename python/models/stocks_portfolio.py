@@ -1,3 +1,8 @@
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+
 from orator import Model
 from config import db
 from orator.orm import belongs_to, has_many
@@ -13,15 +18,18 @@ class StocksPortfolio(Model):
 
     @belongs_to
     def portfolio(self):
-        return Portfolio
+        import models.portfolio
+        return models.portfolio.Portfolio
 
     @belongs_to
     def stock(self):
-        return Stock
+        import models.stock
+        return models.stock.Stock
 
     @has_many
     def trades(self):
-        return Trade
+        import models.trade
+        return models.trade.Trade
 
     @staticmethod
     def is_valid_quantity_held(qty):
@@ -32,7 +40,7 @@ class StocksPortfolio(Model):
         return StocksPortfolio.is_valid_quantity_held(self.quantity_held)
 
     def is_unique(self):
-        count = StocksPortfolio.where('stock_id', self.stock_id).where('portfolio_id', self.portfolio_id)
+        count = StocksPortfolio.where('stock_id', self.stock_id).where('portfolio_id', self.portfolio_id).count()
         return True if not count else False
 
 StocksPortfolio.saving(lambda stocks_portfolio: stocks_portfolio.is_valid() and stocks_portfolio.is_unique())
