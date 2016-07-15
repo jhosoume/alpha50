@@ -31,3 +31,14 @@
 #inter-portfolio-nav {
   width:120px;
 }
+
+.portfolio-content-container{
+  position:relative;
+  overflow: hidden;
+}
+
+.intra-portfolio-area .portfolio-footer{
+  height:60px;
+  width:100%;
+  background: grey;
+}
