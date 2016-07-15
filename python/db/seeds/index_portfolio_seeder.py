@@ -23,17 +23,17 @@ class IndexPortfolioSeeder(Seeder):
         self.db.table('users').insert({
             'email': 'admin@alpha50',
             'password_hash': '1234'})
-        portfolio = models.user.User.where('email', 'admin@alpha50').first().portfolios().save(models.portfolio.Portfolio({'name': 'Alpha50', 'cash': 0.0}))
+        user = models.user.User.where('email', 'admin@alpha50').first()
+        models.user.User.where('email', 'admin@alpha50').first().portfolios().save(models.portfolio.Portfolio({'name': 'Alpha50', 'cash': 0.0}))
+        portfolio = models.portfolio.Portfolio.where('name', 'Alpha50').where('user_id', user.id).first()
         stocks = get_portfolio_csv(INDEX_DEFINITION)
         
         for stock in stocks:
+            #import pdb; pdb.set_trace()
             stock_id = models.stock.Stock.where('ticker', stock['ticker']).first()
-            models.stocks_portfolio.StocksPortfolio({'stock_id': stock_id.id, 'portfolio_id': portfolio.id, 'quantity_held': stock['quantity']}).save()
+            stocks_portfolio = models.stocks_portfolio.StocksPortfolio({'stock_id': stock_id.id, 'portfolio_id': portfolio.id, 'quantity_held': stock['quantity']})
+            stocks_portfolio.save()
+            #stocks_portfolio.trades().save(models.trade.Trade())
 
-
-
-
-        
-        
 
 
