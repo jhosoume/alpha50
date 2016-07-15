@@ -7,5 +7,5 @@ class DatabaseSeeder(Seeder):
         """
         Run the database seeds.
         """
-        pass
+        self.call(IndexPortfolioSeeder)
 
