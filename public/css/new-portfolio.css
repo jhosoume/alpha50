@@ -1,5 +1,10 @@
+div.new-portfolio {
+  height:68vh;
+}
+
 .new-portfolio-data {
   height:65vh;
+  overflow-y: scroll
 }
 
 
