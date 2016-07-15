@@ -6,7 +6,7 @@
 }
 
 .portfolio-content {
-  height:68vh;
+  height:72vh;
   width: 100%;
   overflow-y: scroll;
 }
@@ -30,4 +30,12 @@
 
 #inter-portfolio-nav {
   width:120px;
+}
+
+#portfolio-holdings-chart {
+  height: 130px;
+}
+
+#portfolio-overview-chart {
+  height: 350px;
 }
