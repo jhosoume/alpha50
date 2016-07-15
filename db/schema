@@ -12,6 +12,7 @@ stocks
 	sector:			string
 	market_cap:		float
 	name:			string
+    latest_price:   float
 
 
 portfolios
