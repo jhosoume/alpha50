@@ -6,7 +6,7 @@
         <li><a href="">About us</a></li>
         <li><a href="">Why join?</a></li>
         <li><a href="">Features</a></li>
-        <?php if ($_SESSION['user_id']) {
+        <?php if (current_user()) {
           echo('<li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>');
         } else { 
           echo('<li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>');
