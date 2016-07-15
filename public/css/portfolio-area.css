@@ -32,22 +32,23 @@
   width:120px;
 }
 
-
-.portfolio-content-container{
-  position:relative;
-  overflow: hidden;
-}
-
-.intra-portfolio-area .portfolio-footer{
-  height:60px;
-  width:100%;
-  background: grey;
-}
-
 #portfolio-holdings-chart {
   height: 130px;
 }
 
 #portfolio-overview-chart {
   height: 350px;
+}
+
+.all-stocks-checkout{
+  min-height: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  width:300px;
+}
+
+.all-stocks-checkout > div {
+  width:25%; 
+  display: inline-block;
 }
