@@ -13,6 +13,7 @@ class CreateStocksTable(Migration):
             table.text('sector')
             table.float('market_cap')
             table.string('name')
+            table.float('latest_price').nullable()
 
     def down(self):
         """

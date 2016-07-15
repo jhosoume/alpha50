@@ -59,8 +59,18 @@ class HalfHourlyQuote(Model):
             count = HalfHourlyQuote.where_between('datetime', [arrow.now().to('US/Pacific').replace(minutes = -30), arrow.now().to('US/Pacific').replace(minutes = +30)]).count() 
         return True if (count > 0) else False
 
-    def has_record(self):
+    def is_unique(self):
         count = HalfHourlyQuote.where('stock_id', self.stock_id).where('datetime', self.datetime.format('YYYY-MM-DDTHH:mm:ss')).count()
-        return True if (count > 0) else False
+        return True if (count == 0) else False
 
-HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and not half_hourly_quote.has_record())
+    def update_stock(self):
+        import models.stock 
+        stock = models.stock.Stock.find(self.stock_id)
+        latest_quote = stock.half_hourly_quotes().order_by('datetime', 'desc').first()
+        if (not latest_quote) or (latest_quote.datetime < self.datetime):
+            stock.latest_price = self.price
+            stock.save()
+        return True
+
+HalfHourlyQuote.creating(lambda half_hourly_quote: half_hourly_quote.is_unique())
+HalfHourlyQuote.saving(lambda half_hourly_quote: half_hourly_quote.is_valid() and half_hourly_quote.update_stock())

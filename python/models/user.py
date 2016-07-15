@@ -32,4 +32,5 @@ class User(Model):
     def is_unique(self):
         return True if not User.where('email', self.email).count() else False
 
-User.saving(lambda user: user.is_valid() and user.is_unique())
+User.creating(lambda user: user.is_unique())
+User.saving(lambda user: user.is_valid())
