@@ -13,7 +13,7 @@ Model.set_connection_resolver(db)
 
 class Portfolio(Model):
 
-    __fillable__ = ['user_id', 'parent', 'name', 'cash']
+    __fillable__ = ['user_id', 'parent', 'name', 'total_cash']
     __timestamps__ = True
 
     @has_one
@@ -43,7 +43,7 @@ class Portfolio(Model):
         return True if name else False
 
     def is_valid(self):
-        return Portfolio.is_valid_cash(self.cash) and \
+        return Portfolio.is_valid_cash(self.total_cash) and \
                Portfolio.is_valid_name(self.name)
 
     def is_unique(self):

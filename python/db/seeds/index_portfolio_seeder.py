@@ -25,7 +25,7 @@ class IndexPortfolioSeeder(Seeder):
             'email': 'admin@alpha50',
             'password_hash': '1234'})
         user = models.user.User.where('email', 'admin@alpha50').first()
-        models.user.User.where('email', 'admin@alpha50').first().portfolios().save(models.portfolio.Portfolio({'name': 'Alpha50', 'cash': 0.0}))
+        models.user.User.where('email', 'admin@alpha50').first().portfolios().save(models.portfolio.Portfolio({'name': 'Alpha50', 'total_cash': 0.0}))
         portfolio = models.portfolio.Portfolio.where('name', 'Alpha50').where('user_id', user.id).first()
         stocks = get_portfolio_csv(INDEX_DEFINITION)
         date_created = arrow.get('2009-01-01T01:00:00-07:00')
