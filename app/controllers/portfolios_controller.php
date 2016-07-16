@@ -34,8 +34,6 @@ class PortfoliosController extends Spark\BaseController {
   }
 
   public function new() {
-    $portfolio = new Portfolio();
-    $stocks = \Stock::all();
     // index will need to be determined by admin user
     $portfolio_info = \Portfolio::find_by_sql(index_portfolio_info());
     $index_value = 0;
@@ -44,11 +42,6 @@ class PortfoliosController extends Spark\BaseController {
     };
     $this->locals = ['portfolio_info' => $portfolio_info, 'index_value' => $index_value ];
     $this->render('portfolios/new.php');
-  }
-
-  public function create() {
-    $message = 'OK';
-    $this->render($message, ['content_type'=>'JSON', 'enable_cors'=>true]);
   }
 }
 

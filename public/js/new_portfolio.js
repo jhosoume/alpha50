@@ -10,22 +10,31 @@ $(function() {
     totalPortfolioValue += totalValue;
   });
 
-  var serializedPortfolioData = [];
+  var serializedPortfolioData = {};
   $('.new-portfolio').on('click','button.create-portfolio-btn', function(e) {
+    var stockData = []; 
     portfolioTableData.children('tr').each(function(idx,row) {
      var stock = {
       ticker: $(row).children('td.stock-ticker').text(),
       quantity: $(row).children('td.number-of-shares').children('input').val(),
       price: $(row).children('td.stock-price').text()
      };
-     if (stock.quantity > 0) serializedPortfolioData.push(stock);
+     if (stock.quantity > 0) stockData.push(stock);
     })
+    var portfolioInformation = 
+      {
+      'name': $('#portfolio-name').text(),
+      'cash': startingCapital - totalPortfolioValue,
+      'value': totalPortfolioValue
+      };
+    serializedPortfolioData['info'] = portfolioInformation;
+    serializedPortfolioData['stocks'] = stockData;
     $.ajax({
-      url: "/portfolios",
+      url: "/api/portfolios",
       method: "POST",
       data: JSON.stringify(serializedPortfolioData),
       success: function(res) {
-        alert(res);
+        console.log(res);
       }
     })
   })

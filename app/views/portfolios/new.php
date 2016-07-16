@@ -5,7 +5,7 @@
 
     <div class="container new-portfolio">
       <div class='new-portfolio-overview'>
-        <h5>My Awesome Portoflio</h5>
+        <h5 id='portfolio-name' contenteditable="true">My Awesome Portoflio</h5>
         <p> Instructions </p>
         <p><strong>Cash: </strong><span class='cash-holdings'></span></p>
         <p><strong>Allocated Capital: </strong><span class='equity-holdings'></span></p>
