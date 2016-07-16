@@ -22,12 +22,13 @@
               <th data-field="total-value">Value ($)</th>
               <th data-field="pct-of-total">% of Total ($)</th>
             </tr>
-            <?php $portfolio_info = Spark\locals()['portfolio_info'] ?>
+            <?php $index = Spark\locals()['index_portfolio'] ?>
             <?php $index_value = Spark\locals()['index_value'] ?>
             <?php $startingCapital = 1000000 ?>
             <tbody>
-              <?php foreach($portfolio_info as $stock): ?>
-              <?php $pct_weight = $stock->stock_value / $index_value ?>
+              <?php foreach($index->stocks_portfolios as $sp): ?>
+              <?php $stock = $sp->stock?>
+              <?php $pct_weight = $stock->latest_price*$sp->quantity_held / $index_value ?>
               <?php $number_of_shares = floor($startingCapital * $pct_weight / $stock->latest_price) ?>
                 <tr> 
                   <td class='stock-ticker'><?= $stock->ticker ?></td>
