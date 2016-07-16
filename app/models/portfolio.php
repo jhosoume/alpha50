@@ -21,7 +21,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 	);
 
 	public function create_all_stocks_portfolios() {
-		$stocks = Stock::all();
+		$stocks = Stock::find('all', ['order'=>'ticker asc']);
 
 		foreach($stocks as $stock) {
 			StocksPortfolio::create([
@@ -30,6 +30,13 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 				'quantity_held'=>0,
 			]);
 		}
+	}
+
+	public function sort_by_ticker() {
+		$sp = &$this->stocks_portfolios;
+	    usort($sp, function($a, $b) {
+	      return $a->stock->ticker < $b->stock->ticker ? -1 : 1;
+	    });
 	}
 
   public function get_current_value() {

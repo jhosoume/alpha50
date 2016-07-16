@@ -33,12 +33,17 @@ class PortfoliosController extends Spark\BaseController {
 
   public function new() {
     // index will need to be determined by admin user
-    $portfolio_info = \Portfolio::find_by_sql(index_portfolio_info());
-    $index_value = 0;
-    foreach($portfolio_info as $stock) {
-      $index_value += $stock->stock_value;
-    };
-    $this->locals = ['portfolio_info' => $portfolio_info, 'index_value' => $index_value ];
+    $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
+    $index_portfolio = Portfolio::first([
+      'conditions'=>['user_id = ?', $admin->id],
+      'include'=>['stocks_portfolios'=>['stock']],
+    ]);
+
+    $index_portfolio->sort_by_ticker();
+
+    $index_value = $index_portfolio->get_current_value();
+
+    $this->locals = ['index_portfolio' => $index_portfolio, 'index_value' => $index_value ];
     $this->render('portfolios/new.php');
   }
 }
