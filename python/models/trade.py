@@ -14,7 +14,8 @@ Model.set_connection_resolver(db)
 
 class Trade(Model):
 
-    __fillable__ = ['stocks_portfolio_id', 'quantity',' price']
+    __fillable__ = ['stocks_portfolio_id', 'quantity', 'price']
+    __timestamps__ = False
     __timestamps__ = ['created_at']
 
     @belongs_to
@@ -30,10 +31,17 @@ class Trade(Model):
         return Trade.is_valid_quantity(self.quantity)
 
     def is_unique(self):
-        count = Trade.where('stocks_portfolio_id', self.stocks_portfolio_id).where('created_at', self.created_at.format('YYYY-MM-DDTHH:mm:ss'))
-        return True if (count <= 0) else False
+        count = Trade.where('stocks_portfolio_id', self.stocks_portfolio_id).where('created_at', self.created_at.format('YYYY-MM-DDTHH:mm:ss')).count()
+        return True if (count <= 1) else False
+    
+    @staticmethod
+    def delete_repeated(trade):
+        if not trade.is_unique():
+            trade.delete()
+            return False
+        return True
 
-Trade.creating(lambda trade: trade.is_unique())
+Trade.created(lambda trade: Trade.delete_repeated(trade)) 
 Trade.saving(lambda trade: trade.is_valid()) 
 
 

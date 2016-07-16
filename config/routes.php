@@ -13,6 +13,10 @@ post('/api/portfolios', ['function' => 'create','namespace'=>'api']);
 post('/users', ['function' => 'create']);
 
 
+//trades
+post('/trades', ['function'=>'create']);
+
+
 get('/api/stocks', [
   'function'=>'index',
   'namespace'=>'api'

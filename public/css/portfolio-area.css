@@ -9,6 +9,7 @@
   height:72vh;
   width: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .portfolio-content > div {
@@ -32,22 +33,28 @@
   width:120px;
 }
 
-
-.portfolio-content-container{
-  position:relative;
-  overflow: hidden;
-}
-
-.intra-portfolio-area .portfolio-footer{
-  height:60px;
-  width:100%;
-  background: grey;
-}
-
 #portfolio-holdings-chart {
   height: 130px;
 }
 
 #portfolio-overview-chart {
   height: 350px;
+}
+
+#all-stocks-tab tbody input[name="ticker"]{
+  margin: auto;
+  border-bottom: none;
+}
+
+.all-stocks-checkout{
+  min-height: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  width:300px;
+}
+
+.all-stocks-checkout > div {
+  width:25%; 
+  display: inline-block;
 }
