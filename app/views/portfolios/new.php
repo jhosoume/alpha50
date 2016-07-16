@@ -25,21 +25,15 @@
             <?php $portfolio_info = Spark\locals()['portfolio_info'] ?>
             <?php $index_value = Spark\locals()['index_value'] ?>
             <?php $startingCapital = 1000000 ?>
-            <form id='create-portfolio' method='GET' action='/portfoliossss'></form>
             <tbody>
               <?php foreach($portfolio_info as $stock): ?>
               <?php $pct_weight = $stock->stock_value / $index_value ?>
               <?php $number_of_shares = floor($startingCapital * $pct_weight / $stock->latest_price) ?>
                 <tr> 
-                  <td class='stock-ticker'>
-                    <input form='create-portfolio' type='text' name='ticker' value='<?= $stock->ticker ?>' readonly>
-                  </td>
+                  <td class='stock-ticker'><?= $stock->ticker ?></td>
                   <td class='stock-name'><?php echo $stock->name ?></td>
-                  <td class='stock-price'>
-                    <input form='create-portfolio' type='number' name='price' value='<?= $stock->latest_price ?>' readonly>
-                  </td>
-                  <td class='number-of-shares'>
-                    <input form='create-portfolio' type='number' name='tradeQ' value='<?= $number_of_shares ?>'>
+                  <td class='stock-price'><?= $stock->latest_price ?></td>
+                  <td class='number-of-shares'><input type='number' value='<?= $number_of_shares ?>'>
                   </td>
                   <td class='total-value'>
                     <input form='create-portfolio' type='number' value='' readonly>
@@ -50,7 +44,7 @@
             </tbody>
           </thead>
         </table>
-        <button form='create-portfolio' class='btn create-portfolio-btn'>Create Portfolio</button>
+        <button class='btn create-portfolio-btn'>Create Portfolio</button>
       </div>
       </div>
   </div>

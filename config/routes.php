@@ -2,10 +2,10 @@
 namespace Spark\Config;
 
 get('/', ['function'=>'index']);
+post('/portfolios', ['function' => 'create']);
 get('/portfolios', ['function'=>'index']);
 get('/portfolios/new', ['function' => 'new']);
 get('/portfolios/:id', ['function'=>'show']);
-get('/portfoliossss', ['function' => 'boom', 'controller' => 'Portfolios']);
 
 
 //users

@@ -46,8 +46,9 @@ class PortfoliosController extends Spark\BaseController {
     $this->render('portfolios/new.php');
   }
 
-  public function boom() {
-    $this->render('index.php');
+  public function create() {
+    $message = 'OK';
+    $this->render($message, ['content_type'=>'JSON', 'enable_cors'=>true]);
   }
 }
 
