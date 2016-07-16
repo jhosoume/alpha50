@@ -42,12 +42,13 @@ $(function() {
 	  		var numberOwned = parseInt($(stockRow).children('td.shares-number').text());
 			var numberTrading = parseInt($(stockRow).children('td.trade-quantity').children('input').val());
 			// Validate that the number can't be less than 0
-			if (numberTrading < 0) numberTrading = 0;
+			if (numberTrading < 0 || isNaN(numberTrading)) numberTrading = 0;
 
 			var sharePrice = parseFloat($(stockRow).children('td.stock-price').text());
 			var tradeType = $(stockRow).children('td.trade-type').find('input').val();
 			var totalValue = numberTrading * sharePrice;
-			$(stockRow).children('.sub-total').text('$' + (sharePrice * numberTrading).toFixed(2));
+			var subTotal = (sharePrice * numberTrading).toFixed(2);
+			$(stockRow).children('.sub-total').text('$' + subTotal);
 
 			if (tradeType === 'BUY') {
 				// Validate that the user has enough money.
