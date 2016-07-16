@@ -46,6 +46,10 @@
   border-bottom: none;
 }
 
+#all-stocks-tab table{
+  table-layout: fixed;
+}
+
 .all-stocks-checkout{
   min-height: 300px;
   text-align: center;
