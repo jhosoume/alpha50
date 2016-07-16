@@ -41,7 +41,7 @@
   height: 350px;
 }
 
-#all-stocks-tab tbody input[name="ticker"]{
+#all-stocks-tab tbody input[name^="ticker"]{
   margin: auto;
   border-bottom: none;
 }
