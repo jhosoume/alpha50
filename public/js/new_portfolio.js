@@ -5,7 +5,8 @@ $(function() {
 
   var portfolioTableData = $('.new-portfolio-data tbody');
   portfolioTableData.children().each(function(idx,row) {
-    calculateTotalShareValue(row);
+    var totalValue = calculateTotalShareValue(row);
+    totalPortfolioValue += totalValue;
   });
 
   calculatePctOfTotal();
@@ -16,9 +17,15 @@ $(function() {
 
   var previousValue;
   $('.new-portfolio-data tbody')
+    .on('focus', '.number-of-shares > input', function() {
+      previousValue = $(this).val();
+    })
     .on('change','.number-of-shares > input', function() {
       var stockRow = $(this).parent().parent();
       calculateTotalShareValue(stockRow);
+      var newValue = $(this).val();
+      totalPortfolioValue += (newValue - previousValue) * $(this).parent().siblings('td.stock-price').text();
+      previousValue = newValue;
       calculatePctOfTotal();
       $('span.equity-holdings').text("$"+ Math.floor(totalPortfolioValue).toLocaleString());
       $('span.cash-holdings').text("$" + Math.floor(startingCapital - totalPortfolioValue).toLocaleString());
@@ -44,7 +51,7 @@ $(function() {
     var sharePrice = $(stockRow).children('td.stock-price').text();
     var totalValue = numberOfShares * sharePrice;
     $(stockRow).children('td.total-value').text(Math.round(totalValue, 2));
-    totalPortfolioValue += totalValue;
+    return totalValue;
   }
 
   function calculatePctOfTotal() {

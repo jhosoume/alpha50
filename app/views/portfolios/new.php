@@ -22,16 +22,20 @@
               <th data-field="total-value">Value ($)</th>
               <th data-field="pct-of-total">% of Total ($)</th>
             </tr>
-            <?php $quotes = Spark\locals()['quotes'] ?>
+            <?php $portfolio_info = Spark\locals()['portfolio_info'] ?>
+            <?php $index_value = Spark\locals()['index_value'] ?>
+            <?php $startingCapital = 1000000 ?>
             <tbody>
-              <?php foreach($quotes as $quote): ?>
-                <tr>
-                  <td class='stock-ticker'><?php echo $quote->ticker ?></td>
-                  <td class='stock-name'><?php echo $quote->name ?></td>
-                  <td class='stock-price'><?php echo $quote->price ?></td>
-                  <td class='number-of-shares'><input type='number' value='40'></td>
-                  <td class='total-value'><?php echo $quote->price * 100 ?></td>
-                  <td class='pct-of-total'></td>
+              <?php foreach($portfolio_info as $stock): ?>
+              <?php $pct_weight = $stock->stock_value / $index_value ?>
+              <?php $number_of_shares = floor($startingCapital * $pct_weight / $stock->latest_price) ?>
+                <tr> 
+                  <td class='stock-ticker'><?php echo $stock->ticker ?></td>
+                  <td class='stock-name'><?php echo $stock->name ?></td>
+                  <td class='stock-price'><?php echo $stock->latest_price ?></td>
+                  <td class='number-of-shares'><input type='number' value='<?= $number_of_shares ?>'></td>
+                  <td class='total-value'></td>
+                  <td><?= $pct_weight ?></td>
                 </tr>
               <?php endforeach ; ?>    
             </tbody>

@@ -33,4 +33,16 @@
       ORDER BY a.datetime 
       DESC LIMIT 50;';  
     }
+
+    function index_portfolio_info() {
+      return
+      'SELECT *,
+      (stocks.latest_price * stocks_portfolios.quantity_held) AS stock_value
+      FROM stocks 
+      LEFT JOIN stocks_portfolios 
+      on stocks.id = stocks_portfolios.id
+      LEFT JOIN portfolios
+      ON portfolios.id = stocks_portfolios.portfolio_id
+      WHERE portfolios.name = "Alpha50";';
+    }
   

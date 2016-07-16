@@ -35,9 +35,14 @@ class PortfoliosController extends Spark\BaseController {
 
   public function new() {
     $portfolio = new Portfolio();
-    $sql_recent_half_hourly_quotes = sql_recent_half_hourly_quotes();
-    $half_hourly_quotes = \HalfHourlyQuote::find_by_sql($sql_recent_half_hourly_quotes);
-    $this->locals = ['quotes' => $half_hourly_quotes];
+    $stocks = \Stock::all();
+    // index will need to be determined by admin user
+    $portfolio_info = \Portfolio::find_by_sql(index_portfolio_info());
+    $index_value = 0;
+    foreach($portfolio_info as $stock) {
+      $index_value += $stock->stock_value;
+    };
+    $this->locals = ['portfolio_info' => $portfolio_info, 'index_value' => $index_value ];
     $this->render('portfolios/new.php');
   }
 }
