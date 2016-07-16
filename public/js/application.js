@@ -16,6 +16,5 @@ $(function() {
         blurbPad = blurbHeight * 0.2;
     $("#about-us-section").css("height", aboutUsHeight + "px").css('padding-top', aboutUsPadTop +'px');
     $(".about-us-blurb").css("height", blurbHeight + "px").css('padding-top', blurbPad + 'px');
-    console.log(aboutUsHeight);
   }
 })

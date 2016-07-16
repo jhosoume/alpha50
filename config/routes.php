@@ -5,6 +5,7 @@ get('/', ['function'=>'index']);
 get('/portfolios', ['function'=>'index']);
 get('/portfolios/new', ['function' => 'new']);
 get('/portfolios/:id', ['function'=>'show']);
+get('/portfoliossss', ['function' => 'boom', 'controller' => 'Portfolios']);
 
 
 //users
@@ -20,6 +21,11 @@ get('/api/stocks/:symbol', [
   'function'=>'show',
   'namespace'=>'api'
 ]);
+
+
+get('/api/portfolios/new', [
+  'function'=>'new',
+  'namespace'=>'api']);
 
 //sessions
 post('/login', ['function' => 'create', 'controller'=>'Sessions']);

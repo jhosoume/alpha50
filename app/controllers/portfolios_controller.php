@@ -45,5 +45,9 @@ class PortfoliosController extends Spark\BaseController {
     $this->locals = ['portfolio_info' => $portfolio_info, 'index_value' => $index_value ];
     $this->render('portfolios/new.php');
   }
+
+  public function boom() {
+    $this->render('index.php');
+  }
 }
 

@@ -24,7 +24,7 @@ $(function() {
       var stockRow = $(this).parent().parent();
       calculateTotalShareValue(stockRow);
       var newValue = $(this).val();
-      totalPortfolioValue += (newValue - previousValue) * $(this).parent().siblings('td.stock-price').text();
+      totalPortfolioValue += (newValue - previousValue) * $(this).parent().siblings('td.stock-price').children('input').val();
       previousValue = newValue;
       calculatePctOfTotal();
       $('span.equity-holdings').text("$"+ Math.floor(totalPortfolioValue).toLocaleString());
@@ -48,16 +48,16 @@ $(function() {
 
   function calculateTotalShareValue(stockRow) {
     var numberOfShares = $(stockRow).children('td.number-of-shares').children('input').val();
-    var sharePrice = $(stockRow).children('td.stock-price').text();
+    var sharePrice = $(stockRow).children('td.stock-price').children('input').val();
     var totalValue = numberOfShares * sharePrice;
-    $(stockRow).children('td.total-value').text(Math.round(totalValue, 2));
+    $(stockRow).children('td.total-value').children('input').val(Math.round(totalValue, 2));
     return totalValue;
   }
 
   function calculatePctOfTotal() {
     portfolioTableData.children().each(function(idx,row) {
       var numberOfShares = $(row).children('td.number-of-shares').children('input').val();
-      var sharePrice = $(row).children('td.stock-price').text();
+      var sharePrice = $(row).children('td.stock-price').children('input').val();
       var totalValue = numberOfShares * sharePrice;
       var pctOfTotal = totalValue / totalPortfolioValue;
       $(row).children('td.pct-of-total').text(Math.round(pctOfTotal * 100, 0) + "%");
