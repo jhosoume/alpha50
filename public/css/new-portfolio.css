@@ -25,3 +25,9 @@ div.new-portfolio {
 .new-portfolio-data table td {
   padding: 5px;
 }
+
+/*.new-portfolio-data table td input {
+  margin:auto;
+  border-bottom: none;
+  text-align:left;
+}*/
