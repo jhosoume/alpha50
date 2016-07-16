@@ -12,14 +12,14 @@ $(function() {
 
   var serializedPortfolioData = {};
   $('.new-portfolio').on('click','button.create-portfolio-btn', function(e) {
-    var stockData = []; 
+    var tradesData = []; 
     portfolioTableData.children('tr').each(function(idx,row) {
      var stock = {
       ticker: $(row).children('td.stock-ticker').text(),
       quantity: $(row).children('td.number-of-shares').children('input').val(),
       price: $(row).children('td.stock-price').text()
      };
-     if (stock.quantity > 0) stockData.push(stock);
+     if (stock.quantity > 0) tradesData.push(stock);
     })
     var portfolioInformation = 
       {
@@ -28,13 +28,13 @@ $(function() {
       'value': totalPortfolioValue
       };
     serializedPortfolioData['info'] = portfolioInformation;
-    serializedPortfolioData['stocks'] = stockData;
+    serializedPortfolioData['trades'] = tradesData;
     $.ajax({
       url: "/api/portfolios",
       method: "POST",
-      data: JSON.stringify(serializedPortfolioData),
-      success: function(res) {
-        console.log(res);
+      data: {'portfolio':JSON.stringify(serializedPortfolioData)},
+      success: function(data) {
+        console.log(data);
       }
     })
   })
