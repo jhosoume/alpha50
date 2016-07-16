@@ -6,15 +6,19 @@ div.stock-bar-data {
   display: none;
 }
 
+.stock-side-bar .row{
+  margin-bottom: 30px;
+}
+
 .stock-side-bar .container {
   width: 90%;
-  line-height: 10px;
-  font-size:10px;
+  font-size:20px;
 }
 
 .stock-side-bar .stock-quote-area {
   height:72vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 @media (max-width: 600px) {
