@@ -8,12 +8,13 @@ class ChangeColumnCashPortfolio(Migration):
         Run the migrations.
         """
         with self.schema.table('portfolios') as table:
-            #table.raw('MODIFY COLUMN cash DOUBLE(15, 2);')
-            pass
+            table.drop_column('cash')
+            table.double('total_cash', 15, 8)
 
     def down(self):
         """
         Revert the migrations.
         """
         with self.schema.table('portfolios') as table:
-            pass
+            table.drop_column('total_cash')
+            table.float('cash')
