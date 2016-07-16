@@ -4,7 +4,7 @@ class TradesController extends Spark\BaseController {
     $params = $this->params;
     $keys = array_keys($params);
     $portfolio = Portfolio::find($params['portfolioId']);
-    $stocks_portfolios = $portfolio->stocks_portfolios;
+    $stocks_portfolios = StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $portfolio->id], 'include' => array('stock')));
 
     for($i = 0; $i < count($keys); $i++) {
       $key = $keys[$i];
@@ -12,10 +12,15 @@ class TradesController extends Spark\BaseController {
         $ticker = $params[$key];
         $trade_type = $params[$ticker.'TradeType'];
         $quantity = intval($params[$ticker.'TradeQuantity']);
+
+        // Make sure user submitted quantity is not less than 0.
+        if ($quantity < 0) $quantity = 0;
+
         if (strtolower($trade_type) === 'sell') {
           $quantity *= -1;
         }
 
+        // Only perform trades which have a quantity that is not 0.
         if ($quantity != 0) {
           $s_p = self::find_sp($stocks_portfolios, $ticker);
           $price = $s_p->stock->latest_price;
