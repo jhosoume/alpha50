@@ -8,12 +8,14 @@ class UsersController extends Spark\BaseController {
     $user->password = $this->params['user_password'];
     
     if ($user->save()) {
+      $_SESSION['user_id'] = $user->id;
       $this->locals = array('message' => 'All good');
+      redirect_to('/portfolios/new');
     } else {
       $this->locals = array('message' => 'Bad');
+      $this->render('/');
     };
-
-    $this->render("users/index.php");
+    
   }
 
 }
