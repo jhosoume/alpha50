@@ -56,6 +56,10 @@ $(function() {
     }
 
     function renderStockBar(stocks) {
+      stocks.sort(function(a, b) {
+        return a.ticker > b.ticker;
+      });
+      
       $.each(stocks, function(idx, stock) {
         var context = {stock: stock};
         var quoteHtml = template(context);
