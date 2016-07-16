@@ -43,7 +43,7 @@ $portfolio_value = Spark\locals()['portfolio_value'];
                     <option value="sell">SELL</option>
                   </select>
                 </td>
-                <td class="trade-quantity"><input name="<?=$ticker?>TradeQuantity" type='number' value="0" form="allStocksTradeForm"></td>
+                <td class="trade-quantity"><input name="<?=$ticker?>TradeQuantity" type='number' value="0" min="0" form="allStocksTradeForm"></td>
                 <td class="sub-total">$0</td>
               </tr>
             <?php endforeach ; ?>   
