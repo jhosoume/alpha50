@@ -39,6 +39,16 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 	    });
 	}
 
+	public function sort_by_quantity_held() {
+		$sp = &$this->stocks_portfolios;
+	    usort($sp, function($a, $b) {
+	    	if ($a->quantity_held == $b->quantity_held) {
+	    		return $a->stock->ticker < $b->stock->ticker ? -1 : 1;
+	    	}
+	      	return $a->quantity_held > $b->quantity_held ? -1 : 1;
+	    });
+	}
+
   public function get_current_value() {
     $val = $this->cash;
     $stocks_portfolios = StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $this->id], 'include' => array('stock')));
