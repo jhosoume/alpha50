@@ -29,14 +29,20 @@ $(function() {
       };
     serializedPortfolioData['info'] = portfolioInformation;
     serializedPortfolioData['trades'] = tradesData;
-    $.ajax({
-      url: "/api/portfolios",
-      method: "POST",
-      data: {'portfolio':JSON.stringify(serializedPortfolioData)},
-      success: function(data) {
-        console.log(data);
-      }
-    })
+
+    var form = $('#portfolio-data-form');
+    form.children('input').val(JSON.stringify(serializedPortfolioData));
+    form.submit();
+
+
+  //   $.ajax({
+  //     url: "/api/portfolios",
+  //     method: "POST",
+  //     data: {'portfolio':JSON.stringify(serializedPortfolioData)},
+  //     success: function(data) {
+  //       console.log(data);
+  //     }
+  //   })
   })
 
   calculatePctOfTotal();

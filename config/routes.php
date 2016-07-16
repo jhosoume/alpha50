@@ -6,7 +6,7 @@ get('/portfolios', ['function'=>'index']);
 get('/portfolios/new', ['function' => 'new']);
 get('/portfolios/:id', ['function'=>'show']);
 //api
-post('/api/portfolios', ['function' => 'create','namespace'=>'api']);
+post('/portfolios', ['function' => 'create']);
 
 
 //users

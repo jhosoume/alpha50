@@ -12,6 +12,10 @@
       </div>
 
       <div class='new-portfolio-data'>
+        <form id='portfolio-data-form' method='POST' action='/portfolios'>
+          <input type='hidden' name='data' value=''>
+        </form>
+
         <table class='bordered'>
           <thead>
             <tr>
@@ -39,7 +43,7 @@
                   <td class='total-value'>
                     <input form='create-portfolio' type='number' value='' readonly>
                   </td>
-                  <td><?= $pct_weight ?></td>
+                  <td class='pct-of-total'><?= $pct_weight ?></td>
                 </tr>
               <?php endforeach ; ?>    
             </tbody>
