@@ -72,13 +72,9 @@ $(function() {
 		$('.all-stocks-checkout').find('.adjustedEquity').text("$"+ (equity - netCash).toFixed(2));
 	}
 
-	$('#all-stocks-tab tbody').on('change', '.trade-type', function() {
-		calculateTotalTradeValue();
-	});
-
-	$('#all-stocks-tab tbody').on('change','.trade-quantity > input', function() {
-	    calculateTotalTradeValue();
-	});
+	$('#all-stocks-tab tbody').on('keyup', '.trade-quantity > input', calculateTotalTradeValue);
+	$('#all-stocks-tab tbody').on('change', '.trade-type', calculateTotalTradeValue);
+	$('#all-stocks-tab tbody').on('change','.trade-quantity > input', calculateTotalTradeValue);
 
 	$("#all-stocks-tab form").on('submit', function(e) {
 		var button = $("#all-stocks-tab button");
