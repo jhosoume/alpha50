@@ -41,6 +41,11 @@
   height: 350px;
 }
 
+#all-stocks-tab tbody input[name="ticker"]{
+  margin: auto;
+  border-bottom: none;
+}
+
 .all-stocks-checkout{
   min-height: 300px;
   text-align: center;

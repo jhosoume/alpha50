@@ -11,6 +11,10 @@ get('/portfolios/:id', ['function'=>'show']);
 post('/users', ['function' => 'create']);
 
 
+//trades
+post('/trades', ['function'=>'create']);
+
+
 get('/api/stocks', [
   'function'=>'index',
   'namespace'=>'api'

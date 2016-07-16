@@ -13,6 +13,9 @@ $portfolio_value = Spark\locals()['portfolio_value'];
 
   <div class="row">
     <div class="col m12">
+      <form method="POST" action="/trades" id="allStocksTradeForm">
+        <input type="hidden" name="portfolioId" value="<?=$portfolio->id?>">
+      </form>
       <table class='bordered'>
         <thead>
           <tr>
@@ -26,18 +29,21 @@ $portfolio_value = Spark\locals()['portfolio_value'];
           </tr>
           <tbody>
             <?php foreach($stocks_portfolios as $s_p): ?>
+              <?php $ticker = $s_p->stock->ticker?>
               <tr>
-                <td class="stock-ticker"><?= $s_p->stock->ticker ?></td>
+                <td class="stock-ticker">
+                  <input name="ticker<?=$ticker?>" type="text" form="allStocksTradeForm" value="<?=$ticker?>" readonly>
+                </td>
                 <td class="stock-name"><?= $s_p->stock->name ?></td>
                 <td class="stock-price"><?=$s_p->stock->latest_price?></td>
                 <td class="shares-number"><?= $s_p->quantity_held ?></td>
                 <td class="trade-type">
-                  <select>
+                  <select name="<?=$ticker?>TradeType" form="allStocksTradeForm">
                     <option value="buy">BUY</option>
                     <option value="sell">SELL</option>
                   </select>
                 </td>
-                <td class="trade-quantity"><input type='number'></td>
+                <td class="trade-quantity"><input name="<?=$ticker?>TradeQuantity" type='number' value="0" form="allStocksTradeForm"></td>
                 <td class="sub-total">$0</td>
               </tr>
             <?php endforeach ; ?>   
@@ -69,6 +75,6 @@ $portfolio_value = Spark\locals()['portfolio_value'];
       <p class="adjustedEquity">$0</p>
     </div>
     <br>
-    <button class="btn">Checkout</button>
+    <button class="btn" form="allStocksTradeForm">Checkout</button>
   </div>
 </div>
