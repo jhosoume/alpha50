@@ -16,8 +16,11 @@ class PortfoliosController extends Spark\BaseController {
 
   public function show() {
     $params = $this->params;
-    $portfolio = Portfolio::find($params['id']);
-    $this->locals = ['portfolio' => $portfolio];
+    $portfolio = Portfolio::first([
+      'conditions'=>['id = ?', $params['id']],
+      'include'=>['stocks_portfolios'=>['stock']],
+    ]);
+    $portfolio->sort_by_quantity_held();
 
     $locals = [
       'portfolio_id'=>$portfolio->id,
@@ -32,7 +35,6 @@ class PortfoliosController extends Spark\BaseController {
   }
 
   public function new() {
-    // index will need to be determined by admin user
     $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
     $index_portfolio = Portfolio::first([
       'conditions'=>['user_id = ?', $admin->id],
