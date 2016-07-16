@@ -9,6 +9,7 @@
   height:72vh;
   width: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .portfolio-content > div {

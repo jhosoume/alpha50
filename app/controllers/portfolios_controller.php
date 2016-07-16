@@ -16,20 +16,18 @@ class PortfoliosController extends Spark\BaseController {
 
   public function show() {
     $params = $this->params;
-    $portfolio = \Portfolio::find($params['id']);
-    $portfolio_equity = \PortfolioValuation::find_by_portfolio_id($portfolio->id)->value;
+    $portfolio = Portfolio::find($params['id']);
     $this->locals = ['portfolio' => $portfolio];
-    //$portfolio = Portfolio::find($params['id']);
 
     $locals = [
       'portfolio_id'=>$portfolio->id,
       'portfolio'=> $portfolio,
       'stocks_portfolios'=>$portfolio->stocks_portfolios,
-      'portfolio_equity_value' => $portfolio_equity
+      'portfolio_equity' => $portfolio->current_value - $portfolio->cash,
+      'portfolio_value' => $portfolio->current_value
     ];
 
     $this->locals = $locals;
-
     $this->render('portfolios/index.php');
   }
 
