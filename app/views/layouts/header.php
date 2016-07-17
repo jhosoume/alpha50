@@ -33,13 +33,13 @@
               <form class="col s12" action='/login' method='post'>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="user_email" type="email" name='user_email' class="validate">
+                    <input id="user_email" type="email" name='user_email' class="validate" required>
                     <label for="user_email">Email</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="user_password" type="password" name='user_password' class="validate">
+                    <input id="user_password" type="password" name='user_password' class="validate" required>
                     <label for="user_password">Password</label>
                   </div>
                 </div>

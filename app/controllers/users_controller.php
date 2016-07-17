@@ -13,7 +13,7 @@ class UsersController extends Spark\BaseController {
       redirect_to('/portfolios/new');
     } else {
       $this->locals = array('message' => 'Bad');
-      $this->render('/');
+      redirect_to('/');
     };
     
   }

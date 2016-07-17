@@ -17,7 +17,7 @@ class SessionsController extends Spark\BaseController {
     } else {
       // Login doesn't match.
       $this->locals = array('message' => "Login Failed");
-      $this->render('index.php');
+      redirect_to('/');
     }
   }
 
