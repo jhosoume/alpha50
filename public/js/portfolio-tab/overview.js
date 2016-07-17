@@ -4,6 +4,7 @@ $(function() {
     var quotesRequest;
     var portfolioCash = parseInt($('#portfolio-holdings-chart').data('portfolio-cash'));
     var portfolioEquity = parseInt($('#portfolio-holdings-chart').data('portfolio-equity'));
+    var portfolioValue = portfolioCash + portfolioEquity;
     setTimeout(function() {
       stock = 'AMZN';
       quotesRequest = $.ajax({
@@ -71,7 +72,7 @@ $(function() {
             },
             yAxis: {
                 min: 0,
-                max: 1000000,
+                max: [portfolioValue],
                 labels: {
                   enabled: false
                 },
