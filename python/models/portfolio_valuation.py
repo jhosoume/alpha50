@@ -14,7 +14,7 @@ SECTORS = ['information_technology', 'energy', 'consumer_discretionary', 'health
 
 class PortfolioValuation(Model):
 
-    __fillable__ = ['portfolio_id', 'portfolio_value', 'information_technology', 'energy', 'consumer_discretionary', 'health_care', 'industrials', 'telecommunications_services', 'financials', 'consumer_staples']
+    __fillable__ = ['portfolio_id', 'portfolio_value'] + SECTORS 
     __guarded__ = ['id']
     __timestamps__ = ['created_at'] 
 
