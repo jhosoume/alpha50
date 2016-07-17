@@ -5,7 +5,7 @@
 
     <div class="container new-portfolio">
       <div class='new-portfolio-overview'>
-        <form method="GET" action="/portfoliosass" id="newPortfolioForm"></form>
+        <form method="POST" action="/portfolios" id="newPortfolioForm"></form>
 
         <h5 id='portfolio-name'><input class="validate" type="text" value="My Awesome Portoflio" name="name" form="newPortfolioForm" pattern=".{2,}" required title="2 characters minimum"></h5>
         <p> Instructions </p>
