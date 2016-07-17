@@ -27,7 +27,7 @@ def reach_google(tickers_list):
 
 def grab_info_google(time, stock, tz):
     return {'datetime': arrow.get(time + '-04:00').to(tz).replace(second=0),
-            'price': Decimal(stock['LastTradePrice']) }
+            'price': float(stock['LastTradePrice'].replace(',', '')) }
 
 def get_stocks_real_time_google(tickers_list):
     stocks_info = reach_google(tickers_list)

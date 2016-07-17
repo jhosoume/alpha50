@@ -6,7 +6,6 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0,parentdir)
 
 from yahoo_finance import Share
-import sys
 import arrow
 from decimal import Decimal
 from retrying import retry
