@@ -45,6 +45,7 @@ $(function() {
 			if (numberTrading < 0 || isNaN(numberTrading)) numberTrading = 0;
 
 			var sharePrice = parseFloat($(stockRow).children('td.stock-price').text());
+			if (isNaN(sharePrice)) sharePrice = 0;
 			var tradeType = $(stockRow).children('td.trade-type').find('input').val();
 			var totalValue = numberTrading * sharePrice;
 			var subTotal = (sharePrice * numberTrading).toFixed(2);
