@@ -2,9 +2,6 @@
   margin-top:5px;
 }
 
-.inter-portfoli-nav {
-}
-
 .portfolio-content {
   height:72vh;
   width: 100%;
@@ -24,9 +21,14 @@
   margin: auto;
   margin-top: 30vh;
 }
-
-.portfolio-section .container {
+/*
+.portfolio-section {
   width:85%;
+  margin:auto;
+}*/
+
+.container{
+  width: 90% !important;
 }
 
 #inter-portfolio-nav {
@@ -41,13 +43,13 @@
   height: 350px;
 }
 
-#all-stocks-tab tbody input[name^="ticker"]{
+tbody input[name^="ticker"]{
   margin: auto;
   border-bottom: none;
 }
 
 #all-stocks-tab table{
-  table-layout: fixed;
+  //table-layout: fixed;
 }
 
 .all-stocks-checkout{

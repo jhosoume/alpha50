@@ -12,10 +12,7 @@
   <body>
     <?php render_file('layouts/header.php'); ?>
     <div class="row">
-      <div class="col m2">
-        <?php render_file('/portfolios/stock-side-bar.php'); ?>
-      </div>
-      <div class="col s12 m10">
+      <div class="col m12">
         <div class="container">
           <?php renderer::render_view_template(); ?>
         </div>
