@@ -14,7 +14,7 @@ SECTORS = ['information_technology', 'energy', 'consumer_discretionary', 'health
 
 class PortfolioValuation(Model):
 
-    __fillable__ = ['portfolio_id', 'portfolio_value', 'information_technology', 'energy', 'consumer_discretionary', 'health_care', 'industrials', 'telecommunications_services', 'financials', 'consumer_staples']
+    __fillable__ = ['created_at', 'portfolio_id', 'portfolio_value'] + SECTORS 
     __guarded__ = ['id']
     __timestamps__ = ['created_at'] 
 
@@ -29,13 +29,20 @@ class PortfolioValuation(Model):
         return True if valid else False
 
     def is_valid(self):
-        valid = [ PortfolioValuation(getattr(self, sector)) for sector in SECTORS ]
+        valid = [ getattr(self, sector) for sector in SECTORS ]
         valid.append(PortfolioValuation.is_valid_value(self.portfolio_value))
         return all(valid)
 
     def is_unique(self):
         count = PortfolioValuation.where('portfolio_id', self.portfolio_id).where('created_at', self.created_at.format('YYYY-MM-DDTHH:mm:ss')).count()
-        return True if not count else False
+        return True if (count <= 1) else False
 
-PortfolioValuation.creating(lambda portfolio_valuation: portfolio_valuation.is_unique())
+    @staticmethod
+    def delete_repeated(portfolio_valuation):
+        if not portfolio_valuation.is_unique():
+            portfolio_valuation.delete()
+            return False
+        return True
+
+PortfolioValuation.created(lambda portfolio_valuation: PortfolioValuation.delete_repeated(portfolio_valuation))
 PortfolioValuation.saving(lambda portfolio_valuation: portfolio_valuation.is_valid())
