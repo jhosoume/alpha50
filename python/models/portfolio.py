@@ -26,6 +26,11 @@ class Portfolio(Model):
         return models.user.User
 
     @has_many
+    def portfolio_valuations(self):
+        import models.portfolio_valuation
+        return models.portfolio_valuation.PortfolioValuation
+
+    @has_many
     def stocks_portfolios(self):
         return models.stocks_portfolio.StocksPortfolio
 
