@@ -5,7 +5,9 @@
 
     <div class="container new-portfolio">
       <div class='new-portfolio-overview'>
-        <h5 id='portfolio-name' contenteditable="true">My Awesome Portoflio</h5>
+        <form method="GET" action="/portfoliosass" id="newPortfolioForm"></form>
+
+        <h5 id='portfolio-name'><input class="validate" type="text" value="My Awesome Portoflio" name="name" form="newPortfolioForm" pattern=".{2,}" required title="2 characters minimum"></h5>
         <p> Instructions </p>
         <p><strong>Cash: </strong><span class='cash-holdings'></span></p>
         <p><strong>Allocated Capital: </strong><span class='equity-holdings'></span></p>
@@ -31,13 +33,15 @@
               <?php $pct_weight = $stock->latest_price*$sp->quantity_held / $index_value ?>
               <?php $number_of_shares = floor($startingCapital * $pct_weight / $stock->latest_price) ?>
                 <tr> 
-                  <td class='stock-ticker'><?= $stock->ticker ?></td>
+                  <td class='stock-ticker'>
+                    <input type="text" name="ticker<?= $stock->ticker?>" value="<?= $stock->ticker?>" form="newPortfolioForm" readonly>
+                  </td>
                   <td class='stock-name'><?php echo $stock->name ?></td>
                   <td class='stock-price'><?= $stock->latest_price ?></td>
-                  <td class='number-of-shares'><input type='number' value='<?= $number_of_shares ?>'>
+                  <td class='number-of-shares'><input type='number' name="<?=$stock->ticker?>TradeQuantity" value='<?= $number_of_shares ?>' form="newPortfolioForm" min="0">
                   </td>
                   <td class='total-value'>
-                    <input form='create-portfolio' type='number' value='' readonly>
+                    <input form='newPortfolioForm' type='number' value='' readonly>
                   </td>
                   <td><?= $pct_weight ?></td>
                 </tr>
@@ -45,7 +49,7 @@
             </tbody>
           </thead>
         </table>
-        <button class='btn create-portfolio-btn'>Create Portfolio</button>
+        <button class='btn create-portfolio-btn' form="newPortfolioForm">Create Portfolio</button>
       </div>
       </div>
   </div>

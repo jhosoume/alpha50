@@ -8,6 +8,8 @@ get('/portfolios/:id', ['function'=>'show']);
 //api
 post('/api/portfolios', ['function' => 'create','namespace'=>'api']);
 
+post('/portfolios', ['function'=>'create']);
+
 
 //users
 post('/users', ['function' => 'create']);

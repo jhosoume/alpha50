@@ -11,33 +11,33 @@ $(function() {
   });
 
   var serializedPortfolioData = {};
-  $('.new-portfolio').on('click','button.create-portfolio-btn', function(e) {
-    var tradesData = []; 
-    portfolioTableData.children('tr').each(function(idx,row) {
-     var stock = {
-      ticker: $(row).children('td.stock-ticker').text(),
-      quantity: $(row).children('td.number-of-shares').children('input').val(),
-      price: $(row).children('td.stock-price').text()
-     };
-     if (stock.quantity > 0) tradesData.push(stock);
-    })
-    var portfolioInformation = 
-      {
-      'name': $('#portfolio-name').text(),
-      'cash': startingCapital - totalPortfolioValue,
-      'value': totalPortfolioValue
-      };
-    serializedPortfolioData['info'] = portfolioInformation;
-    serializedPortfolioData['trades'] = tradesData;
-    $.ajax({
-      url: "/api/portfolios",
-      method: "POST",
-      data: {'portfolio':JSON.stringify(serializedPortfolioData)},
-      success: function(data) {
-        console.log(data);
-      }
-    })
-  })
+  // $('.new-portfolio').on('click','button.create-portfolio-btn', function(e) {
+  //   var tradesData = []; 
+  //   portfolioTableData.children('tr').each(function(idx,row) {
+  //    var stock = {
+  //     ticker: $(row).children('td.stock-ticker').text(),
+  //     quantity: $(row).children('td.number-of-shares').children('input').val(),
+  //     price: $(row).children('td.stock-price').text()
+  //    };
+  //    if (stock.quantity > 0) tradesData.push(stock);
+  //   })
+  //   var portfolioInformation = 
+  //     {
+  //     'name': $('#portfolio-name').text(),
+  //     'cash': startingCapital - totalPortfolioValue,
+  //     'value': totalPortfolioValue
+  //     };
+  //   serializedPortfolioData['info'] = portfolioInformation;
+  //   serializedPortfolioData['trades'] = tradesData;
+  //   $.ajax({
+  //     url: "/api/portfolios",
+  //     method: "POST",
+  //     data: {'portfolio':JSON.stringify(serializedPortfolioData)},
+  //     success: function(data) {
+  //       console.log(data);
+  //     }
+  //   })
+  // })
 
   calculatePctOfTotal();
 

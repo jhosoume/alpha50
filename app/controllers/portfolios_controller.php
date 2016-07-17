@@ -48,5 +48,50 @@ class PortfoliosController extends Spark\BaseController {
     $this->locals = ['index_portfolio' => $index_portfolio, 'index_value' => $index_value ];
     $this->render('portfolios/new.php');
   }
+
+  public function create() {
+    $params = $this->params;
+    $keys = array_keys($params);
+    $portfolio = current_user()->create_portfolio([
+      'name'=>$params['name'],
+      'total_cash'=>1000000,
+    ]);
+
+    $stocks_portfolios = StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $portfolio->id], 'include' => array('stock')));
+
+    for($i = 0; $i < count($keys); $i++) {
+      $key = $keys[$i];
+      if (strpos($key, 'ticker') === 0) {
+        $ticker = $params[$key];
+        $quantity = intval($params[$ticker.'TradeQuantity']);
+
+        // Make sure user submitted quantity is not less than 0.
+        if ($quantity < 0) $quantity = 0;
+
+        // Only perform trades which have a quantity that is not 0.
+        if ($quantity != 0) {
+          $s_p = self::find_sp($stocks_portfolios, $ticker);
+          $price = $s_p->stock->latest_price;
+          $s_p->create_trade([
+             'quantity'=>$quantity,
+             'price'=>$price,
+          ]);
+        }
+      }
+    }
+ 
+    redirect_to('/portfolios/'.$portfolio->id.'#all-stocks-tab');
+  }
+
+  private function find_sp($stocks_portfolios, $ticker) {
+    // Returns the stocks_portfolio associated with the $stocks_portfolios and $ticker
+    foreach ($stocks_portfolios as $sp) {
+      if ($sp->stock->ticker === $ticker) {
+        return $sp;
+      }
+    }
+
+    return null;
+  }
 }
 
