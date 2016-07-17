@@ -5,7 +5,7 @@ class TradeTest extends TestCase {
 
     public function testValidatePortfolioCash() {
         $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
-        $portfolio = Portfolio::create(['name'=>'PortPortPort','user_id'=>$user->id,'cash'=>200]);
+        $portfolio = Portfolio::create(['name'=>'PortPortPort','user_id'=>$user->id,'total_cash'=>200]);
         $stocks_portfolio = $portfolio->stocks_portfolios[0];
 
         $trade_buy = Trade::create([
@@ -14,7 +14,7 @@ class TradeTest extends TestCase {
             'price'=>10,
         ]);
         // Test that a portfolio can trade if it has enough money.
-        $this->assertEquals(100, $user->portfolios[0]->cash);
+        $this->assertEquals(100, $user->portfolios[0]->total_cash);
 
         $trade_buy_fail = new Trade([
             'stocks_portfolio_id'=>$stocks_portfolio->id,
@@ -35,13 +35,13 @@ class TradeTest extends TestCase {
         $user->reload();
 
         // Test that a portfolio's cash raises when it sells.
-        $this->assertEquals(200, $user->portfolios[0]->cash);
+        $this->assertEquals(200, $user->portfolios[0]->total_cash);
     }
 
 	public function testAfterCreateCallback()
     {
         $user = User::create(['email'=>'asdf@gmail.com','password'=>'asdfasdf']);
-        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'cash'=>30000]);
+        $portfolio = Portfolio::create(['name'=>'Awesome Port','user_id'=>$user->id,'total_cash'=>30000]);
         $stocks_portfolio = $portfolio->stocks_portfolios[0];
 
     	$trade_1 = Trade::create([

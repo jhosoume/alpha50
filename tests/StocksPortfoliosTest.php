@@ -12,10 +12,10 @@ class StocksPortfoliosTest extends TestCase {
     	$portfolio = Portfolio::create([
     		'name'=>'Awesome Port',
     		'user_id'=>$user->id,
-            'cash'=>10000,
+            'total_cash'=>10000,
     	]);
 
-        $stock = Stock::find_by_ticker('aapl');
+        $stock = Stock::find_by_ticker('googl');
 
         $stocks_portfolio = new StocksPortfolio([
             'stock_id'=>$stock->id,

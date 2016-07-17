@@ -26,7 +26,7 @@ class PortfoliosController extends Spark\BaseController {
       'portfolio_id'=>$portfolio->id,
       'portfolio'=> $portfolio,
       'stocks_portfolios'=>$portfolio->stocks_portfolios,
-      'portfolio_equity' => $portfolio->current_value - $portfolio->cash,
+      'portfolio_equity' => $portfolio->current_value - $portfolio->total_cash,
       'portfolio_value' => $portfolio->current_value
     ];
 

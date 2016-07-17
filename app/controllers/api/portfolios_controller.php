@@ -7,7 +7,7 @@ public function create() {
 
     $portfolio_name = $data->info->name;
     $trades = $data->trades;
-    $portfolio = current_user()->create_portfolio(['name' => $portfolio_name, 'cash' => 999999]);
+    $portfolio = current_user()->create_portfolio(['name' => $portfolio_name, 'total_cash' => 999999]);
     $stocks_portfolios = \StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $portfolio->id], 'include' => array('stock')));
     foreach ($trades as $trade) {
       $ticker = $trade->ticker;
