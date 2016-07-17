@@ -44,12 +44,8 @@ if __name__ == '__main__':
         portfolio = Portfolio.where('name', 'Alpha50').where('user_id', user.id).first()
         valuations = get_index_value_history(INDEX_VALUATIONS)
         for valuation in valuations:
-            import pdb; pdb.set_trace()
             valuation['portfolio_id'] = portfolio.id
             PortfolioValuation.create(valuation)
-            #pv = PortfolioValuation(valuation)
-            #pv.created_at = valuation['created_at'] 
-            #pv.save()
             
 
 

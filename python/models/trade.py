@@ -14,7 +14,7 @@ Model.set_connection_resolver(db)
 
 class Trade(Model):
 
-    __fillable__ = ['stocks_portfolio_id', 'quantity', 'price']
+    __fillable__ = ['stocks_portfolio_id', 'quantity', 'price', 'created_at']
     __timestamps__ = False
     __timestamps__ = ['created_at']
 
