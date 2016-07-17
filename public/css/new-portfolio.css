@@ -26,6 +26,15 @@ div.new-portfolio {
   padding: 5px;
 }
 
+.new-portfolio button{
+  margin-top:50px;
+  margin-bottom:100px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: block;
+}
+
 /*.new-portfolio-data table td input {
   margin:auto;
   border-bottom: none;
