@@ -38,7 +38,7 @@
               <td class='total-value'>
                 <input form='newPortfolioForm' type='number' value='' readonly>
               </td>
-              <td><?= $pct_weight ?></td>
+              <td class='pct-of-total'><?= $pct_weight ?></td>
             </tr>
           <?php endforeach ; ?>    
         </tbody>
