@@ -17,7 +17,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 	static $validates_presence_of = array(
 		['name'],
 		['user_id'],
-		['cash']
+		['total_cash']
 	);
 
 	public function create_all_stocks_portfolios() {
@@ -50,7 +50,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 	}
 
   public function get_current_value() {
-    $val = $this->cash;
+    $val = $this->total_cash;
     $stocks_portfolios = StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $this->id], 'include' => array('stock')));
     foreach ($stocks_portfolios as $sp) {
       $val += $sp->quantity_held * $sp->stock->latest_price;

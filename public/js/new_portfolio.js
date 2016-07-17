@@ -32,7 +32,16 @@ $(function() {
 
     var form = $('#portfolio-data-form');
     form.children('input').val(JSON.stringify(serializedPortfolioData));
-    form.submit();
+    form.bind('submit', function () {
+      $.ajax({
+        url:"/portfolios",
+        method:'post',
+        data:form.serializeArray(),
+        success: function(res) {
+          console.log(res);
+        }
+      })
+    })
 
 
   //   $.ajax({

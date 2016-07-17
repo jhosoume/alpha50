@@ -14,7 +14,7 @@ class TradeTest extends TestCase {
             'price'=>10,
         ]);
         // Test that a portfolio can trade if it has enough money.
-        $this->assertEquals(100, $user->portfolios[0]->cash);
+        $this->assertEquals(100, $user->portfolios[0]->total_cash);
 
         $trade_buy_fail = new Trade([
             'stocks_portfolio_id'=>$stocks_portfolio->id,
@@ -35,7 +35,7 @@ class TradeTest extends TestCase {
         $user->reload();
 
         // Test that a portfolio's cash raises when it sells.
-        $this->assertEquals(200, $user->portfolios[0]->cash);
+        $this->assertEquals(200, $user->portfolios[0]->total_cash);
     }
 
 	public function testAfterCreateCallback()

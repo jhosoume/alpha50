@@ -16,7 +16,7 @@ class Trade extends ActiveRecord\Model implements JsonSerializable {
   		$total = $this->quantity * $this->price;
 
   		// Validate that the portfolio has enough cash if buying.
-  		if ($this->quantity > 0 && $this->stocks_portfolio->portfolio->cash < $total) {
+  		if ($this->quantity > 0 && $this->stocks_portfolio->portfolio->total_cash < $total) {
   			$this->errors->add('portfolio_cash', 'portfolio does not have enough cash');
   		}
 
@@ -35,7 +35,7 @@ class Trade extends ActiveRecord\Model implements JsonSerializable {
 		$stocks_portfolio->save();
 
 		$portfolio = $stocks_portfolio->portfolio;
-		$portfolio->cash -= $this->quantity*$this->price;
+		$portfolio->total_cash -= $this->quantity*$this->price;
 		$portfolio->save();
 	}
 
