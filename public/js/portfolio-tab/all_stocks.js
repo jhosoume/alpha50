@@ -13,10 +13,12 @@ $(function() {
 		totalSellSum = 0;
 		var cash = $('#all-stocks-tab').find('.cash').data("cash");
 
-		var validateRow = function(stockRow, tradeType, numberOwned, numberTrading) {
+		var validateRow = function(stockRow, tradeType, numberOwned, numberTrading, sharePrice) {
 			var button = $("#all-stocks-tab button");
 				button.removeClass('disabled');
 				button.text('Checkout');
+
+			if (sharePrice === 0) $(stockRow).addClass('hide');
 
 			$(stockRow).removeClass('red');
 			var valid = true;
@@ -54,11 +56,11 @@ $(function() {
 			if (tradeType === 'BUY') {
 				// Validate that the user has enough money.
 				totalBuySum += totalValue;
-				validateRow(stockRow, tradeType, numberOwned, numberTrading);
+				validateRow(stockRow, tradeType, numberOwned, numberTrading, sharePrice);
 			} else {
 				// Validate that user can't short.
 				totalSellSum += totalValue;
-				validateRow(stockRow, tradeType, numberOwned, numberTrading);
+				validateRow(stockRow, tradeType, numberOwned, numberTrading, sharePrice);
 			}
 		});
 
