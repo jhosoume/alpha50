@@ -36,10 +36,7 @@ $(function() {
         var filtered = allStocks.filter(function(stock) {
           return re.test(stock.ticker) || re.test(stock.name) || re.test(stock.sector);
         });
-        window.clearTimeout(timer);
-        timer = setTimeout(function() {
-          renderStockBar(filtered);
-        },400)
+        renderStockBar(filtered);
       })
       .on('keydown','input',function(e) {
         var searchTerm = $(this).val();
