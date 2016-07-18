@@ -20,6 +20,7 @@ class PortfoliosController extends Spark\BaseController {
       'conditions'=>['id = ?', $params['id']],
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
+    $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ?', current_user()->id]]); 
     $portfolio->sort_by_quantity_held();
 
     $locals = [
@@ -27,7 +28,8 @@ class PortfoliosController extends Spark\BaseController {
       'portfolio'=> $portfolio,
       'stocks_portfolios'=>$portfolio->stocks_portfolios,
       'portfolio_equity' => $portfolio->current_value - $portfolio->total_cash,
-      'portfolio_value' => $portfolio->current_value
+      'portfolio_value' => $portfolio->current_value,
+      'all_portfolios' => $all_portfolios
     ];
 
     $this->locals = $locals;

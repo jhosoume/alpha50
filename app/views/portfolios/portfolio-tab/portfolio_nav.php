@@ -13,9 +13,13 @@
  </ul>
 </nav>
 <ul id="inter-portfolio-nav" class="dropdown-content">
-  <li><a href="/portfolios/1">Portfolio 1</a></li>
-  <li><a href="/portfolios/2">Portfolio 1</a></li>
-  <li><a href="/portfolios/3">Portfolio 3</a></li>
-  <li><a href="/portfolios/4">Portfolio 4</a></li>
-  <li><a href="/portfolios/5">Portfolio 5</a></li>
+  <?php $all_portfolios = Spark\locals()['all_portfolios'] ?>
+  <?php foreach($all_portfolios as $portfolio): ?>
+    <?php $name = strlen($portfolio->name) > 20 ? substr($portfolio->name,0,20)."..." : $portfolio->name; ?>
+    <li><a href="/portfolios/<?= $portfolio->id ?>"><?= $name ?> </a></li>
+  <?php endforeach ; ?>
+
+  <?php if (count($all_portfolios) < 5) : ?>
+    <li><a href="/portfolios/new"><span class='badge'>+</span> New Portfolio</a></li>
+  <?php endif ; ?>
 </ul>
