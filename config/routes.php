@@ -21,6 +21,7 @@ post('/trades', ['function'=>'create']);
 
 //api
 get('/api/portfolios/:id', ['function' => 'show','namespace'=>'api']);
+get('/api/trades', ['function' => 'index','namespace'=>'api']);
 
 get('/api/stocks', [
   'function'=>'index',
