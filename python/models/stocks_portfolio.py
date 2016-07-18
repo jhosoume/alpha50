@@ -33,7 +33,7 @@ class StocksPortfolio(Model):
 
     @staticmethod
     def is_valid_quantity_held(qty):
-        valid = qty and isinstance(qty, numbers.Number)
+        valid = isinstance(qty, numbers.Number) and qty >= 0.0
         return True if valid else False
 
     def is_valid(self):

@@ -24,7 +24,7 @@ class Trade(Model):
 
     @staticmethod
     def is_valid_quantity(qty):
-        valid = qty and isinstance(qty, numbers.Number) and qty >= 0
+        valid = isinstance(qty, numbers.Number)
         return True if valid else False
 
     def is_valid(self):

@@ -25,12 +25,12 @@ class PortfolioValuation(Model):
 
     @staticmethod
     def is_valid_value(value):
-        valid = value and isinstance(value, numbers.Number)
+        valid = isinstance(value, numbers.Number)
         return True if valid else False
 
     def is_valid(self):
         valid = [ getattr(self, sector) for sector in SECTORS ]
-        valid.append(PortfolioValuation.is_valid_value(self.portfolio_value))
+        valid = map(PortfolioValuation.is_valid_value, valid)
         return all(valid)
 
     def is_unique(self):

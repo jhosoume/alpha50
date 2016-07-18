@@ -41,7 +41,7 @@ class Portfolio(Model):
 
     @staticmethod
     def is_valid_cash(cash):
-        valid = cash and isinstance(cash, numbers.Number)
+        valid = isinstance(cash, numbers.Number)
 
     @staticmethod
     def is_valid_name(name):

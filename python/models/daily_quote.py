@@ -24,7 +24,7 @@ class DailyQuote(Model):
 
     @staticmethod
     def is_valid_close_price(close_price):
-        valid = close_price and isinstance(close_price, numbers.Number)
+        valid = isinstance(close_price, numbers.Number)
         return True if valid else False
 
     @staticmethod
