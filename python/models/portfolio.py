@@ -13,7 +13,7 @@ Model.set_connection_resolver(db)
 
 class Portfolio(Model):
 
-    __fillable__ = ['user_id', 'parent', 'name', 'total_cash']
+    __fillable__ = ['user_id', 'parent', 'name', 'total_cash', 'created_at']
     __timestamps__ = True
 
     @has_one
