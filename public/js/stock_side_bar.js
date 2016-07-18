@@ -6,10 +6,10 @@ $(function() {
 
     $.ajax({
       url: '/api/stocks',
-      data: {'request_type': 'quotes', 'limit': '50'},
+      data: {'request_type': 'latest_quotes'},
       contentType: 'json',
       success: function (json) {
-        allStocks = json['half_hourly'];
+        allStocks = json;
         renderStockBar(allStocks);
       }
     });
@@ -53,12 +53,17 @@ $(function() {
     }
 
     function renderStockBar(stocks) {
+      stocks = stocks.filter(function(n){ return n.latest_price != undefined });
       stocks.sort(function(a, b) {
         return a.ticker > b.ticker;
       });
       
       $.each(stocks, function(idx, stock) {
-        var context = {stock: stock};
+        var context = {
+          ticker: stock.ticker,
+          price: stock.latest_price,
+          name: stock.name,
+        };
         var quoteHtml = template(context);
         $('.stock-quote-area').append(quoteHtml); 
       })
