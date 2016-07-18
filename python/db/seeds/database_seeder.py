@@ -1,5 +1,7 @@
 from orator.seeds import Seeder
 from seeds.index_portfolio_seeder import IndexPortfolioSeeder
+from seeds.index_valuations_seeder import IndexValuationsSeeder
+from seeds.scrooge_mcduck_seeder import ScroogeMcDuckSeeder
 
 class DatabaseSeeder(Seeder):
 
@@ -8,4 +10,6 @@ class DatabaseSeeder(Seeder):
         Run the database seeds.
         """
         self.call(IndexPortfolioSeeder)
+        self.call(IndexValuationsSeeder)
+        self.call(ScroogeMcDuckSeeder)
 
