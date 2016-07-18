@@ -80,3 +80,7 @@ tbody input[name^="ticker"]{
 .new-portfolio-top input {
   margin-bottom: 0;
 }
+
+#analysis-tab.stock-sector {
+  display: none;
+}

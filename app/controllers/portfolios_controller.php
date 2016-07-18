@@ -34,6 +34,14 @@ class PortfoliosController extends Spark\BaseController {
       return $a->created_at < $b->created_at ? 1 : -1;
     });
 
+    $sectors = array();
+    foreach($portfolio->stocks_portfolios as $s_p):
+      $sector = $s_p->stock->sector;
+      if (!in_array($sector, $sectors)) {
+        array_push($sectors, $sector);
+      };
+    endforeach;
+
     $locals = [
       'portfolio_id'=>$portfolio->id,
       'portfolio'=> $portfolio,
@@ -42,6 +50,7 @@ class PortfoliosController extends Spark\BaseController {
       'portfolio_value' => $portfolio->current_value,
       'all_portfolios' => $all_portfolios,
       'trades' => $all_trades,
+      'sectors' => $sectors,
     ];
 
     $this->locals = $locals;
