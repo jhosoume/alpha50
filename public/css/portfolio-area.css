@@ -64,3 +64,19 @@ tbody input[name^="ticker"]{
   width:25%; 
   display: inline-block;
 }
+
+.new-portfolio-top {
+  margin-bottom: 0;
+}
+
+.new-portfolio-top > div:first-child {
+  text-align: center;
+}
+
+.new-portfolio-top > div > a > i {
+  margin-top:10px;
+}
+
+.new-portfolio-top input {
+  margin-bottom: 0;
+}

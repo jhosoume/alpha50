@@ -2,7 +2,16 @@
   <?php render_file('/portfolios/portfolio-tab/portfolio_nav.php') ?>
   <form method="POST" action="/portfolios" id="newPortfolioForm"></form>
   <div class='new-portfolio-overview'>
-    <h5 id='portfolio-name'><input class="validate" type="text" value="My Awesome Portoflio" name="name" form="newPortfolioForm" pattern=".{2,}" required title="2 characters minimum"></h5>
+    <div class='row new-portfolio-top'>
+    <div class='col s1'>
+      <a class="dropdown-button" href="#" data-activates="inter-portfolio-nav">
+        <i class="material-icons teal-text">menu</i>
+      </a>
+    </div>
+    <div class='col s11'>
+      <input class="validate" type="text" value="My Awesome Portoflio" name="name" form="newPortfolioForm" pattern=".{2,}" required title="2 characters minimum">
+    </div>
+    </div>
     <p> Instructions </p>
     <p><strong>Cash: </strong><span class='cash-holdings'></span></p>
     <p><strong>Allocated Capital: </strong><span class='equity-holdings'></span></p>

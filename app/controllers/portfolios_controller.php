@@ -42,12 +42,13 @@ class PortfoliosController extends Spark\BaseController {
       'conditions'=>['user_id = ?', $admin->id],
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
+    $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ?', current_user()->id]]);
 
     $index_portfolio->sort_by_ticker();
 
     $index_value = $index_portfolio->get_current_value();
 
-    $this->locals = ['index_portfolio' => $index_portfolio, 'index_value' => $index_value ];
+    $this->locals = ['index_portfolio' => $index_portfolio, 'index_value' => $index_value, 'all_portfolios' => $all_portfolios ];
     $this->render('portfolios/new.php');
   }
 
