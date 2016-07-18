@@ -36,7 +36,7 @@ class HalfHourlyQuote(Model):
 
     @staticmethod
     def is_valid_price(price):
-        valid = price and isinstance(price, numbers.Number)
+        valid = isinstance(price, numbers.Number)
         return True if valid else False
 
     @scope

@@ -50,7 +50,7 @@ class Stock(Model):
 
     @staticmethod
     def is_valid_market_cap(market_cap):
-        valid =  market_cap and isinstance(market_cap, numbers.Number) and market_cap > 1
+        valid =  isinstance(market_cap, numbers.Number) and market_cap > 1
         return True if valid else False
 
     def is_valid(self):
