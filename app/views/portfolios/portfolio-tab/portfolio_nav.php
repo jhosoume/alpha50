@@ -1,4 +1,4 @@
-<?php if (!$_SERVER['REQUEST_URI']="/portfolios/new"): ?>
+<?php if ($_SERVER['REQUEST_URI'] !== "/portfolios/new"): ?>
 <nav class="portfolio-nav grey darken-2">
 <ul>
   <li>
