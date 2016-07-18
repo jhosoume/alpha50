@@ -6,7 +6,7 @@ get('/portfolios', ['function'=>'index']);
 get('/portfolios/new', ['function' => 'new']);
 get('/portfolios/:id', ['function'=>'show']);
 //api
-post('/api/portfolios', ['function' => 'create','namespace'=>'api']);
+get('/api/portfolios/:id', ['function' => 'show','namespace'=>'api']);
 
 post('/portfolios', ['function'=>'create']);
 
@@ -30,9 +30,9 @@ get('/api/stocks/:symbol', [
 ]);
 
 
-get('/api/portfolios/new', [
-  'function'=>'new',
-  'namespace'=>'api']);
+// get('/api/portfolios/new', [
+//   'function'=>'new',
+//   'namespace'=>'api']);
 
 //sessions
 post('/login', ['function' => 'create', 'controller'=>'Sessions']);

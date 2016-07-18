@@ -6,30 +6,30 @@ $(function() {
     var portfolioEquity = parseInt($('#portfolio-holdings-chart').data('portfolio-equity'));
     var portfolioValue = portfolioCash + portfolioEquity;
     setTimeout(function() {
-      stock = 'AMZN';
       quotesRequest = $.ajax({
-        url: "/api/stocks/" + stock,
-        data: {'request_type': 'quotes'},
+        url: "/api" + window.location.pathname,
+        method: 'GET',
+        data: {'request_type': 'historical_valuation', 'sector':'all'},
         contentType: 'JSON'
       })
 
 
       //potentially rewrite this as a named function
-      quotesRequest.then(function(data) {
-        var chartArray = createChartArray(data);
+      quotesRequest.then(function(valuations) {
+        var chartArray = createChartArray(valuations);
         renderPortfolioOverviewChart(chartArray, $("#portfolio-overview-chart"));
-        renderHoldingsOverviewChart(chartArray, $("#portfolio-holdings-chart"));
+        renderHoldingsOverviewChart($("#portfolio-holdings-chart"));
+        console.log(valuations);
       })
     },500)
 
 
     var dailyDatePrice = [];
     
-    function createChartArray(jsonData) {
+    function createChartArray(valuations) {
 
-      var dailyQuotesArray = jsonData['daily'];
-      $.each(dailyQuotesArray,function(idx,quote) {
-        dailyDatePrice.push([Date.parse(quote.date),parseInt(quote.close_price)]);
+      $.each(valuations,function(idx,valuation) {
+        dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
       });
 
       return dailyDatePrice.sort(function(a, b){return a[0]-b[0]});   
@@ -54,7 +54,7 @@ $(function() {
       })
     }
 
-    function renderHoldingsOverviewChart(chartArray, container) {
+    function renderHoldingsOverviewChart(container) {
         container.highcharts({
             chart: {
                 type: 'bar'

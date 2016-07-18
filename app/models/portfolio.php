@@ -2,7 +2,8 @@
 class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 	static $after_create = array('create_all_stocks_portfolios');
 	static $has_many = array(
-		array('stocks_portfolios')
+		array('stocks_portfolios'),
+    array('portfolio_valuations'),
 	);
 
 	static $has_one = array(
