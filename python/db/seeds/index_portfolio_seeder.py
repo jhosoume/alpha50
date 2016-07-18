@@ -36,7 +36,7 @@ class IndexPortfolioSeeder(Seeder):
             stocks_portfolio.save()
             stocks_portfolio = models.stocks_portfolio.StocksPortfolio.where('stock_id', stock_owner.id).where('portfolio_id', portfolio.id).first()
             trade = models.trade.Trade({'stocks_portfolio_id': stocks_portfolio.id, 'quantity': stock['quantity'], 'price': stock['price']})
-            trade.created_at = date_created
+            trade.created_at = date_created.format('YYYY-MM-DDTHH:mm:ss')
             trade.save()
 
 

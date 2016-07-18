@@ -21,9 +21,7 @@ class IndexValuationsSeeder(Seeder):
         """
         user = models.user.User.where('email', 'admin@alpha50').first()
         portfolio = models.portfolio.Portfolio.where('name', 'Alpha50').where('user_id', user.id).first()
-        valuations = get_index_value_history(INDEX_VALUATIONS)
-        
-        for valuation in valuations:
+        for valuation in get_index_value_history(INDEX_VALUATIONS):
             valuation['portfolio_id'] = portfolio.id
             models.portfolio_valuation.PortfolioValuation.create(valuation)
 
