@@ -26,12 +26,17 @@ class PortfoliosController extends \Spark\BaseController {
     $portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $portfolio_id], 'limit' => $limit]);
     $valuation_data = array();
 
-    switch ($sector) {
-      case 'all':
-      foreach($portfolio_valuations as $valuation) {
-        array_push($valuation_data, array(date('Y-m-d H:i:s', strtotime($valuation->created_at)), $valuation->portfolio_value));
-      }
-      break;
+    $column;
+    if ($sector === 'all') {
+      $column = 'portfolio_value';
+      // foreach($portfolio_valuations as $valuation) {
+      //   array_push($valuation_data, array(date('Y-m-d H:i:s', strtotime($valuation->created_at)), $valuation->portfolio_value));
+      // }
+    } else {
+      $column=str_replace(" ","_",strtolower($sector));
+    }
+    foreach($portfolio_valuations as $valuation) {
+      array_push($valuation_data, array(date('Y-m-d H:i:s', strtotime($valuation->created_at)), $valuation->$column));
     }
 
     $this->render($valuation_data, ['content_type'=>'JSON', 'enable_cors'=>true]);

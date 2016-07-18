@@ -1,58 +1,32 @@
 <?php
 namespace api;
 
-
 class StocksController extends \Spark\BaseController {
 	function index() {
 		$params = $this->params;
-    $limit = isset($params['limit']) ? $params['limit'] : null;
-    if (isset($params['request_type'])) {
-      self::request(null, $params['request_type'], $limit);
-    }
+    self::request($params['request_type']);
   }
 
   function show() {
     $params = $this->params;
     $symbol = $params['symbol'];
-    $limit = isset($params['limit']) ? $params['limit'] : null;
-    if (isset($params['request_type'])) {
-      self::request($symbol, $params['request_type'], $limit);
-    }
+    self::request($params['request_type'], $symbol);
   }
 
-  private function request($symbol, $type, $limit) {
+  private function request($type, $symbol = null) {
     switch ($type) {
-      case 'quotes':
-      self::send_quotes($symbol, $limit);
+      case 'latest_quotes':
+      self::latest_quotes($symbol);
       break;
     }
   }
 
-  private function send_quotes($symbol, $limit) {
-
-    $sql_recent_daily_quotes = sql_recent_daily_quotes();
-    $sql_recent_half_hourly_quotes = sql_recent_half_hourly_quotes();
- 
+  private function latest_quotes($symbol) {
     if ($symbol === null) {
-      $daily_quotes = \DailyQuote::find_by_sql($sql_recent_daily_quotes);
-      $half_hourly_quotes = \HalfHourlyQuote::find_by_sql($sql_recent_half_hourly_quotes);   
+      $array = \Stock::all();
     } else {
-      $join = 'LEFT JOIN stocks ON stock_id = stocks.id';
-      $conditions = [
-        'limit' => $limit, 
-        'joins' => $join,
-        'conditions' => ['stocks.ticker = ?', $symbol]
-        ];
-      $daily_quotes = \DailyQuote::all($conditions);
-      $half_hourly_quotes = \HalfHourlyQuote::all($conditions);  
+      // TODO Single stock.
     }
-
-    $quotes = ['daily'=>$daily_quotes, 'half_hourly'=>$half_hourly_quotes];
-
-    $this->render($quotes, ['content_type'=>'JSON', 'enable_cors'=>true]);
-
-
+    $this->render($array, ['content_type'=>'JSON', 'enable_cors'=>true]);
   }
-
-
 }

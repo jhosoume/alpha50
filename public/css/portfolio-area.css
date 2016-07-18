@@ -6,7 +6,6 @@
   height:72vh;
   width: 100%;
   overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .portfolio-content > div {
@@ -48,10 +47,6 @@ tbody input[name^="ticker"]{
   border-bottom: none;
 }
 
-#all-stocks-tab table{
-  //table-layout: fixed;
-}
-
 .all-stocks-checkout{
   min-height: 300px;
   text-align: center;
@@ -79,4 +74,22 @@ tbody input[name^="ticker"]{
 
 .new-portfolio-top input {
   margin-bottom: 0;
+}
+
+
+#all-stocks-tab tbody .stock-ticker{
+  width: 75px;
+}
+
+#all-stocks-tab tbody .trade-quantity{
+  width: 25px;
+}
+
+#all-stocks-tab tbody .sub-total {
+  min-width: 100px;
+}
+
+#analysis-tab.stock-sector {
+  display: none;
+
 }
