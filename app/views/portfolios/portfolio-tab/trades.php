@@ -20,15 +20,15 @@
     <?php 
       foreach($trades as $trade):
       $stock = $trade->stocks_portfolio->stock;
-      $trade_total = round($trade->quantity*$trade->price, 2);
+      $trade_total = abs(round($trade->quantity*$trade->price, 2));
       $trade_type = $trade->quantity > 0 ? "BUY" : "SELL";
     ?>
     <tr>
-      <td><?= $trade->created_at ?></td>
+      <td><?= format_date($trade->created_at) ?></td>
       <td><?= $stock->ticker ?></td>
       <td><?= $stock->name ?></td>
       <td><?= $trade_type ?></td>
-      <td><?= $trade->quantity ?></td>
+      <td><?= abs($trade->quantity) ?></td>
       <td>$<?= $trade_total ?></td>
     </tr>
     <?php endforeach; ?>
