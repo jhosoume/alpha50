@@ -28,8 +28,8 @@
       <td><?= $stock->ticker ?></td>
       <td><?= $stock->name ?></td>
       <td><?= $trade_type ?></td>
-      <td><?= abs($trade->quantity) ?></td>
-      <td>$<?= $trade_total ?></td>
+      <td><?= number_format(abs($trade->quantity)) ?></td>
+      <td>$<?= number_format($trade_total) ?></td>
     </tr>
     <?php endforeach; ?>
     </tbody>

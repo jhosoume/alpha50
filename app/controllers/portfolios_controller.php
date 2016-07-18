@@ -48,7 +48,7 @@ class PortfoliosController extends Spark\BaseController {
     $this->render('portfolios/index.php');
   }
 
-  public function new() {
+  public function _new() {
     $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
     $index_portfolio = Portfolio::first([
       'conditions'=>['user_id = ?', $admin->id],
