@@ -51,7 +51,7 @@ $(function() {
 			var tradeType = $(stockRow).children('td.trade-type').find('input').val();
 			var totalValue = numberTrading * sharePrice;
 			var subTotal = (sharePrice * numberTrading).toFixed(2);
-			$(stockRow).children('.sub-total').text('$' + subTotal);
+			$(stockRow).children('.sub-total').text('$' + subTotal.toLocaleString());
 
 			if (tradeType === 'BUY') {
 				// Validate that the user has enough money.
@@ -68,11 +68,11 @@ $(function() {
 	  	var value = $('#all-stocks-tab').find('.value').data("value");
 	   	var netCash = totalSellSum - totalBuySum;
 
-	    $('.all-stocks-checkout').find('.buyingMoney').text("$"+ totalBuySum.toFixed(2));
-	    $('.all-stocks-checkout').find('.sellingMoney').text("$"+ totalSellSum.toFixed(2));
-	    $('.all-stocks-checkout').find('.netMoney').text("$"+ netCash.toFixed(2));
-		$('.all-stocks-checkout').find('.adjustedCash').text("$"+ (cash + netCash).toFixed(2));
-		$('.all-stocks-checkout').find('.adjustedEquity').text("$"+ (equity - netCash).toFixed(2));
+	    $('.all-stocks-checkout').find('.buyingMoney').text("$"+ totalBuySum.toLocaleString());
+	    $('.all-stocks-checkout').find('.sellingMoney').text("$"+ totalSellSum.toLocaleString());
+	    $('.all-stocks-checkout').find('.netMoney').text("$"+ netCash.toLocaleString());
+		$('.all-stocks-checkout').find('.adjustedCash').text("$"+ (cash + netCash).toLocaleString());
+		$('.all-stocks-checkout').find('.adjustedEquity').text("$"+ (equity - netCash).toLocaleString());
 	}
 
 	$('#all-stocks-tab tbody').on('keyup', '.trade-quantity > input', calculateTotalTradeValue);
@@ -85,5 +85,4 @@ $(function() {
 			e.preventDefault();
 		}
 	});
-	
 });
