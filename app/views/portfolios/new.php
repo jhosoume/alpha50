@@ -34,21 +34,23 @@
         <tbody>
           <?php foreach($index->stocks_portfolios as $sp): ?>
           <?php $stock = $sp->stock?>
-          <?php $pct_weight = $stock->latest_price*$sp->quantity_held / $index_value ?>
-          <?php $number_of_shares = floor($startingCapital * $pct_weight / $stock->latest_price) ?>
-            <tr> 
-              <td class='stock-ticker'>
-                <input type="text" name="ticker<?= $stock->ticker?>" value="<?= $stock->ticker?>" form="newPortfolioForm" readonly>
-              </td>
-              <td class='stock-name'><?php echo $stock->name ?></td>
-              <td class='stock-price'><?= $stock->latest_price ?></td>
-              <td class='number-of-shares'><input type='number' name="<?=$stock->ticker?>TradeQuantity" value='<?= $number_of_shares ?>' form="newPortfolioForm" min="0">
-              </td>
-              <td class='total-value'>
-                <input form='newPortfolioForm' type='number' value='' readonly>
-              </td>
-              <td class='pct-of-total'><?= $pct_weight ?></td>
-            </tr>
+          <?php if (is_numeric($stock->latest_price) && $stock->latest_price > 0) : ?>
+            <?php $pct_weight = $stock->latest_price*$sp->quantity_held / $index_value ?>
+            <?php $number_of_shares = floor($startingCapital * $pct_weight / $stock->latest_price) ?>
+              <tr> 
+                <td class='stock-ticker'>
+                  <input type="text" name="ticker<?= $stock->ticker?>" value="<?= $stock->ticker?>" form="newPortfolioForm" readonly>
+                </td>
+                <td class='stock-name'><?php echo $stock->name ?></td>
+                <td class='stock-price'><?= $stock->latest_price ?></td>
+                <td class='number-of-shares'><input type='number' name="<?=$stock->ticker?>TradeQuantity" value='<?= $number_of_shares ?>' form="newPortfolioForm" min="0">
+                </td>
+                <td class='total-value'>
+                  <input form='newPortfolioForm' type='number' value='' readonly>
+                </td>
+                <td class='pct-of-total'><?= $pct_weight ?></td>
+              </tr>
+            <?php endif ; ?>
           <?php endforeach ; ?>    
         </tbody>
       </thead>

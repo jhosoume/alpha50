@@ -79,7 +79,7 @@ $(function() {
   function calculateTotalShareValue(stockRow) {
     var numberOfShares = $(stockRow).children('td.number-of-shares').children('input').val();
     var sharePrice = $(stockRow).children('td.stock-price').text();
-    var totalValue = numberOfShares * sharePrice;
+    var totalValue = isNaN(sharePrice) ? 0 : numberOfShares * sharePrice;
     $(stockRow).children('td.total-value').children('input').val(Math.round(totalValue, 2));
     return totalValue;
   }
@@ -88,7 +88,7 @@ $(function() {
     portfolioTableData.children().each(function(idx,row) {
       var numberOfShares = $(row).children('td.number-of-shares').children('input').val();
       var sharePrice = $(row).children('td.stock-price').text();
-      var totalValue = numberOfShares * sharePrice;
+      var totalValue = isNaN(sharePrice) ? 0 : numberOfShares * sharePrice;
       var pctOfTotal = totalValue / totalPortfolioValue;
       console.log(pctOfTotal);
       $(row).children('td.pct-of-total').text(Math.round(pctOfTotal * 100, 0) + "%");
