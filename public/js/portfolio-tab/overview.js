@@ -84,7 +84,11 @@ $(function() {
             legend: {
                 reversed: true,
                 symbolWidth:50,
-                align: 'center'
+                align: 'center',
+                labelFormatter: function() {
+                  var valData = '$'+ this.yData[this.yData.length - 1].toLocaleString();
+                  return this.name + " " + valData;
+                }
             },
             plotOptions: {
                 series: {
