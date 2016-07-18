@@ -3,7 +3,7 @@ namespace Spark\Config;
 
 get('/', ['function'=>'index']);
 get('/portfolios', ['function'=>'index']);
-get('/portfolios/new', ['function' => 'new']);
+get('/portfolios/new', ['function' => '_new']);
 get('/portfolios/:id', ['function'=>'show']);
 //api
 get('/api/portfolios/:id', ['function' => 'show','namespace'=>'api']);
