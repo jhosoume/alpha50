@@ -5,6 +5,8 @@
 ?>
 
 <div id="trades-tab">
+  <div data-profile-id="<?= $portfolio->id ?>"></div>
+  <div id="portfolio-trades-chart"></div>
   <table>
     <thead>
       <tr>

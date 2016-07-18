@@ -1,15 +1,15 @@
 <?php
 namespace Spark\Config;
 
+//root
 get('/', ['function'=>'index']);
+
+
+//portfolios
 get('/portfolios', ['function'=>'index']);
 get('/portfolios/new', ['function' => '_new']);
 get('/portfolios/:id', ['function'=>'show']);
-//api
-get('/api/portfolios/:id', ['function' => 'show','namespace'=>'api']);
-
 post('/portfolios', ['function'=>'create']);
-
 
 //users
 post('/users', ['function' => 'create']);
@@ -18,6 +18,10 @@ post('/users', ['function' => 'create']);
 //trades
 post('/trades', ['function'=>'create']);
 
+
+//api
+get('/api/portfolios/:id', ['function' => 'show','namespace'=>'api']);
+get('/api/trades', ['function' => 'index','namespace'=>'api']);
 
 get('/api/stocks', [
   'function'=>'index',
@@ -29,10 +33,6 @@ get('/api/stocks/:symbol', [
   'namespace'=>'api'
 ]);
 
-
-// get('/api/portfolios/new', [
-//   'function'=>'new',
-//   'namespace'=>'api']);
 
 //sessions
 post('/login', ['function' => 'create', 'controller'=>'Sessions']);
