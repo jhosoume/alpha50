@@ -1,13 +1,37 @@
-<div id="trades-tab" style='color:brown'>
-  <p>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </p><p>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </p><p>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </p><p>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </p><p>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </p>
+<?php 
+  $stocks_portfolios = Spark\locals()['stocks_portfolios'];
+  $portfolio = Spark\locals()['portfolio'];
+  $trades = Spark\locals()['trades'];
+?>
+
+<div id="trades-tab">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Ticker</th>
+        <th>Company Name</th>
+        <th>Trade Type</th>
+        <th>Trade Quantity</th>
+        <th>Trade Total</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php 
+      foreach($trades as $trade):
+      $stock = $trade->stocks_portfolio->stock;
+      $trade_total = abs(round($trade->quantity*$trade->price, 2));
+      $trade_type = $trade->quantity > 0 ? "BUY" : "SELL";
+    ?>
+    <tr>
+      <td><?= format_date($trade->created_at) ?></td>
+      <td><?= $stock->ticker ?></td>
+      <td><?= $stock->name ?></td>
+      <td><?= $trade_type ?></td>
+      <td><?= abs($trade->quantity) ?></td>
+      <td>$<?= $trade_total ?></td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
+  </table>
 </div>

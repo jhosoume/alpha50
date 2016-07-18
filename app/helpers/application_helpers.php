@@ -9,3 +9,7 @@
   function redirect_to($path) {
   	header('Location: ' . $path);
   }
+
+  function format_date($timestamp) {
+  	return date("F j, Y, g:i a", strtotime($timestamp));
+  }
