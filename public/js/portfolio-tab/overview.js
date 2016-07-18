@@ -1,58 +1,25 @@
 $(function() {
 
-    var stock;
+  $('#overview-tab').bind('tabactive',function() {
     var quotesRequest;
     var portfolioCash = parseInt($('#portfolio-holdings-chart').data('portfolio-cash'));
     var portfolioEquity = parseInt($('#portfolio-holdings-chart').data('portfolio-equity'));
     var portfolioValue = portfolioCash + portfolioEquity;
-    setTimeout(function() {
-      quotesRequest = $.ajax({
-        url: "/api" + window.location.pathname,
-        method: 'GET',
-        data: {'request_type': 'historical_valuation', 'sector':'all'},
-        contentType: 'JSON'
-      })
+
+    valuationsRequest = $.ajax({
+      url: "/api" + window.location.pathname,
+      method: 'GET',
+      data: {'request_type': 'historical_valuation', 'sector':'all'},
+      contentType: 'JSON'
+    })
 
 
-      //potentially rewrite this as a named function
-      quotesRequest.then(function(valuations) {
-        var chartArray = createChartArray(valuations);
-        renderPortfolioOverviewChart(chartArray, $("#portfolio-overview-chart"));
-        renderHoldingsOverviewChart($("#portfolio-holdings-chart"));
-        console.log(valuations);
-      })
-    },500)
-
-
-    var dailyDatePrice = [];
-    
-    function createChartArray(valuations) {
-
-      $.each(valuations,function(idx,valuation) {
-        dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
-      });
-
-      return dailyDatePrice.sort(function(a, b){return a[0]-b[0]});   
-
-    }
-
-    function renderPortfolioOverviewChart(chartArray, container) {
-      container.highcharts('StockChart', {
-        rangeSelector : {
-          selected : 1
-        },
-        title : {
-          text : 'Portfolio Performance Overview'
-        },
-        series : [{
-          name : stock,
-          data : dailyDatePrice,
-          tooltip: {
-            valueDecimals: 2
-          }
-        }]
-      })
-    }
+    //potentially rewrite this as a named function
+    valuationsRequest.then(function(valuations) {
+      var chartArray = createChartArray(valuations);
+      renderPerformanceChart(chartArray, $("#portfolio-overview-chart"), "Portfolio Performance Overview");
+      renderHoldingsOverviewChart($("#portfolio-holdings-chart"));
+    })
 
     function renderHoldingsOverviewChart(container) {
         container.highcharts({
@@ -106,22 +73,34 @@ $(function() {
             }]
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  })
 
 })
+
+function createChartArray(valuations) {
+  var dailyDatePrice = [];
+
+  $.each(valuations,function(idx,valuation) {
+    dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+  });
+
+  return dailyDatePrice.sort(function(a, b){return a[0]-b[0]});   
+
+}
+
+function renderPerformanceChart(chartArray, container, name) {
+  container.highcharts('StockChart', {
+    rangeSelector : {
+      selected : 1
+    },
+    title : {
+      text : name
+    },
+    series : [{
+      data : chartArray,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  })
+}

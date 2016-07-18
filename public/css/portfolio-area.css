@@ -76,6 +76,7 @@ tbody input[name^="ticker"]{
   margin-bottom: 0;
 }
 
+
 #all-stocks-tab tbody .stock-ticker{
   width: 75px;
 }
@@ -84,6 +85,11 @@ tbody input[name^="ticker"]{
   width: 25px;
 }
 
-#all-stocks-tab tbody .sub-total{
+#all-stocks-tab tbody .sub-total {
   min-width: 100px;
+}
+
+#analysis-tab.stock-sector {
+  display: none;
+
 }
