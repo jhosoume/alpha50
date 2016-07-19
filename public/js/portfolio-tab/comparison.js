@@ -13,8 +13,8 @@ $(function() {
 
       var holdingsTable = $('table.holdings-comparison');
       var hTableWidth = holdingsTable.width();
-      $('td.stock-ticker').css('width',hTableWidth/4+'px');
-      $('td.index-weight').css('width',hTableWidth/4+'px');
+      holdingsTable.children('tbody').children('tr').children('td.stock-ticker').css('width',hTableWidth/4+'px');
+      holdingsTable.children('tbody').children('tr').children('td.index-weight').css('width',hTableWidth/4+'px');
     }
   })
 })

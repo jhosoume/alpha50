@@ -7,7 +7,7 @@ $portfolio_value = Spark\locals()['portfolio_value'];
 
 <div id="all-stocks-tab">
   <div class="row" style="width:100%">
-    <div class="col m11">
+    <div class="col l12 m11">
       <h5><?=$portfolio->name?></h5>
       <p class="cash" data-cash="<?=$portfolio->total_cash?>"><strong>Cash: $</strong> <?= number_format($portfolio->total_cash) ?> </p>
       <p class="equity" data-equity="<?=$portfolio_equity?>"><strong>Equity: $</strong> <?= number_format($portfolio_equity) ?> </p>
