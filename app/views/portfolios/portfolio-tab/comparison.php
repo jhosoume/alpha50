@@ -78,7 +78,7 @@
   <table class='holdings-comparison bordered'>
     <thead>
       <tr>
-        <th></th>
+        <th colspan='1'></th>
         <th colspan='2'>Your portfolio</th>
         <th colspan='2'>Your monkey</th>
         <th colspan='1'>Index</th>
