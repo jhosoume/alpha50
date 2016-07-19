@@ -44,7 +44,7 @@ class StocksController extends \Spark\BaseController {
         $quotes = \DailyQuote::all([
           'conditions'=>['stock_id = ?', $stock->id],
           'limit'=>$limit,
-          'order'=>'id asc',
+          'order'=>'date desc',
         ]);
         $quotes = array_reverse($quotes);
         $array[$stock->ticker] = $quotes;
