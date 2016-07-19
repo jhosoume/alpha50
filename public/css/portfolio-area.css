@@ -38,7 +38,7 @@
   height: 130px;
 }
 
-#portfolio-overview-chart {
+#portfolio-overview-chart, #sector-overview-chart, #portfolio-trades-chart {
   height: 350px;
 }
 

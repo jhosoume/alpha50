@@ -5,6 +5,9 @@ $(function() {
     var portfolioCash = parseInt($('#portfolio-holdings-chart').data('portfolio-cash'));
     var portfolioEquity = parseInt($('#portfolio-holdings-chart').data('portfolio-equity'));
     var portfolioValue = portfolioCash + portfolioEquity;
+    var preloader = $("#preloader").html();
+    $('#portfolio-overview-chart').append(preloader).trigger('preloading');
+    $(this).bind('preloading', align());    
 
     valuationsRequest = $.ajax({
       url: "/api" + window.location.pathname,
@@ -16,6 +19,7 @@ $(function() {
 
     //potentially rewrite this as a named function
     valuationsRequest.then(function(valuations) {
+      $("#portfolio-overview-chart .preloader-wrapper").remove();
       var chartArray = createChartArray(valuations);
       renderTimeChart(chartArray, $("#portfolio-overview-chart"), "Portfolio Performance Overview", 'Overall Value');
       renderHoldingsOverviewChart($("#portfolio-holdings-chart"));
@@ -76,32 +80,3 @@ $(function() {
   })
 
 })
-
-function createChartArray(valuations) {
-  var dailyDatePrice = [];
-
-  $.each(valuations,function(idx,valuation) {
-    dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
-  });
-
-  return dailyDatePrice.sort(function(a, b){return a[0]-b[0]});   
-
-}
-
-function renderTimeChart(chartArray, container, chartName, seriesName) {
-  container.highcharts('StockChart', {
-    rangeSelector : {
-      selected : 1
-    },
-    title : {
-      text : chartName
-    },
-    series : [{
-      name: seriesName,
-      data : chartArray,
-      tooltip: {
-        valueDecimals: 2
-      }
-    }]
-  })
-}

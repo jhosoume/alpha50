@@ -12,6 +12,8 @@ $(function () {
 
     function sectorOverviewChart() {
         var activeSector = $('#sector-filter').val();
+        var preloader = $("#preloader").html();
+         $('#portfolio-sector-chart').append(preloader).trigger('preloading');
         valuationsRequest = $.ajax({
           url: "/api" + window.location.pathname,
           method: 'GET',
