@@ -13,7 +13,7 @@ $(function () {
     function sectorOverviewChart() {
         var activeSector = $('#sector-filter').val();
         var preloader = $("#preloader").html();
-         $('#portfolio-sector-chart').append(preloader).trigger('preloading');
+        $('#portfolio-sector-chart').append(preloader).trigger('preloading');
         valuationsRequest = $.ajax({
           url: "/api" + window.location.pathname,
           method: 'GET',
@@ -21,7 +21,7 @@ $(function () {
           contentType: 'JSON'
         });
         valuationsRequest.then(function(valuations) {
-          //the following two functions can be found in overview.js
+          $('#sector-overview-chart .preloader-wrapper').remove();
           var chartArray = createChartArray(valuations);
           renderTimeChart(chartArray, $("#sector-overview-chart"), activeSector+" Performance", 'Overall Sector Value');
         })
