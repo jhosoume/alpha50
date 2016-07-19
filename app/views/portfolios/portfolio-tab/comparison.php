@@ -1,10 +1,17 @@
 <?php 
+  $your_portfolio = Spark\locals()['portfolio'];
+  $monkey_portfolio = Spark\locals()['monkey_portfolio'];
+  $index_portfolio = Spark\locals()['index_portfolio'];
   $your_stocks_portfolios = Spark\locals()['stocks_portfolios'];
   $index_stocks_portfolios = Spark\locals()['index_stocks_portfolios'];
   $monkey_stocks_portfolios = Spark\locals()['monkey_stocks_portfolios'];
   $monkey_portfolio_value = Spark\locals()['monkey_portfolio_value'];
   $index_portfolio_value = Spark\locals()['index_portfolio_value'];
   $your_portfolio_value = Spark\locals()['portfolio_value'];
+  $your_inception_date = date('Y-m-d', strtotime($your_portfolio->created_at));
+  $your_return = round(100*$your_portfolio->get_total_return_from($your_inception_date),2);
+  $monkey_return = round(100*$monkey_portfolio->get_total_return_from($your_inception_date),2);
+  $index_return = round(100*$index_portfolio->get_total_return_from($your_inception_date),2);
 
 
   $comparison_array=array();
@@ -61,9 +68,9 @@
     <tbody>
       <tr>
         <td class='row-header'>Total Return</td>
-        <td class='user-return'>100</td>
-        <td class='monkey-return'>100</td>
-        <td class='index-return'>100</td>
+        <td class='user-return'><?= $your_return ?>%</td>
+        <td class='monkey-return'><?= $monkey_return ?>%</td>
+        <td class='index-return'><?= $index_return ?>%</td>
       </tr>
     </tbody>
   </table>

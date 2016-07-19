@@ -60,6 +60,8 @@ class PortfoliosController extends Spark\BaseController {
       'all_portfolios' => $all_portfolios,
       'trades' => $all_trades,
       'sectors' => $sectors,
+      'index_portfolio' => $index_portfolio,
+      'monkey_portfolio' => $monkey_portfolio,
       'index_stocks_portfolios' => $index_portfolio->stocks_portfolios,
       'monkey_stocks_portfolios' =>$monkey_portfolio->stocks_portfolios,
       'index_portfolio_value' => $index_portfolio->current_value,
