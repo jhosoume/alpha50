@@ -16,21 +16,21 @@ import models.trade
 import models.portfolio_valuation
 
 
-STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/stock_portfolio_15_07_16.csv'
-TRADES_DEFINITION = '../csvs/mr_burns/trades.csv'
-VALUATIONS_DEFINITION = '../csvs/mr_burns/portfolio_values.csv'
-PORTFOLIO_CREATION_DATE = arrow.get('2016-02-29T16:00:00-07:00')
-TOTAL_CASH = 11.63
-USER_EMAIL = 'mr_burns@alpha50.com'
-PORTFOLIO_NAME = 'MyBestPortfolio'
+STOCKS_PORTFOLIOS_DEFINITION = '../csvs/gordon_gecko/stock_portfolio_15_07_16.csv'
+TRADES_DEFINITION = '../csvs/gordon_gecko/trades.csv'
+VALUATIONS_DEFINITION = '../csvs/gordon_gecko/portfolio_values.csv'
+PORTFOLIO_CREATION_DATE = arrow.get('2015-09-29T16:00:00-07:00')
+TOTAL_CASH = 263.05
+USER_EMAIL = 'gordon_gecko@alpha50.com'
+PORTFOLIO_NAME = 'DoughGreenies'
 
-MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/monkey_stock_portfolio_15_07_16.csv'
-MONKEY_TRADES_DEFINITION = '../csvs/mr_burns/monkey_trades.csv'
-MONKEY_VALUATIONS_DEFINITION = '../csvs/mr_burns/monkey_portfolio_values.csv'
-MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2012-04-16T16:00:00-07:00')
-MONKEY_TOTAL_CASH = 3120.29
+MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/gordon_gecko/monkey_stock_portfolio_15_07_16.csv'
+MONKEY_TRADES_DEFINITION = '../csvs/gordon_gecko/monkey_trades.csv'
+MONKEY_VALUATIONS_DEFINITION = '../csvs/gordon_gecko/monkey_portfolio_values.csv'
+MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2015-09-29T16:00:00-07:00')
+MONKEY_TOTAL_CASH = 3392.41
 
-class MrBurnsSeeder(Seeder):
+class ScroogeMcduckSeeder(Seeder):
 
     def run(self):
         """
