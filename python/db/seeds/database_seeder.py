@@ -5,7 +5,7 @@ from seeds.scrooge_mcduck_seeder import ScroogeMcduckSeeder
 from seeds.tony_stark_seeder import TonyStarkSeeder
 from seeds.jay_gatsby_seeder import JayGatsbySeeder
 from seeds.mr_burns_seeder import MrBurnsSeeder
-from seeds.gordon_gecko_seeder import GordonGeckoSeeder
+from seeds.gordon_gekko_seeder import GordonGekkoSeeder
 
 class DatabaseSeeder(Seeder):
 
@@ -19,5 +19,5 @@ class DatabaseSeeder(Seeder):
         self.call(TonyStarkSeeder)
         self.call(JayGatsbySeeder)
         self.call(MrBurnsSeeder)
-        self.call(GordonGeckoSeeder)
+        self.call(GordonGekkoSeeder)
 
