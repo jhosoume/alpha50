@@ -24,6 +24,8 @@ $(function() {
 
     var hbsStockSource = $('#stock-quote-hbs').html();
     var stockTemplate = Handlebars.compile(hbsStockSource);
+    var hbsSparkSource = $('#stock-spark-hbs').html();
+    var sparkTemplate = Handlebars.compile(hbsSparkSource);
     var timer;
 
 
@@ -63,13 +65,51 @@ $(function() {
         };
         var stockHtml = $(stockTemplate(contextStock));
         stockHtml.appendTo('.stock-quote-area');
+
         stockHtml.tooltip({delay: 50});
       })
     }
 
-    function createSparkGraphs(json) {
+
+    function createSparkGraphs(daily_quotes) {
       //TODO create spark graphs
-      console.log(json);
+      $.each(daily_quotes, function(ticker, quotes) {
+        var stockHtml = $('.stock-quote[data-ticker="'+ticker+'"]');
+
+        var container = stockHtml.find('')
+        var dataArray = [];
+
+        $.each(quotes, function(idx, quote) {
+          dataArray.push([quote.date, quote.close_price]);
+        });
+
+        var stockTooltip = $('#'+stockHtml.data('tooltip-id')+' span');
+        stockTooltip.html($(sparkTemplate()));
+
+        var container = stockTooltip.find(".chart");
+
+        renderSparkChart(dataArray, container);
+      });
+    }
+
+
+
+    function renderSparkChart(chartArray, container) {
+      container.highcharts('StockChart', {
+        rangeSelector : {
+          selected : 1
+        },
+        title : {
+          text : "asdf"
+        },
+        series : [{
+          name: "asdf",
+          data : chartArray,
+          tooltip: {
+            valueDecimals: 2
+          }
+        }]
+      })
     }
   })
 

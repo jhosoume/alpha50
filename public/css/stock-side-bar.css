@@ -21,6 +21,10 @@ div.stock-bar-data {
   overflow-x: hidden;
 }
 
+.stock-side-bar .stock-quote:hover{
+    cursor: pointer;
+    background: rgba(1,1,1,0.1);
+}
 
 .stock-side-bar .stock-quote{
   display:none;
