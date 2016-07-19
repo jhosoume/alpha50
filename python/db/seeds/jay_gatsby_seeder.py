@@ -19,17 +19,17 @@ import models.portfolio_valuation
 STOCKS_PORTFOLIOS_DEFINITION = '../csvs/jay_gatsby/stock_portfolio.csv'
 TRADES_DEFINITION = '../csvs/jay_gatsby/trades.csv'
 VALUATIONS_DEFINITION = '../csvs/jay_gatsby/portfolio_values.csv'
-PORTFOLIO_CREATION_DATE = arrow.get('2016-03-18T10:00:00-07:00')
-TOTAL_CASH = 66.02
+PORTFOLIO_CREATION_DATE = arrow.get('2016-02-29T10:00:00-07:00')
+TOTAL_CASH = 11.63
 USER_EMAIL = 'jay_gatsby@alpha50.com'
-PORTFOLIO_NAME = 'Favourites'
+PORTFOLIO_NAME = 'Best'
 
 HAS_MONKEY = True
 MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/jay_gatsby/monkey_stock_portfolio.csv'
 MONKEY_TRADES_DEFINITION = '../csvs/jay_gatsby/monkey_trades.csv'
 MONKEY_VALUATIONS_DEFINITION = '../csvs/jay_gatsby/monkey_portfolio_values.csv'
-MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2016-03-18T10:00:00-07:00')
-MONKEY_TOTAL_CASH = 1160.56
+MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2016-02-29T10:00:00-07:00')
+MONKEY_TOTAL_CASH = 3120.29
 
 class JayGatsbySeeder(Seeder):
 
