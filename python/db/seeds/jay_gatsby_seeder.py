@@ -39,7 +39,7 @@ class JayGatsbySeeder(Seeder):
         """
         self.db.table('users').insert({
             'email': USER_EMAIL,
-            'password_hash': '5678'})
+            'password_hash': '$2y$10$gVV3obnlOHVflY2/nXb3CuqWY1/EveH5nGl0fmxdpY4Z.vA3UH5zm'})
         user = models.user.User.where('email', USER_EMAIL).first()
         user.portfolios().save(models.portfolio.Portfolio({'name': PORTFOLIO_NAME, 'total_cash': TOTAL_CASH, 'created_at': PORTFOLIO_CREATION_DATE.format('YYYY-MM-DDTHH:mm:ss')}))
         portfolio = models.portfolio.Portfolio.where('name', PORTFOLIO_NAME).where('user_id', user.id).first()

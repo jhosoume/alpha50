@@ -30,7 +30,7 @@ MONKEY_VALUATIONS_DEFINITION = '../csvs/scrooge_mcduck/monkey_portfolio_values.c
 MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2012-04-16T16:00:00-07:00')
 MONKEY_TOTAL_CASH = 2917.71
 
-class ScroogeMcDuckSeeder(Seeder):
+class ScroogeMcduckSeeder(Seeder):
 
     def run(self):
         """
@@ -38,7 +38,7 @@ class ScroogeMcDuckSeeder(Seeder):
         """
         self.db.table('users').insert({
             'email': USER_EMAIL,
-            'password_hash': '5678'})
+            'password_hash': '$2y$10$6sbYRt2t42AOZdn6cm0sF.Pauifj3E466i9Fix6KCIbkqejXSsZfm'})
         user = models.user.User.where('email', USER_EMAIL).first()
         user.portfolios().save(models.portfolio.Portfolio({'name': PORTFOLIO_NAME, 'total_cash': TOTAL_CASH, 'created_at': PORTFOLIO_CREATION_DATE.format('YYYY-MM-DDTHH:mm:ss')}))
         portfolio = models.portfolio.Portfolio.where('name', PORTFOLIO_NAME).where('user_id', user.id).first()
