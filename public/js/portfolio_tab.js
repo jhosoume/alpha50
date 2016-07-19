@@ -47,7 +47,7 @@ function renderPortfolioSection() {
     if (location.hash == "") $('#overview-tab, li:has(a[href="#overview-tab"])').addClass('active');
     if (location.hash !== "") $(location.hash).addClass('active') ;
     $('[href="' + location.hash + '"]').closest('li').addClass('active').siblings().removeClass('active');
-    $(location.hash).trigger('tabactive');
+    $('.portfolio-content div.active').trigger('tabactive');
   }, 500);
 
 };

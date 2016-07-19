@@ -45,7 +45,7 @@ class TradesController extends \Spark\BaseController {
           $value += $trade->quantity * $trade->price;
         }
       }
-      array_push($chart_data, ["date"=>$formatted_date, "value"=>$value]);
+      array_push($chart_data, [$formatted_date, $value]);
     }
 
     $this->render($chart_data, ['content_type'=>'JSON', 'enable_cors'=>true]);

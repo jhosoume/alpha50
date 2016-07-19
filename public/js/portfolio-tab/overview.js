@@ -17,7 +17,7 @@ $(function() {
     //potentially rewrite this as a named function
     valuationsRequest.then(function(valuations) {
       var chartArray = createChartArray(valuations);
-      renderPerformanceChart(chartArray, $("#portfolio-overview-chart"), "Portfolio Performance Overview");
+      renderTimeChart(chartArray, $("#portfolio-overview-chart"), "Portfolio Performance Overview", 'Overall Value');
       renderHoldingsOverviewChart($("#portfolio-holdings-chart"));
     })
 
@@ -88,15 +88,16 @@ function createChartArray(valuations) {
 
 }
 
-function renderPerformanceChart(chartArray, container, name) {
+function renderTimeChart(chartArray, container, chartName, seriesName) {
   container.highcharts('StockChart', {
     rangeSelector : {
       selected : 1
     },
     title : {
-      text : name
+      text : chartName
     },
     series : [{
+      name: seriesName,
       data : chartArray,
       tooltip: {
         valueDecimals: 2

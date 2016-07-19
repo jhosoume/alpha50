@@ -1,5 +1,5 @@
 $(function() {
-  setTimeout(function() {
+  $('#trades-tab').on('tabactive', function() {
     var portfolio_id = Number($("#trades-tab").find("div[data-profile-id]").data('profile-id'));
     
     tradesRequest = $.ajax({
@@ -11,34 +11,7 @@ $(function() {
 
     tradesRequest.then(function(data_points) {
       var chartArray = createChartArray(data_points);
-      renderTradeBlotterChart(chartArray, $("#portfolio-trades-chart"));
+      renderTimeChart(chartArray, $("#portfolio-trades-chart"),'Trading Value per Day', 'Overall Trading Value');
     })
-  },500)
-
-
-  var dailyDatePrice = [];
-  
-  function createChartArray(data_points) {
-    $.each(data_points,function(idx,data) {
-      dailyDatePrice.push([Date.parse(data.date),parseFloat(data.value)]);
-    });
-  }
-
-  function renderTradeBlotterChart(chartArray, container) {
-    container.highcharts('StockChart', {
-      rangeSelector : {
-        selected : 1
-      },
-      title : {
-        text : 'Trading Value per Day'
-      },
-      series : [{
-        name : "Overall Trading Value",
-        data : dailyDatePrice,
-        tooltip: {
-          valueDecimals: 2
-        }
-      }]
-    })
-  }
+  })
 });

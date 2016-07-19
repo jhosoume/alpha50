@@ -21,7 +21,7 @@ $(function () {
         valuationsRequest.then(function(valuations) {
           //the following two functions can be found in overview.js
           var chartArray = createChartArray(valuations);
-          renderPerformanceChart(chartArray, $("#sector-overview-chart"));
+          renderTimeChart(chartArray, $("#sector-overview-chart"), activeSector+" Performance", 'Overall Sector Value');
         })
     }
 
