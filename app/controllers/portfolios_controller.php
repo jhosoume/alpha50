@@ -15,11 +15,20 @@ class PortfoliosController extends Spark\BaseController {
   }
 
   public function show() {
+    $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
     $params = $this->params;
     $portfolio = Portfolio::first([
       'conditions'=>['id = ?', $params['id']],
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
+    $index_portfolio = Portfolio::first([
+      'conditions'=>['user_id = ?', $admin->id],
+      'include'=>['stocks_portfolios'=>['stock']],
+    ]);
+    $monkey_portfolio = Portfolio::first([
+      'conditions'=>['parent = ?', $portfolio->id],
+      'include'=>['stocks_portfolios'=>['stock']],
+      ]);
     $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ?', current_user()->id]]); 
     $portfolio->sort_by_quantity_held();
     $all_trades = array();
@@ -51,6 +60,8 @@ class PortfoliosController extends Spark\BaseController {
       'all_portfolios' => $all_portfolios,
       'trades' => $all_trades,
       'sectors' => $sectors,
+      'index_stocks_portfolios' => $index_portfolio->stocks_portfolios,
+      'monkey_stocks_portfolios' =>$monkey_portfolio->stocks_portfolios
     ];
 
     $this->locals = $locals;
