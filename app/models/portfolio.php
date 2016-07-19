@@ -41,11 +41,36 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 				'user_id'=>$this->user_id,
 			]);
 
+			$monkey_portfolio->create_monkey_trades();
 		}
 	}
 
 	public function is_monkey() {
 		return $this->parent !== null;
+	}
+
+	private function create_monkey_trades() {
+		$stocks_portfolios = StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $this->id], 'include' => array('stock')));
+		$randoms = [];
+
+		for($x = 0; $x < count($stocks_portfolios); $x++) {
+			array_push($randoms, rand(1, 500));
+		}
+		$randoms_sum = array_sum($randoms);
+
+		$x = 0;
+		$total_cash = $this->total_cash;
+		foreach ($stocks_portfolios as $sp) {
+			$rand = $randoms[$x];
+			$latest_price = $sp->stock->latest_price;
+			$quantity = floor($rand/$randoms_sum*$total_cash/$latest_price);
+			$sp->create_trade([
+				'quantity'=>$quantity,
+				'price'=>$latest_price
+			]);
+			$x++;
+		}
+
 	}
 
 	public function sort_by_ticker() {
