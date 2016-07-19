@@ -15,9 +15,9 @@ class DatabaseSeeder(Seeder):
         """
         self.call(IndexPortfolioSeeder)
         self.call(IndexValuationsSeeder)
-        self.call(ScroogeMcduckSeeder)
+        #self.call(ScroogeMcduckSeeder)
         self.call(TonyStarkSeeder)
         self.call(JayGatsbySeeder)
         self.call(MrBurnsSeeder)
-        #self.call(GordonGeckoSeeder)
+        self.call(GordonGeckoSeeder)
 

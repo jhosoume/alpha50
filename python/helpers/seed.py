@@ -19,7 +19,7 @@ def create_portfolio(user, portfolio_name, cash, creation_date, portfolio_parent
         user.portfolios().save(models.portfolio.Portfolio({'name': portfolio_name, 'total_cash': cash, 'created_at': creation_date.format('YYYY-MM-DDTHH:mm:ss'), 'parent': portfolio_parent.id}))
         return models.portfolio.Portfolio.where('name', portfolio_name).where('user_id', user.id).first()
     else:
-        user.portfolios().save(models.portfolio.Portfolio({'name': 'Monkey' + portfolio_name, 'total_cash': cash, 'created_at': creation_date.format('YYYY-MM-DDTHH:mm:ss')}))
+        user.portfolios().save(models.portfolio.Portfolio({'name': portfolio_name, 'total_cash': cash, 'created_at': creation_date.format('YYYY-MM-DDTHH:mm:ss')}))
         return models.portfolio.Portfolio.where('name', portfolio_name).where('user_id', user.id).first()
 
 def create_stocks_portfolios(portfolio, stocks_portfolios_path):
@@ -29,23 +29,24 @@ def create_stocks_portfolios(portfolio, stocks_portfolios_path):
 
 def create_trades(portfolio, trades_path):
      for trade in get_trades(trades_path):
-        stock = models.stock.Stock.where('ticker', trade['ticker']).first()
-        stocks_portfolio = models.stocks_portfolio.StocksPortfolio.where('stock_id', stock.id).where('portfolio_id', portfolio.id).first()
-        trade['stocks_portfolio_id'] = stocks_portfolio.id
-        models.trade.Trade.create(trade)
+         if trade['quantity'] != 0:
+            stock = models.stock.Stock.where('ticker', trade['ticker']).first()
+            stocks_portfolio = models.stocks_portfolio.StocksPortfolio.where('stock_id', stock.id).where('portfolio_id', portfolio.id).first()
+            trade['stocks_portfolio_id'] = stocks_portfolio.id
+            models.trade.Trade.create(trade)
 
 def create_valuations(portfolio, valuation_path):
     for valuation in get_portfolio_valuations(valuation_path):
         valuation['portfolio_id'] = portfolio.id
         models.portfolio_valuation.PortfolioValuation.create(valuation)
 
-def seed(user, portfolio_name, cash, creation_date, stocks_portfolios_path, trades_path, valuation_path, monkey_cash, monkey_creation_date, monkey_stocks_portfolios_path, monkey_trades_path, mokey_valuations_path):
+def seed(user, portfolio_name, cash, creation_date, stocks_portfolios_path, trades_path, valuation_path, monkey_cash, monkey_creation_date, monkey_stocks_portfolios_path, monkey_trades_path, monkey_valuations_path):
     portfolio = create_portfolio(user, portfolio_name, cash, creation_date)
     create_stocks_portfolios(portfolio, stocks_portfolios_path)
     create_trades(portfolio, trades_path)
     create_valuations(portfolio, valuation_path)
     monkey_portfolio = create_portfolio(user, 'Monkey' + portfolio_name, monkey_cash, monkey_creation_date, portfolio)
-    create_stocks_portfolio(monkey_portfolio, monkey_stocks_portfolios_path)
+    create_stocks_portfolios(monkey_portfolio, monkey_stocks_portfolios_path)
     create_trades(monkey_portfolio, monkey_trades_path)
     create_valuations(monkey_portfolio, monkey_valuations_path)
 

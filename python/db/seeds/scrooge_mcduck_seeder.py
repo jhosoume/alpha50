@@ -3,8 +3,10 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0,parentdir)
 
+import arrow
 from orator.seeds import Seeder
 from helpers.seed import seed
+import models.user
 
 
 STOCKS_PORTFOLIOS_DEFINITION = '../csvs/scrooge_mcduck/stock_portfolio_15_07_16.csv'
@@ -27,9 +29,9 @@ class ScroogeMcduckSeeder(Seeder):
         """
         Run the database seeds.
         """
-        self.db.table('users').insert({
-            'email': USER_EMAIL,
-            'password_hash': '$2y$10$gVV3obnlOHVflY2/nXb3CuqWY1/EveH5nGl0fmxdpY4Z.vA3UH5zm'})
-        user = models.user.User.where('email', USER_EMAIL).first()
-        seed(user, PORTFOLIO_NAME, TOTAL_CASH, PORTFOLIO_CREATION_DATE, STOCKS_PORTFOLIO_DEFINITION, TRADES_DEFINITION, VALUATIONS_DEFINITION, MONKEY_TOTAL_CASH, MONKEY_PORTFOLIO_CREATION_DATE, MONKEY_STOCKS_PORTFOLIOS_DEFINITION, MONKEY_TRADES_DEFINITION, MONKEY_VALUATIONS_DEFINITION)
+        #self.db.table('users').insert({
+            #'email': USER_EMAIL,
+            #'password_hash': '$2y$10$gVV3obnlOHVflY2/nXb3CuqWY1/EveH5nGl0fmxdpY4Z.vA3UH5zm'})
+        user = models.user.User.where('email', 'tony_stark@alpha50.com').first()
+        seed(user, PORTFOLIO_NAME, TOTAL_CASH, PORTFOLIO_CREATION_DATE, STOCKS_PORTFOLIOS_DEFINITION, TRADES_DEFINITION, VALUATIONS_DEFINITION, MONKEY_TOTAL_CASH, MONKEY_PORTFOLIO_CREATION_DATE, MONKEY_STOCKS_PORTFOLIOS_DEFINITION, MONKEY_TRADES_DEFINITION, MONKEY_VALUATIONS_DEFINITION)
 
