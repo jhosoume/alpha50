@@ -21,6 +21,7 @@ class PortfoliosController extends Spark\BaseController {
       'conditions'=>['id = ?', $params['id']],
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
+    if ($portfolio->is_monkey()) redirect_to('/portfolios/'.$portfolio->parent);
     $index_portfolio = Portfolio::first([
       'conditions'=>['user_id = ?', $admin->id],
       'include'=>['stocks_portfolios'=>['stock']],

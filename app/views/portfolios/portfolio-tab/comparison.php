@@ -59,7 +59,7 @@
   <table class='return-comparison'>
     <thead>
       <tr>
-        <th></th>
+        <th>Since <?= $your_inception_date?></th>
         <th>Your portfolio</th>
         <th>Your monkey</th>
         <th>Index</th>
