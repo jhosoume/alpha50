@@ -31,3 +31,8 @@ nav .nav-wrapper {
   width:150px;
   display: block;
 }
+
+.welcome-message:hover {
+  cursor:default;
+  background-color:inherit;
+}

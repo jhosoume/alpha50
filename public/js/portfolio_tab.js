@@ -45,8 +45,10 @@ function renderPortfolioSection() {
   setTimeout(function() {
     $('.portfolio-content .preloader-wrapper').remove();
     if (location.hash == "") $('#overview-tab, li:has(a[href="#overview-tab"])').addClass('active');
-    if (location.hash !== "") $(location.hash).addClass('active') ;
-    $('[href="' + location.hash + '"]').closest('li').addClass('active').siblings().removeClass('active');
+    if (location.hash !== "") {
+      $(location.hash).addClass('active') ;
+      $('[href="' + location.hash + '"]').closest('li').addClass('active').siblings().removeClass('active');
+    };
     $('.portfolio-content div.active').trigger('tabactive');
   }, 500);
 

@@ -2,10 +2,11 @@
 <head>
   <nav class="top-nav grey darken-2">
     <div class="nav-wrapper">
-      <a href="/" class='brand-logo'>Alpha50</a>
+      <?php $user ? $alpha_link = '/portfolios' : $alpha_link = "/" ; ?>
+      <a href="<?= $alpha_link ?>" class='brand-logo'>Alpha50</a>
       <ul class='right hide-on-med-and-down'>
         <?php if (current_user()) { ?>
-          <li><a href="">Welcome, <?= $user->email ?></a></li>
+          <li><a class='welcome-message'>Welcome, <?= $user->email ?></a></li>
           <li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>
         <?php } else { ?>
           <li><a href="">About us</a></li>
