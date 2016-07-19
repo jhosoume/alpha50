@@ -1,6 +1,7 @@
 $(function() {
   $('.stock-side-bar').ready(function() {
     var allStocks;
+    var allDailyQuotes;
 
     $.ajax({
       url: '/api/stocks',
@@ -16,7 +17,8 @@ $(function() {
           data: {'request_type': 'daily_quotes', 'limit': 10},
           contentType: 'json',
           success: function (json) {
-            createSparkGraphs(json);
+            allDailyQuotes = json;
+            createSparkTemplates(allDailyQuotes);
           }
         });
       }
@@ -70,44 +72,78 @@ $(function() {
       })
     }
 
-
-    function createSparkGraphs(daily_quotes) {
-      //TODO create spark graphs
-      $.each(daily_quotes, function(ticker, quotes) {
-        var stockHtml = $('.stock-quote[data-ticker="'+ticker+'"]');
-
-        var container = stockHtml.find('')
+    $(".stock-side-bar").on('mouseenter', '.stock-quote', function() {
+      var ticker = $(this).data('ticker');
+      var name = $(this).data('name');
+      var container = $('#'+$(this).data('tooltip-id')).find('.chart');
+      if (container.text() === '') {
         var dataArray = [];
 
-        $.each(quotes, function(idx, quote) {
-          dataArray.push([quote.date, quote.close_price]);
+        $.each(allDailyQuotes[ticker], function(idx, quote) {
+          var date = new Date(quote.date);
+          dataArray.push([Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()), quote.close_price]);
         });
 
+        renderSparkChart(dataArray, container, ticker, name);
+      }
+    })
+
+
+    function createSparkTemplates(daily_quotes) {
+      $.each(daily_quotes, function(ticker, quotes) {
+        var stockHtml = $('.stock-quote[data-ticker="'+ticker+'"]');
         var stockTooltip = $('#'+stockHtml.data('tooltip-id')+' span');
         stockTooltip.html($(sparkTemplate()));
-
-        var container = stockTooltip.find(".chart");
-
-        renderSparkChart(dataArray, container);
       });
     }
 
-
-
-    function renderSparkChart(chartArray, container) {
+    function renderSparkChart(chartArray, container, ticker, name) {
       container.highcharts('StockChart', {
-        rangeSelector : {
-          selected : 1
+        rangeSelector: {
+          selected: 1,
+          inputEnabled: false,
+          buttonTheme: {
+              visibility: 'hidden'
+          },
+          labelStyle: {
+              visibility: 'hidden'
+          }
+        },
+        plotOptions: {
+          area: {
+            fillColor: {
+              linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+              },
+              stops: [
+                [0, Highcharts.getOptions().colors[0]],
+                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+              ]
+            },
+            lineWidth: 1,
+            threshold: null,
+            borderWidth: 0,
+          }
         },
         title : {
-          text : "asdf"
+          text : ticker
+        },
+        subtitle : {
+          text : name
+        },
+        scrollbar : {
+            enabled : false
+        },
+        navigator : {
+            enabled : false
         },
         series : [{
-          name: "asdf",
+          type: 'area',
+          name: "",
           data : chartArray,
-          tooltip: {
-            valueDecimals: 2
-          }
         }]
       })
     }
