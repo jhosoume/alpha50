@@ -9,11 +9,21 @@ $(function() {
       success: function (json) {
         allStocks = json;
         renderStockBar(allStocks);
+
+        // After they're rendered, grab the json for spark lines
+        $.ajax({
+          url: '/api/stocks',
+          data: {'request_type': 'daily_quotes', 'limit': 10},
+          contentType: 'json',
+          success: function (json) {
+            createSparkGraphs(json);
+          }
+        });
       }
     });
 
-    var hbsSource = $('#stock-quote-hbs').html();
-    var template = Handlebars.compile(hbsSource);
+    var hbsStockSource = $('#stock-quote-hbs').html();
+    var stockTemplate = Handlebars.compile(hbsStockSource);
     var timer;
 
 
@@ -46,15 +56,21 @@ $(function() {
       });
       
       $.each(stocks, function(idx, stock) {
-        var context = {
+        var contextStock = {
           ticker: stock.ticker,
           price: stock.latest_price,
           name: stock.name,
         };
-        var quoteHtml = template(context);
-        $('.stock-quote-area').append(quoteHtml); 
+        var stockHtml = $(stockTemplate(contextStock));
+        stockHtml.appendTo('.stock-quote-area');
+        stockHtml.tooltip({delay: 50});
       })
-    };    
+    }
+
+    function createSparkGraphs(json) {
+      //TODO create spark graphs
+      console.log(json);
+    }
   })
 
   return false;
