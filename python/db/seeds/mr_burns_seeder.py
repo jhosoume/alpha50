@@ -16,7 +16,7 @@ import models.trade
 import models.portfolio_valuation
 
 
-STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/stock_portfolio_15_07_16.csv'
+STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/stock_portfolio.csv'
 TRADES_DEFINITION = '../csvs/mr_burns/trades.csv'
 VALUATIONS_DEFINITION = '../csvs/mr_burns/portfolio_values.csv'
 PORTFOLIO_CREATION_DATE = arrow.get('2016-02-29T16:00:00-07:00')
@@ -24,7 +24,7 @@ TOTAL_CASH = 11.63
 USER_EMAIL = 'mr_burns@alpha50.com'
 PORTFOLIO_NAME = 'MyBestPortfolio'
 
-MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/monkey_stock_portfolio_15_07_16.csv'
+MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/monkey_stock_portfolio.csv'
 MONKEY_TRADES_DEFINITION = '../csvs/mr_burns/monkey_trades.csv'
 MONKEY_VALUATIONS_DEFINITION = '../csvs/mr_burns/monkey_portfolio_values.csv'
 MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2012-04-16T16:00:00-07:00')
