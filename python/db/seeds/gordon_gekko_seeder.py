@@ -8,22 +8,21 @@ from orator.seeds import Seeder
 from helpers.seed import seed
 import models.user
 
-STOCKS_PORTFOLIOS_DEFINITION = '../csvs/jay_gatsby/stock_portfolio.csv'
-TRADES_DEFINITION = '../csvs/jay_gatsby/trades.csv'
-VALUATIONS_DEFINITION = '../csvs/jay_gatsby/portfolio_values.csv'
-PORTFOLIO_CREATION_DATE = arrow.get('2016-03-18T10:00:00-07:00')
-TOTAL_CASH = 66.02
-USER_EMAIL = 'jay_gatsby@alpha50.com'
-PORTFOLIO_NAME = 'FavoriteRichestPortfolio'
+STOCKS_PORTFOLIOS_DEFINITION = '../csvs/gordon_gekko/stock_portfolio.csv'
+TRADES_DEFINITION = '../csvs/gordon_gekko/trades.csv'
+VALUATIONS_DEFINITION = '../csvs/gordon_gekko/portfolio_values.csv'
+PORTFOLIO_CREATION_DATE = arrow.get('2015-09-29T16:00:00-07:00')
+TOTAL_CASH = 263.05
+USER_EMAIL = 'gordon_gekko@alpha50.com'
+PORTFOLIO_NAME = 'DoughGreenies (GOOGL, AMZN)'
 
-HAS_MONKEY = True
-MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/jay_gatsby/monkey_stock_portfolio.csv'
-MONKEY_TRADES_DEFINITION = '../csvs/jay_gatsby/monkey_trades.csv'
-MONKEY_VALUATIONS_DEFINITION = '../csvs/jay_gatsby/monkey_portfolio_values.csv'
-MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2016-03-18T10:00:00-07:00')
-MONKEY_TOTAL_CASH = 1160.56
+MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/gordon_gekko/monkey_stock_portfolio.csv'
+MONKEY_TRADES_DEFINITION = '../csvs/gordon_gekko/monkey_trades.csv'
+MONKEY_VALUATIONS_DEFINITION = '../csvs/gordon_gekko/monkey_portfolio_values.csv'
+MONKEY_PORTFOLIO_CREATION_DATE = arrow.get('2015-09-29T16:00:00-07:00')
+MONKEY_TOTAL_CASH = 3392.41
 
-class JayGatsbySeeder(Seeder):
+class GordonGekkoSeeder(Seeder):
 
     def run(self):
         """
