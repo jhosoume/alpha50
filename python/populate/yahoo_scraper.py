@@ -30,7 +30,7 @@ def get_yahoo_page(url):
 def get_info_from_row(row):
     ticker = row.children('.col-symbol').text()
     time = parse_datetime(row.children('.col-time').text())
-    price = float(row.children('.col-price').text())
+    price = float(row.children('.col-price').text().replace(',', ''))
     return {'ticker': ticker,
             'info': {'datetime': time.to('US/Pacific'),
                      'price': price
