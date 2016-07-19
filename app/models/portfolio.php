@@ -75,14 +75,19 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
   }
 
   public function get_value_at_date($date) {
+    if ($date = date('Y-m-s', strtotime($this->created_at))) {
+      return $val = 0;
+    }
     $val = PortfolioValuation::first([
       'conditions' => ['portfolio_id = ? AND created_at LIKE ?',$this->id, $date."%"],
-
       ])->portfolio_value;
     return $val;
   }
 
   public function get_total_return_from($date) {
+    if ($date = date('Y-m-s', strtotime($this->created_at))) {
+      return $total_return = 0;
+    }
     $total_return = ($this::get_current_value()-$this::get_value_at_date($date))/$this::get_value_at_date($date);
     return $total_return;
   }
