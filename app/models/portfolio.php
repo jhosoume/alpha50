@@ -1,6 +1,6 @@
 <?php
 class Portfolio extends ActiveRecord\Model implements JsonSerializable {
-	static $after_create = array('create_all_stocks_portfolios');
+	static $after_create = array('create_all_stocks_portfolios', 'create_monkey_portfolio');
 	static $has_many = array(
 		array('stocks_portfolios'),
     array('portfolio_valuations'),
@@ -31,6 +31,21 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 				'quantity_held'=>0,
 			]);
 		}
+	}
+
+	public function create_monkey_portfolio() {
+		if (!$this->is_monkey()) {
+			$monkey_portfolio = $this->create_portfolio([
+				'name'=>'Monkey '.$this->name,
+				'total_cash'=>1000000,
+				'user_id'=>$this->user_id,
+			]);
+
+		}
+	}
+
+	public function is_monkey() {
+		return $this->parent !== null;
 	}
 
 	public function sort_by_ticker() {

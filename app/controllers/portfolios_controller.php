@@ -28,8 +28,8 @@ class PortfoliosController extends Spark\BaseController {
     $monkey_portfolio = Portfolio::first([
       'conditions'=>['parent = ?', $portfolio->id],
       'include'=>['stocks_portfolios'=>['stock']],
-      ]);
-    $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ?', current_user()->id]]); 
+    ]);
+    $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ? AND parent IS NULL', current_user()->id]]); 
     $portfolio->sort_by_quantity_held();
     $all_trades = array();
 
