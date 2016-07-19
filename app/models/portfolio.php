@@ -1,6 +1,6 @@
 <?php
 class Portfolio extends ActiveRecord\Model implements JsonSerializable {
-	static $after_create = array('create_all_stocks_portfolios');
+	static $after_create = array('create_all_stocks_portfolios', 'create_monkey_portfolio');
 	static $has_many = array(
 		array('stocks_portfolios'),
     array('portfolio_valuations'),
@@ -33,6 +33,21 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 		}
 	}
 
+	public function create_monkey_portfolio() {
+		if (!$this->is_monkey()) {
+			$monkey_portfolio = $this->create_portfolio([
+				'name'=>'Monkey '.$this->name,
+				'total_cash'=>1000000,
+				'user_id'=>$this->user_id,
+			]);
+
+		}
+	}
+
+	public function is_monkey() {
+		return $this->parent !== null;
+	}
+
 	public function sort_by_ticker() {
 		$sp = &$this->stocks_portfolios;
 	    usort($sp, function($a, $b) {
@@ -57,6 +72,19 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
       $val += $sp->quantity_held * $sp->stock->latest_price;
     }
     return $val;
+  }
+
+  public function get_value_at_date($date) {
+    $val = PortfolioValuation::first([
+      'conditions' => ['portfolio_id = ? AND created_at LIKE ?',$this->id, $date."%"],
+
+      ])->portfolio_value;
+    return $val;
+  }
+
+  public function get_total_return_from($date) {
+    $total_return = ($this::get_current_value()-$this::get_value_at_date($date))/$this::get_value_at_date($date);
+    return $total_return;
   }
 
 	public function jsonSerialize()

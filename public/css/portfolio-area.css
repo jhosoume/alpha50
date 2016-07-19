@@ -91,5 +91,16 @@ tbody input[name^="ticker"]{
 
 #analysis-tab.stock-sector {
   display: none;
+}
 
+table.return-comparison td:nth-child(1) {
+  font-weight:bold;
+}
+
+table.return-comparison th:nth-child(n+2), table.return-comparison td:nth-child(n+2) {
+  text-align: center;
+}
+
+table.holdings-comparison th:nth-child(n+2), table.holdings-comparison td:nth-child(n+2) {
+  text-align: center;
 }
