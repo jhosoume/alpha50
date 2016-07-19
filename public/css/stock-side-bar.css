@@ -21,6 +21,15 @@ div.stock-bar-data {
   overflow-x: hidden;
 }
 
+
+.stock-side-bar .stock-quote{
+  display:none;
+}
+
+.stock-side-bar .stock-quote.active{
+  display:block;
+}
+
 @media (max-width: 600px) {
   div.stock-side-bar {
     display: none;

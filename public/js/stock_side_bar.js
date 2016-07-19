@@ -1,7 +1,5 @@
 $(function() {
-
   $('.stock-side-bar').ready(function() {
-
     var allStocks;
 
     $.ajax({
@@ -21,10 +19,10 @@ $(function() {
 
     $('.stock-side-bar')
       .on('keyup', 'input', function() {
-        clearQuoteArea();
+        $(".stock-quote").removeClass("active");
         var searchTerm = $(this).val();
         if (searchTerm === "") {
-          renderStockBar(allStocks);
+          $(".stock-quote").addClass("active");
           return false;
         }
         // ensure that the search term is alphanumeric before creating
@@ -33,24 +31,13 @@ $(function() {
         if (!alphaNum.test(searchTerm)) return false;
 
         var re = new RegExp(searchTerm, "i");
-        var filtered = allStocks.filter(function(stock) {
-          return re.test(stock.ticker) || re.test(stock.name) || re.test(stock.sector);
+        allStocks.forEach(function(stock) {
+          if (re.test(stock.ticker) || re.test(stock.name) || re.test(stock.sector)) {
+            $('.stock-quote[data-ticker="'+stock.ticker+'"]').addClass('active');
+          }
         });
-        renderStockBar(filtered);
+
       })
-      .on('keydown','input',function(e) {
-        var searchTerm = $(this).val();
-        if (e.which === 8 && searchTerm === "") {
-          renderStockBar(allStocks);
-          return;
-        }
-      }) 
-
-
-
-    function clearQuoteArea() {
-      $(".stock-quote-area").empty();
-    }
 
     function renderStockBar(stocks) {
       stocks = stocks.filter(function(n){ return n.latest_price != undefined });
@@ -71,5 +58,4 @@ $(function() {
   })
 
   return false;
-
 })
