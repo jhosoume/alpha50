@@ -15,6 +15,10 @@ class PortfoliosController extends Spark\BaseController {
   }
 
   public function show() {
+    if (!current_user()) {
+      redirect_to('/');
+      return;
+    }
     $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
     $params = $this->params;
     $portfolio = Portfolio::first([
@@ -74,6 +78,10 @@ class PortfoliosController extends Spark\BaseController {
   }
 
   public function _new() {
+    if (!current_user()) {
+      redirect_to('/');
+      return;
+    }
     $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
     $index_portfolio = Portfolio::first([
       'conditions'=>['user_id = ?', $admin->id],
