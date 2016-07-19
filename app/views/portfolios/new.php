@@ -43,11 +43,9 @@
                 </td>
                 <td class='stock-name'><?php echo $stock->name ?></td>
                 <td class='stock-price'><?= $stock->latest_price ?></td>
-                <td class='number-of-shares'><input type='number' name="<?=$stock->ticker?>TradeQuantity" value='<?= $number_of_shares ?>' form="newPortfolioForm" min="0">
+                <td class='number-of-shares'><input type='number' min='0' name="<?=$stock->ticker?>TradeQuantity" value='<?= $number_of_shares ?>' form="newPortfolioForm" min="0">
                 </td>
-                <td class='total-value'>
-                  <input form='newPortfolioForm' type='number' value='' readonly>
-                </td>
+                <td class='total-value'></td>
                 <td class='pct-of-total'><?= $pct_weight ?></td>
               </tr>
             <?php endif ; ?>

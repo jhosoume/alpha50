@@ -39,6 +39,18 @@ $(function() {
   //   })
   // })
 
+  $(window).on('keydown', function(e) {
+    if (e.keyCode === 13) e.preventDefault();
+    return;
+  })
+
+  $('button.create-portfolio-btn').bind('click', function(e) {
+    if (totalPortfolioValue > 1000000) {
+      e.preventDefault();
+      return false;
+    }
+  })
+
   calculatePctOfTotal();
 
   $('span.equity-holdings').text("$"+ Math.floor(totalPortfolioValue).toLocaleString());
@@ -55,10 +67,24 @@ $(function() {
       calculateTotalShareValue(stockRow);
       var newValue = $(this).val();
       totalPortfolioValue += (newValue - previousValue) * $(this).parent().siblings('td.stock-price').text();
-      previousValue = newValue;
+      if ($('div.toast')) $('div.toast').remove();
       calculatePctOfTotal();
       $('span.equity-holdings').text("$"+ Math.floor(totalPortfolioValue).toLocaleString());
       $('span.cash-holdings').text("$" + Math.floor(startingCapital - totalPortfolioValue).toLocaleString());
+      if (totalPortfolioValue > 1000000) {
+        $('span.cash-holdings').addClass('red-text accent-4');
+        $(this).addClass('red lighten-3');
+        var toastContent = $("<span>You do not have enough cash!</span>");
+        if (Number(newValue) > Number(previousValue)) { 
+          Materialize.toast(toastContent,4000);
+        };
+        $('.create-portfolio-btn').addClass('disabled');
+      }  else {
+        $('span.cash-holdings').removeClass('red-text accent-4');
+        $(this).removeClass('red lighten-3');
+        $('.create-portfolio-btn').removeClass('disabled');
+      } 
+      previousValue = newValue;
     })
 
 
@@ -80,7 +106,7 @@ $(function() {
     var numberOfShares = $(stockRow).children('td.number-of-shares').children('input').val();
     var sharePrice = $(stockRow).children('td.stock-price').text();
     var totalValue = isNaN(sharePrice) ? 0 : numberOfShares * sharePrice;
-    $(stockRow).children('td.total-value').children('input').val(Math.round(totalValue, 2));
+    $(stockRow).children('td.total-value').text(Math.round(totalValue, 2).toLocaleString());
     return totalValue;
   }
 
@@ -90,7 +116,6 @@ $(function() {
       var sharePrice = $(row).children('td.stock-price').text();
       var totalValue = isNaN(sharePrice) ? 0 : numberOfShares * sharePrice;
       var pctOfTotal = totalValue / totalPortfolioValue;
-      console.log(pctOfTotal);
       $(row).children('td.pct-of-total').text(Math.round(pctOfTotal * 100, 0) + "%");
     });
   }
