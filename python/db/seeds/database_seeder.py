@@ -1,7 +1,7 @@
 from orator.seeds import Seeder
 from seeds.index_portfolio_seeder import IndexPortfolioSeeder
 from seeds.index_valuations_seeder import IndexValuationsSeeder
-from seeds.scrooge_mcduck_seeder import ScroogeMcDuckSeeder
+from seeds.scrooge_mcduck_seeder import ScroogeMcduckSeeder
 from seeds.tony_stark_seeder import TonyStarkSeeder
 from seeds.jay_gatsby_seeder import JayGatsbySeeder
 
