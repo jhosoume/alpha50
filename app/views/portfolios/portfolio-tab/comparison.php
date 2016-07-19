@@ -2,29 +2,52 @@
   $your_stocks_portfolios = Spark\locals()['stocks_portfolios'];
   $index_stocks_portfolios = Spark\locals()['index_stocks_portfolios'];
   $monkey_stocks_portfolios = Spark\locals()['monkey_stocks_portfolios'];
+  $monkey_portfolio_value = Spark\locals()['monkey_portfolio_value'];
+  $index_portfolio_value = Spark\locals()['index_portfolio_value'];
+  $your_portfolio_value = Spark\locals()['portfolio_value'];
+
 
   $comparison_array=array();
   for ($i=0;$i < 50;$i++) {
     $ticker = $index_stocks_portfolios[$i]->stock->ticker;
     $latest_price = $index_stocks_portfolios[$i]->stock->latest_price;
+
     $your_quantity;
     foreach ($your_stocks_portfolios as $s_p) {
       if ($s_p->stock->ticker == $ticker) {
         $your_quantity = $s_p->quantity_held;
       }
     };
+    $your_weight = round(100*($your_quantity * $latest_price) / $your_portfolio_value,2);
+
     $monkey_quantity;
     foreach ($monkey_stocks_portfolios as $s_p) {
       if ($s_p->stock->ticker === $ticker) {
         $monkey_quantity = $s_p->quantity_held;
       } 
     };
-    $stock = array('ticker' => $ticker, 'your_quantity' => $your_quantity, 'monkey_quantity' => $monkey_quantity);
-    array_push($comparison_array, $stock);
+    $monkey_weight = round(100*($monkey_quantity * $latest_price) /$monkey_portfolio_value,2);
+
+    $index_quantity;
+    foreach ($index_stocks_portfolios as $s_p) {
+      if ($s_p->stock->ticker === $ticker) {
+        $index_quantity = $s_p->quantity_held;
+      } 
+    };
+    $index_weight = round(100*($index_quantity * $latest_price) /$index_portfolio_value,2);
+
+    $comp_info = array(
+      'ticker' => $ticker, 
+      'your_quantity' => $your_quantity, 
+      'your_weight' => $your_weight,
+      'monkey_quantity' => $monkey_quantity,
+      'monkey_weight' => $monkey_weight,
+      'index_weight' => $index_weight,
+      );
+    array_push($comparison_array, $comp_info);
    };
 ?>
 
-<strong><?= $your_stocks_portfolios[0]->stock->ticker ?></strong>
 <div id='comparison-tab'>
   <table class='return-comparison'>
     <thead>
@@ -57,20 +80,20 @@
         <th>Ticker</th>
         <th>Quantity</th>
         <th>Weight</th>
-        <th>Quanity</th>
+        <th>Quantity</th>
         <th>Weight</th>
         <th>Weight</th>
       </tr>
     </thead>
     <tbody>
-      <?php foreach($your_stocks_portfolios as $s_p): ?>
+      <?php foreach($comparison_array as $comp_info): ?>
       <tr>  
-        <td class='stock-ticker'><?= $s_p->stock->ticker ?></td>
-        <td class='your-quantity'><?= $s_p->quantity_held ?></td>
-        <td>Boom</td>
-        <td>Bomm</td>
-        <td>Boom</td>
-        <td>Boom</td>
+        <td class='stock-ticker'><?= $comp_info['ticker']?></td>
+        <td class='your-quantity'><?= $comp_info['your_quantity'] ?></td>
+        <td class='your-weight'><?= $comp_info['your_weight'] ?>%</td>
+        <td class='monkey-quantity'><?= $comp_info['monkey_quantity'] ?></td>
+        <td class='monkey-weight'><?= $comp_info['monkey_weight'] ?>%</td>
+        <td class='index-weight'><?= $comp_info['index_weight'] ?>%</td>
       </tr>
       <?php endforeach ; ?>
     </tbody>
