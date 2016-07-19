@@ -20,13 +20,11 @@ $(function() {
   
   function createChartArray(data_points) {
     $.each(data_points,function(idx,data) {
-      console.log(data.value);
       dailyDatePrice.push([Date.parse(data.date),parseFloat(data.value)]);
     });
   }
 
   function renderTradeBlotterChart(chartArray, container) {
-    console.log(dailyDatePrice);
     container.highcharts('StockChart', {
       rangeSelector : {
         selected : 1
