@@ -76,6 +76,7 @@ $(function() {
 	}
 
 	$('#all-stocks-tab tbody').on('keydown', '.trade-quantity > input', calculateTotalTradeValue);
+	$('#all-stocks-tab tbody').on('keyup', '.trade-quantity > input', calculateTotalTradeValue);
 	$('#all-stocks-tab tbody').on('change', '.trade-type', calculateTotalTradeValue);
 	$('#all-stocks-tab tbody').on('change','.trade-quantity > input', calculateTotalTradeValue);
 
