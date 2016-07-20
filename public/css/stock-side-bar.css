@@ -16,7 +16,7 @@ div.stock-bar-data {
 }
 
 .stock-side-bar .stock-quote-area {
-  height:72vh;
+  height:74vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }

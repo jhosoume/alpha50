@@ -7,6 +7,7 @@
 
 
 <div id='analysis-tab'>
+    <div id='sector-breakdown-chart'></div>
     <div class='input-field col s12'>
     <form>
       <select id='sector-filter' class='teal-text darken-4'>

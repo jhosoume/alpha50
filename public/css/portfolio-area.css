@@ -34,6 +34,10 @@
   height: 130px;
 }
 
+#sector-breakdown-chart {
+  height: 250px;
+}
+
 #portfolio-overview-chart, #sector-overview-chart, #portfolio-trades-chart {
   height: 350px;
 }
