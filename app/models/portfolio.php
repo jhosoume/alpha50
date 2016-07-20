@@ -99,21 +99,22 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
     return $val;
   }
 
-  public function get_value_at_date($date) {
-    if ($date = date('Y-m-s', strtotime($this->created_at))) {
+  public function get_value_at_date($date, $sector) {
+    $column = $sector ? $sector : 'portfolio_value' ;
+    if (date('Y-m-d') === date('Y-m-d', strtotime($this->created_at))) {
       return $val = 0;
-    }
+    };
     $val = PortfolioValuation::first([
       'conditions' => ['portfolio_id = ? AND created_at LIKE ?',$this->id, $date."%"],
-      ])->portfolio_value;
+      ])->$column;
     return $val;
   }
 
   public function get_total_return_from($date) {
-    if ($date = date('Y-m-s', strtotime($this->created_at))) {
+    if (date('Y-m-d') == date('Y-m-d', strtotime($this->created_at))) {
       return $total_return = 0;
     }
-    $total_return = ($this::get_current_value()-$this::get_value_at_date($date))/$this::get_value_at_date($date);
+    $total_return = ($this::get_current_value()-$this::get_value_at_date($date, null))/$this::get_value_at_date($date, null);
     return $total_return;
   }
 
@@ -128,13 +129,13 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
     $index_portfolio_valuations = PortfolioValuation::find('all',['conditions' => ['portfolio_id = ? AND created_at >= ?', $index_portfolio->id, $created_date], 'order'=>'created_at asc']);
 
     $index_valuation_data = [];
-    $starting_capital = 1000000;
+    $starting_capital = $this->get_value_at_date($created_date, $column);
     for ($i = 0; $i < count($index_portfolio_valuations); $i++) {
       $value = $index_portfolio_valuations[$i]->$column * $starting_capital / $index_portfolio_valuations[0]->$column;
       array_push($index_valuation_data, array(date('Y-m-d', strtotime($index_portfolio_valuations[$i]->created_at)), $value));
     }
     return $index_valuation_data;
-    // return [count($index_valuations)];
+
   }
 
 	public function jsonSerialize()

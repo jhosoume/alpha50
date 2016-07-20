@@ -30,6 +30,7 @@ $(function () {
           contentType: 'JSON'
         });
         valuationsRequest.then(function(valuations) {
+          console.log(valuations);
           $('#sector-overview-chart .preloader-wrapper').remove();
           var chartArray = createChartArray(valuations);
           renderTimeChart(chartArray, $("#sector-overview-chart"), activeSector+" Performance", 'Overall Sector Value');

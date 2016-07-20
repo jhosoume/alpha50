@@ -31,6 +31,12 @@ class PortfoliosController extends Spark\BaseController {
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
 
+    if (date('Y-m-d', strtotime($portfolio->created_at)) == date('Y-m-d')) {
+      $first_valuation_date = date('Y-m-d');
+    } else {
+      $first_valuation_date = PortfolioValuation::first('all', ['conditions' => ['portfolio_id = ?', $portfolio->id],'order'=>'created_at asc'])->created_at;
+    };
+
     if ($portfolio == $index_portfolio) {
       $monkey_portfolio = $portfolio;
     } else {
@@ -77,6 +83,7 @@ class PortfoliosController extends Spark\BaseController {
       'monkey_stocks_portfolios' => $monkey_portfolio->stocks_portfolios,
       'index_portfolio_value' => $index_portfolio->current_value,
       'monkey_portfolio_value' => $monkey_portfolio->current_value,
+      'first_valuation_date' => date("Y-m-d", strtotime($first_valuation_date)),
     ];
 
     $this->locals = $locals;

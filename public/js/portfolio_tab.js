@@ -87,7 +87,6 @@ function createChartArray(valuations) {
 }
 
 function renderTimeChart(chartArrays, container, chartName, seriesName) {
-  console.log(chartArrays);
   if ((Array.isArray(chartArrays) && chartArrays.length < 2) || (chartArrays['user'] && chartArrays['user'].length < 2)) {
     container.height(0);
     return false;
@@ -128,7 +127,6 @@ function renderTimeChart(chartArrays, container, chartName, seriesName) {
     });
   };
 
-  console.log(seriesOptions);
 
   options.series = seriesOptions;
 
