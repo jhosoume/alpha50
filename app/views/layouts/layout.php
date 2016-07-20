@@ -10,8 +10,8 @@
   </head>
   <body>
     <?php render_file('layouts/header.php'); ?>
-    <div class="row">
-      <div class="col m2">
+    <div class="row main-row" style='margin-bottom: 0'>
+      <div class="col m2 side-area">
         <?php render_file('/portfolios/stock-side-bar.php'); ?>
       </div>
       <div class="col s12 m10">

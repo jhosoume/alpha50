@@ -1,4 +1,4 @@
-<div class="portfolio-section col s12 m10 l10">
+<div class="portfolio-section col s12 m10 l10 offset-m1 offset-l1">
   <?php render_file('/portfolios/portfolio-tab/portfolio_nav.php') ?>
   <div class='portfolio-content'>
     <?php render_file('/portfolios/portfolio-tab/overview.php') ?>

@@ -20,7 +20,7 @@ except:
 try:
     BEG = sys.argv[3]
 except:
-    END = '2016-07-19'
+    END = '2016-07-20'
 
 @retry(stop_max_attempt_number = 10,
        wait_random_min = 1000,

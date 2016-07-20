@@ -1,7 +1,9 @@
 $(function() {
+
   if ($('.stock-side-bar').length) {
     var allStocks;
     var allDailyQuotes;
+
 
     $.ajax({
       url: '/api/stocks',
@@ -150,4 +152,7 @@ $(function() {
   }
 
   return false;
+
+
+
 })
