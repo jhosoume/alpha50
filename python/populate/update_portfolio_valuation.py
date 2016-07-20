@@ -24,8 +24,9 @@ for portfolio in Portfolio.all():
         if not market_stock.latest_price:
             market_stock.latest_price = 0
         total_value += market_stock.latest_price * stock.quantity_held
-        portfolio_info[sector] += market_stock.latest_price
+        portfolio_info[sector] += market_stock.latest_price * stock.quantity_held
     portfolio_info['portfolio_value'] = total_value
+    portfolio_info['created_at'] = arrow.now('US/Pacific').format('YYYY-MM-DDTHH:mm:ss')
     PortfolioValuation.create(portfolio_info)
 
 
