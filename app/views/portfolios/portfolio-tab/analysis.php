@@ -9,7 +9,7 @@
 <div id='analysis-tab'>
     <div class='input-field col s12'>
     <form>
-      <select id='sector-filter'>
+      <select id='sector-filter' class='teal-text darken-4'>
       <?php foreach($sectors as $sector) :?>
         <option value='<?= $sector ?>'><?= $sector ?></option>
       <?php endforeach; ?>
@@ -23,16 +23,16 @@
       <form method="POST" action="/trades" id="sectorStocksTradeForm">
         <input type="hidden" name="portfolioId" value="<?=$portfolio->id?>">
       </form>
-      <table class='bordered' id='sector-trades-table'>
-        <thead>
+      <table class='bordered highlight' id='sector-trades-table'>
+        <thead class='teal-text darken-4'>
           <tr>
             <th >Ticker</th>
             <th>Company Name</th>
-            <th>Last Price</th>
-            <th>Shares Owned</th>
-            <th>Trade Type</th>
-            <th>Trade Quantity</th>
-            <th>Sub Total</th>
+            <th>Last<br>Price</th>
+            <th>Shares<br>Owned</th>
+            <th>Trade<br>Type</th>
+            <th>Trade<br>Quantity</th>
+            <th>Sub<br>Total</th>
           </tr>
           <tbody>
             <?php foreach($stocks_portfolios as $s_p): ?>

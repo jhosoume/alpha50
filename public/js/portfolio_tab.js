@@ -75,7 +75,11 @@ function renderTimeChart(chartArray, container, chartName, seriesName) {
       selected : 1
     },
     title : {
-      text : chartName
+      text : chartName,
+      style: {
+        color: "#009688",
+        fontSize: "1.2rem"
+      }
     },
     series : [{
       name: seriesName,

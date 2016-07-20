@@ -31,7 +31,11 @@ $(function() {
                 type: 'bar'
             },
             title: {
-                text: 'Portfolio Holdings Overview'
+                text: 'Portfolio Holdings Overview',
+                style: {
+                  color: "#009688",
+                  fontSize: "1.2rem"
+                }
             },
             xAxis: {
                 labels: {

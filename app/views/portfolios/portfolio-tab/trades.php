@@ -5,10 +5,11 @@
 ?>
 
 <div id="trades-tab">
+  <h5 class='teal-text darken-4'>Trades History</h5>
   <div data-profile-id="<?= $portfolio->id ?>"></div>
   <div id="portfolio-trades-chart"></div>
-  <table>
-    <thead>
+  <table class='bordered highlight'>
+    <thead class='teal-text darken-4'>
       <tr>
         <th>Date</th>
         <th>Ticker</th>
