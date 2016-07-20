@@ -1,11 +1,11 @@
 
 <div id="index-banner" class="parallax-container">
 	<div class="section no-pad-bot">
-	  <div class="container">
+	  <div class="container title-holder">
 	    <br><br>
-	    <h1 class="header center grey-text text-darken-3">Alpha50</h1>
+	    <!-- <h1 class="header center light head-text-blur-dark">Alpha50</h1> -->
 	    <div class="row center">
-	      <h5 class="header col s12 light">Test your ability to make money like a professional investment manager.</h5>
+	      <h2 class="header col s12 light head-text-blur-dark">Test your ability to make money like a professional investment manager.</h2>
 	    </div>
 	    <div class="row center">
 		    <a href="#user-sign-up" class='btn modal-trigger'>Sign up</a>
@@ -14,7 +14,7 @@
 
 	  </div>
 	</div>
-	<div class="parallax"><img id="hero-image" src="/images/buildings.jpg"></div>
+	<div class="parallax"><img id="first-image-landing" src="/images/buildings.jpg"></div>
 </div>
 <?php render_file('sign-up-modal.php') ?>
 
@@ -22,31 +22,38 @@
   <div class="section">
 
     <!--   Icon Section   -->
-    <div class="row">
+    <div class="row features">
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-          <h5 class="center">Speeds up development</h5>
+          <h2 class="center orange-text text-darken-4"><i class="material-icons">library_books</i></h2>
+          <h5 class="center">Create Own Custom Portfolios</h5>
 
-          <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          <p class="light">Create up to five investment portfolios. You have $1 million to invest in
+          each of the portfolio. Within each portfolio, you'll be able to select invest in any of
+          50 stocks from 8 different sectors.</p>
         </div>
       </div>
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-          <h5 class="center">User Experience Focused</h5>
+          <h2 class="center orange-text text-darken-4"><i class="material-icons">group</i></h2>
+          <h5 class="center">Compare Performance</h5>
 
-          <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          <p class="light">What fun would it be to create a portfolio if you couldn't track your
+          performance! Each time you create a new portfolio, a monkey portfolio is automatically
+          generated. The monkey has $1 million to spend just like you! Who will win?</p>
         </div>
       </div>
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-          <h5 class="center">Easy to work with</h5>
+          <h2 class="center orange-text text-darken-4"><i class="material-icons">assessment</i></h2>
+          <h5 class="center">Beat the Index</h5>
 
-          <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          <p class="light">The whole investment industry relies on benchmarks. Benchmarks make it 
+          possible to compare between different investment opportunities. We have created the Alpha
+          50 index! It is composed of 50 stocks weighted by market cap. Can you outsmart the Alpha
+          50?</p>
         </div>
       </div>
     </div>
@@ -55,15 +62,15 @@
 </div>
 
 
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
+<div class="parallax-container smaller-banner">
+<!--   <div class="section no-pad-bot">
     <div class="container">
       <div class="row center">
         <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
       </div>
     </div>
-  </div>
-  <div class="parallax"><img src="/images/man_business.jpeg" alt="Unsplashed background img 2" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
+  </div> -->
+  <div class="parallax"><img id="second-image-landing" src="/images/man_business.jpeg"></div>
 </div>
 
 <div class="container">
@@ -72,8 +79,13 @@
     <div class="row">
       <div class="col s12 center">
         <h3><i class="mdi-content-send brown-text"></i></h3>
-        <h4>Contact Us</h4>
-        <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        <h4>Why join?</h4>
+        <p class="left-align light">Test your ability to make money much like a professional
+        investment manager. Whether you think you have a gift for stock picking or believe a
+        sector will outperform, you'll be able to take action through the Alpha 50 platform.
+        Underweight a stock versus the index! Go overweight a sector! Do you think equities will
+        underperform? Sell your stock and hold on to cash. Fun, right?!
+        Interactively predominate ubiquitous supply chains vis-a-vis superior sources. Synergistically develop principle-centered mindshare after world-class quality vectors. Dynamically integrate progressive applications after corporate schemas. Continually reconceptualize stand-alone markets via revolutionary technology. Objectively innovate vertical growth strategies whereas cost effective total linkage.</p>
       </div>
     </div>
 
@@ -81,13 +93,13 @@
 </div>
 
 
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
+<div class="parallax-container smaller-banner">
+<!--   <div class="section no-pad-bot">
     <div class="container">
       <div class="row center">
         <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
       </div>
     </div>
-  </div>
-  <div class="parallax"><img src="/images/corridor.jpg" alt="Unsplashed background img 3" style="display: block; transform: translate3d(-50%, 162px, 0px);"></div>
+  </div> -->
+  <div class="parallax"><img id="third-image-landing" src="/images/corridor.jpg"></div>
 </div>
