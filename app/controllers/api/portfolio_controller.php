@@ -26,8 +26,15 @@ class PortfoliosController extends \Spark\BaseController {
 
   private function send_hist_valuation($portfolio_id, $sector, $limit) {
 
-    $portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $portfolio_id], 'limit' => $limit]);
-    $valuation_data = array();
+    $user_portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $portfolio_id], 'limit' => $limit]);
+
+    $monkey_portfolio = \Portfolio::first(['conditions' => ['parent = ?', $portfolio_id]]);
+    $monkey_portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $monkey_portfolio->id], 'limit' => $limit]);
+
+    $all_valuation_data = array();
+
+    $user_valuation_data = array();
+    $monkey_valuation_data = array();
 
     $column;
     if ($sector === 'all') {
@@ -35,11 +42,16 @@ class PortfoliosController extends \Spark\BaseController {
     } else {
       $column=str_replace(" ","_",strtolower($sector));
     }
-    foreach($portfolio_valuations as $valuation) {
-      array_push($valuation_data, array(date('Y-m-d H:i:s', strtotime($valuation->created_at)), $valuation->$column));
+
+    for ($i = 0; $i < count($user_portfolio_valuations); $i++) {
+      array_push($user_valuation_data, array(date('Y-m-d H:i:s', strtotime($user_portfolio_valuations[$i]->created_at)), $user_portfolio_valuations[$i]->$column));
+      array_push($monkey_valuation_data, array(date('Y-m-d H:i:s', strtotime($monkey_portfolio_valuations[$i]->created_at)), $monkey_portfolio_valuations[$i]->$column));
     }
 
-    $this->render($valuation_data, ['content_type'=>'JSON', 'enable_cors'=>true]);
+    $all_valuation_data['user'] = $user_valuation_data;
+    $all_valuation_data['monkey'] = $monkey_valuation_data;
+
+    $this->render($all_valuation_data, ['content_type'=>'JSON', 'enable_cors'=>true]);
   }
 
   private function send_curr_valuation($portfolio_id) {

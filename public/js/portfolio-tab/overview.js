@@ -19,6 +19,7 @@ $(function() {
 
     //potentially rewrite this as a named function
     valuationsRequest.then(function(valuations) {
+      console.log(valuations);
       $("#portfolio-overview-chart .preloader-wrapper").remove();
       var chartArray = createChartArray(valuations);
       renderTimeChart(chartArray, $("#portfolio-overview-chart"), "Portfolio Performance Overview", 'Overall Value');
