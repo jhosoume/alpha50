@@ -14,7 +14,7 @@
             <label for="password">Password</label>
           </div>
         </div>
-        <button class="btn" type="submit" name='action'>
+        <button class="waves-effect waves-light btn" type="submit" name='action'>
           Sign up
         </button>                
       </form>
