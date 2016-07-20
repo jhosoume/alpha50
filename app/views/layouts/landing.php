@@ -15,13 +15,7 @@
   </head>
   <body>
     <?php render_file('layouts/header.php'); ?>
-    <div class="row">
-      <div class="col m12">
-        <div class="container">
-          <?php renderer::render_view_template(); ?>
-        </div>
-      </div>
-    </div>
+    <?php renderer::render_view_template(); ?>
     <?php render_file('layouts/footer.php'); ?>
   </body>
 </html>

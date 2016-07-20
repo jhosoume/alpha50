@@ -1,4 +1,5 @@
 $(function() {
+  $('.parallax').parallax();
   $('.modal-trigger').leanModal();
   $('.trigger-side-nav').sideNav();
   setDimensions();

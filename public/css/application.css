@@ -7,8 +7,17 @@ nav .nav-wrapper {
   display:none;
 }
 
+#hero-image {
+  max-width: 150%;
+  display: block; 
+  transform: translate3d(-50%, 224px, 0px);
+}
+
 #about-us-section {
-  background-image: url('/images/hero-image.jpg');
+  background-image: url('/images/buildings.jpg');
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index:0;
 }
 .about-us-blurb {
@@ -30,4 +39,30 @@ nav .nav-wrapper {
   margin-top:5px;
   width:150px;
   display: block;
+}
+
+.parallax-container {
+  min-height: 750px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
 }
