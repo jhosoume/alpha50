@@ -57,7 +57,7 @@ nav .nav-wrapper {
 }
 
 .smaller-banner {
-  min-height: 350px;
+  min-height: 450px;
 }
 
 #index-banner {
@@ -102,6 +102,10 @@ footer.page-footer .footer-copyright {
 /*  width: 100%;
   position: relative;
   bottom: 0px;*/
+}
+
+footer.page-footer .container {
+  height: 370px;
 }
 
 .about-us-blurb ~ a {
