@@ -104,3 +104,62 @@ table.return-comparison th:nth-child(n+2), table.return-comparison td:nth-child(
 table.holdings-comparison th:nth-child(n+2), table.holdings-comparison td:nth-child(n+2) {
   text-align: center;
 }
+
+#analysis-tab form .select-wrapper input.select-dropdown {
+  font-size: 1.2rem;
+}
+
+#analysis-tab .input-field {
+  padding:0;
+}
+
+#analysis-tab table th:nth-child(1), #analysis-tab table th:nth-child(n+3)  {
+  width:12%;
+}
+
+#analysis-tab table th:nth-child(n+3), 
+#analysis-tab table td:nth-child(n+3),
+#analysis-tab table td.trade-quantity input {
+  text-align: center;
+}
+
+#analysis-tab table td.trade-quantity input {
+  margin-left:0.5rem;
+  margin-right:0.5rem;
+}
+
+#comparison-tab table.return-comparison td {
+  width:25%;
+}
+
+#comparison-tab table.holdings-comparison tbody td:nth-child(n+2) {
+  width: 12.5%;
+}
+
+#comparison-tab table.holdings-comparison tbody td:nth-child(6) {
+  width: 25%;
+}
+
+#comparison-tab table.return-comparison th:nth-child(2),
+#comparison-tab table.return-comparison td:nth-child(2) {
+  background-color: #e0f2f1;
+}
+
+#comparison-tab table.returns-comparison thead tr,
+#comparison-tab table.holdings-comparison thead tr:first-child {
+  border-top-color:none;
+}
+
+#comparison-tab table.holdings-comparison thead tr:first-child {
+  border-bottom:none;
+}
+
+#comparison-tab table.holdings-comparison thead tr:first-child th:nth-child(2),
+#comparison-tab table.holdings-comparison thead tr:nth-child(2) th:nth-child(n+2):nth-child(-n+3),
+#comparison-tab table.holdings-comparison tbody td:nth-child(n+2):nth-child(-n+3) {
+  background-color: #e0f2f1;
+}
+
+.highcharts-container tspan {
+  color:#004d40;
+}

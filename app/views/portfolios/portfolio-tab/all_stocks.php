@@ -8,15 +8,16 @@ $portfolio_value = Spark\locals()['portfolio_value'];
 <div id="all-stocks-tab">
   <div class="row" style="width:100%">
     <div class="col l12 m11">
-      <h5><?=$portfolio->name?></h5>
+      <h5 class='teal-text darken-4'><?=$portfolio->name?></h5>
+      <div class='divider'></div>
       <p class="cash" data-cash="<?=$portfolio->total_cash?>"><strong>Cash: $</strong> <?= number_format($portfolio->total_cash) ?> </p>
       <p class="equity" data-equity="<?=$portfolio_equity?>"><strong>Equity: $</strong> <?= number_format($portfolio_equity) ?> </p>
       <p class="portfolioValue" data-equity="<?=$portfolio_value?>"><strong>Portfolio Value: $</strong> <?= number_format($portfolio_value) ?> </p>
       <form method="POST" action="/trades" id="allStocksTradeForm">
         <input type="hidden" name="portfolioId" value="<?=$portfolio->id?>">
       </form>
-      <table class='bordered'>
-        <thead>
+      <table class='bordered highlight'>
+        <thead class='teal-text darken-4'>
           <tr>
             <th>Ticker</th>
             <th>Company Name</th>

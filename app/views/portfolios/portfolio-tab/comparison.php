@@ -56,8 +56,9 @@
 ?>
 
 <div id='comparison-tab'>
+  <h5 class='teal-text darken-4'>Returns comparison</h5>
   <table class='return-comparison'>
-    <thead>
+    <thead class='teal-text darken-4'>
       <tr>
         <th>Since <?= $your_inception_date?></th>
         <th>Your portfolio</th>
@@ -74,9 +75,12 @@
       </tr>
     </tbody>
   </table>
-
+  <br>
+  
+  
+  <h5 class='teal-text darken-4'>Holdings comparison</h5>
   <table class='holdings-comparison bordered'>
-    <thead>
+    <thead class='teal-text darken-4'>
       <tr>
         <th colspan='1'></th>
         <th colspan='2'>Your portfolio</th>
