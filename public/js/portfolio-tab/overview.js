@@ -21,7 +21,6 @@ $(function() {
     valuationsRequest.then(function(valuations) {
       $("#portfolio-overview-chart .preloader-wrapper").remove();
       var chartArray = createChartArray(valuations);
-      console.log(chartArray);
       renderTimeChart(chartArray, $("#portfolio-overview-chart"), "Portfolio Performance Overview", 'Overall Value');
       renderHoldingsOverviewChart($("#portfolio-holdings-chart"));
     })
