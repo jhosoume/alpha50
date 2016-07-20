@@ -1,5 +1,8 @@
 $(function() {
 
+
+  $('[href="' + location.pathname + '"]').closest('li').addClass('current');
+
   $('.dropdown-button').dropdown({
     belowOrigin: true,
     constrain_width: false
@@ -93,7 +96,7 @@ function renderTimeChart(chartArrays, container, chartName, seriesName) {
   }
 
   options = {
-    colors: ["#283593","#ad1457","#1976d2","#4fc3f7","#009688","#757575","#212121"],
+    colors: ["#283593","#4fc3f7","#009688","#1976d2","#757575","#212121","#ad1457"],
     rangeSelector : {
       selected : 1
     },

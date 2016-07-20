@@ -52,7 +52,7 @@ $(function () {
 
     function renderSectorOverviewChart(container, seriesData) {
         var options = {
-          colors: ["#512da8","#283593","#ad1457","#1976d2","#4fc3f7","#009688","#757575","#212121"],
+          colors: ["#512da8","#ad1457","#757575","#4fc3f7","#212121","#283593","#1976d2","#009688"],
           chart: {
               type: 'bar'
           },
