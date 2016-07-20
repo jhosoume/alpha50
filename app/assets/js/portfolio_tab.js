@@ -55,22 +55,45 @@ function renderPortfolioSection() {
 };
 
 function createChartArray(valuations) {
-  var dailyDatePrice = [];
+  if (Array.isArray(valuations)) {
+    var dailyDatePrice = [];
+    $.each(valuations,function(idx,valuation) {
+      dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+    });
+    return dailyDatePrice.sort(function(a,b){return a[0]-b[0]});
+  }
+  var dailyDatePrice = {};
+  var user = [];
+  var monkey = [];
+  var index = [];
 
-  $.each(valuations,function(idx,valuation) {
-    dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+  $.each(valuations['user'],function(idx,valuation) {
+    user.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+  });
+  $.each(valuations['monkey'],function(idx,valuation) {
+    monkey.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+  });
+  $.each(valuations['index'],function(idx,valuation) {
+    index.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
   });
 
-  return dailyDatePrice.sort(function(a, b){return a[0]-b[0]});   
+  user.sort(function(a, b){return a[0]-b[0]}); 
+  monkey.sort(function(a,b){return a[0]-b[0]});
+  dailyDatePrice['User'] = user;
+  dailyDatePrice['Monkey'] = monkey;
+  dailyDatePrice['Index'] = index;
+  return dailyDatePrice;
 
 }
 
-function renderTimeChart(chartArray, container, chartName, seriesName) {
-  if (chartArray.length < 2) {
+function renderTimeChart(chartArrays, container, chartName, seriesName) {
+  if ((Array.isArray(chartArrays) && chartArrays.length < 2) || (chartArrays['User'] != undefined && chartArrays['User'].length < 2)) {
     container.height(0);
     return false;
   }
-  container.highcharts('StockChart', {
+
+  options = {
+    colors: ["#283593","#ad1457","#1976d2","#4fc3f7","#009688","#757575","#212121"],
     rangeSelector : {
       selected : 1
     },
@@ -81,14 +104,33 @@ function renderTimeChart(chartArray, container, chartName, seriesName) {
         fontSize: "1.2rem"
       }
     },
-    series : [{
-      name: seriesName,
-      data : chartArray,
-      tooltip: {
-        valueDecimals: 2
-      }
+    legend: {
+      enabled:true
+    }
+  };
+  var seriesOptions = [];
+
+  if (Array.isArray(chartArrays)) {
+    console.log(chartArrays);
+    seriesOptions = [{
+      name: 'Daily Trade Amount',
+      data: chartArrays
     }]
-  })
+  } else {
+    var i = 0;
+    $.each(chartArrays, function(key, arr) {
+      seriesOptions[i] = {
+        name: key,
+        data: arr
+      }
+    i++;
+    });
+  };
+
+
+  options.series = seriesOptions;
+
+  container.highcharts('StockChart', options);
 }
 
 function align() {

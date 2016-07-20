@@ -1,5 +1,5 @@
 $(function() {
-  $('.stock-side-bar').ready(function() {
+  if ($('.stock-side-bar').length) {
     var allStocks;
     var allDailyQuotes;
 
@@ -147,7 +147,7 @@ $(function() {
         }]
       })
     }
-  })
+  }
 
   return false;
 })

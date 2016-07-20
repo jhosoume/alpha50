@@ -8,10 +8,10 @@
   $monkey_portfolio_value = Spark\locals()['monkey_portfolio_value'];
   $index_portfolio_value = Spark\locals()['index_portfolio_value'];
   $your_portfolio_value = Spark\locals()['portfolio_value'];
-  $your_inception_date = date('Y-m-d', strtotime($your_portfolio->created_at));
-  $your_return = round(100*$your_portfolio->get_total_return_from($your_inception_date),2);
-  $monkey_return = round(100*$monkey_portfolio->get_total_return_from($your_inception_date),2);
-  $index_return = round(100*$index_portfolio->get_total_return_from($your_inception_date),2);
+  $first_valuation_date = Spark\locals()['first_valuation_date'];
+  $your_return = round(100*$your_portfolio->get_total_return_from($first_valuation_date),2);
+  $monkey_return = round(100*$monkey_portfolio->get_total_return_from($first_valuation_date),2);
+  $index_return = round(100*$index_portfolio->get_total_return_from($first_valuation_date),2);
 
 
   $comparison_array=array();
@@ -60,7 +60,7 @@
   <table class='return-comparison'>
     <thead class='teal-text darken-4'>
       <tr>
-        <th>Since <?= $your_inception_date?></th>
+        <th>Since <?= $first_valuation_date ?></th>
         <th>Your portfolio</th>
         <th>Your monkey</th>
         <th>Index</th>

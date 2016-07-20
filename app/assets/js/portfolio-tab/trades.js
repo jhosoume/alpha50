@@ -14,7 +14,7 @@ $(function() {
     tradesRequest.then(function(data_points) {
       $('#portfolio-trades-chart .preloader-wrapper').remove();
       var chartArray = createChartArray(data_points);
-      renderTimeChart(chartArray, $("#portfolio-trades-chart"),'Trading Value per Day', 'Overall Trading Value');
+      renderTimeChart(chartArray, $("#portfolio-trades-chart"),'Daily Trading (Cash Flow)', 'Overall Trading Value');
     })
   })
 });

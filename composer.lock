@@ -9,22 +9,25 @@
     "packages": [
         {
             "name": "mattbred/spark",
-            "version": "v0.1.0.6",
+            "version": "v0.1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattBred/spark-mvc.git",
-                "reference": "ea9ff0d437b42406d0fb879b6882152aa10eee7c"
+                "reference": "8a5f2124050eaffc436ffe91c94c0d2454afbd06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattBred/spark-mvc/zipball/ea9ff0d437b42406d0fb879b6882152aa10eee7c",
-                "reference": "ea9ff0d437b42406d0fb879b6882152aa10eee7c",
+                "url": "https://api.github.com/repos/MattBred/spark-mvc/zipball/8a5f2124050eaffc436ffe91c94c0d2454afbd06",
+                "reference": "8a5f2124050eaffc436ffe91c94c0d2454afbd06",
                 "shasum": ""
             },
             "require": {
                 "php-activerecord/php-activerecord": "1.1.2",
                 "robmorgan/phinx": "^0.6.2"
             },
+            "bin": [
+                "bin/spark"
+            ],
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -38,7 +41,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "A light weight php mvc",
-            "time": "2016-07-13 19:59:35"
+            "time": "2016-07-20 20:54:18"
         },
         {
             "name": "php-activerecord/php-activerecord",
@@ -77,16 +80,16 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "v0.6.2",
+            "version": "v0.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robmorgan/phinx.git",
-                "reference": "35c4fdc26857d02d78080f68d4973993d77bd7a8"
+                "reference": "6fd56a6e5d93f37fe40e33d90461dc5a9d9e60a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/35c4fdc26857d02d78080f68d4973993d77bd7a8",
-                "reference": "35c4fdc26857d02d78080f68d4973993d77bd7a8",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/6fd56a6e5d93f37fe40e33d90461dc5a9d9e60a1",
+                "reference": "6fd56a6e5d93f37fe40e33d90461dc5a9d9e60a1",
                 "shasum": ""
             },
             "require": {
@@ -96,7 +99,7 @@
                 "symfony/yaml": "~2.8|~3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0"
+                "phpunit/phpunit": "^4.8.26|^5.0"
             },
             "bin": [
                 "bin/phinx"
@@ -139,7 +142,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2016-06-23 15:27:01"
+            "time": "2016-07-18 17:59:45"
         },
         {
             "name": "symfony/config",

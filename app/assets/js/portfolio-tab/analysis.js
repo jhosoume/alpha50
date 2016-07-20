@@ -8,6 +8,7 @@ $(function () {
         data: {'request_type':'current_valuation'},
         contentType: 'JSON',
         success: function(res) {
+          console.log(res);
           renderSectorOverviewChart($('#sector-breakdown-chart'), res);
         }
       })
@@ -67,19 +68,20 @@ $(function () {
               labels: {
                 enabled: false
               },
-              minorTickLength: 0,
-              tickLength: 0,
+              tickLength:0,
               categories: ["Sector Breakdown"]
           },
           yAxis: {
               min: 0,
+              gridLineWidth:0,
+              endOnTick:false,
               labels: {
                 enabled: false
               },
               title: {
                 text: null
-              }
-
+              },
+              minorGridLineColor: '#C5EEFA'
           },
           legend: {
               reversed: true,
@@ -114,7 +116,9 @@ $(function () {
           total_value += value;
           options.series.push(s);
         })
-        options.yAxis.max = total_value;
+
+        options.yAxis.max = Math.floor(total_value);
+        console.log(total_value);
 
         function formatPct() {
           var pcnt = (this.y/total_value) * 100;
