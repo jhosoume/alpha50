@@ -55,6 +55,13 @@ function renderPortfolioSection() {
 };
 
 function createChartArray(valuations) {
+  if (Array.isArray(valuations)) {
+    var dailyDatePrice = [];
+    $.each(valuations,function(idx,valuation) {
+      dailyDatePrice.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+    });
+    return dailyDatePrice.sort(function(a,b){return a[0]-b[0]});
+  }
   var dailyDatePrice = {};
   var user = [];
   var monkey = [];
@@ -70,18 +77,18 @@ function createChartArray(valuations) {
   monkey.sort(function(a,b){return a[0]-b[0]});
   dailyDatePrice['User'] = user;
   dailyDatePrice['Monkey'] = monkey;
-  console.log(dailyDatePrice);
   return dailyDatePrice;
 
 }
 
 function renderTimeChart(chartArrays, container, chartName, seriesName) {
-  if (chartArrays['User'].length < 2) {
+  if ((Array.isArray(chartArrays) && chartArrays.length < 2) || (chartArrays['user'] && chartArrays['user'].length < 2)) {
     container.height(0);
     return false;
   }
 
   options = {
+    colors: ["#283593","#ad1457","#1976d2","#4fc3f7","#009688","#757575","#212121"],
     rangeSelector : {
       selected : 1
     },
@@ -91,20 +98,37 @@ function renderTimeChart(chartArrays, container, chartName, seriesName) {
         color: "#009688",
         fontSize: "1.2rem"
       }
+    },
+    legend: {
+      enabled:true
+    },
+    series: {
+      name: "hello",
+      data: chartArrays
     }
   };
+  // var seriesOptions = [];
 
-  var seriesOptions = [];
-  var i = 0;
-  $.each(chartArrays, function(key, arr) {
-    seriesOptions[i] = {
-      name: key,
-      data: arr
-    }
-    i++;
-  });
+  // if (Array.isArray(chartArrays)) {
+  //   console.log(chartArrays);
+  //   seriesOptions = {
+  //     name: 'Daily Trade Amount',
+  //     data: [chartArrays]
+  //   }
+  // } else {
+  //   var i = 0;
+  //   $.each(chartArrays, function(key, arr) {
+  //     seriesOptions[i] = {
+  //       name: key,
+  //       data: arr
+  //     }
+  //   i++;
+  //   });
+  // };
 
-  options.series = seriesOptions;
+  // console.log(seriesOptions);
+
+  // options.series = seriesOptions;
 
   container.highcharts('StockChart', options);
 }
