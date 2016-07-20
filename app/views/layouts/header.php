@@ -7,20 +7,20 @@
       <ul class='right hide-on-med-and-down'>
         <?php if (current_user()) { ?>
           <li><a class='welcome-message'>Welcome, <?= $user->email ?></a></li>
-          <li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>
+          <li><a href="#user-log-out" class="btn modal-trigger waves-effect waves-light">Log out</a></li>
         <?php } else { ?>
           <li><a href="">About us</a></li>
           <li><a href="">Why join?</a></li>
           <li><a href="">Features</a></li>
-          <li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>
+          <li><a href="#user-log-in" class="btn modal-trigger waves-effect waves-light">Log in</a></li>
         <?php } ?>
       </ul>
       <ul id="slide-out" class="side-nav">
         <li><a href="#!">Welcome, USER</a></li>
         <?php if (current_user()) { ?>
-            <li><a href="#user-log-out" class="btn modal-trigger">Log out</a></li>
+            <li><a href="#user-log-out" class="btn modal-trigger waves-effect waves-light">Log out</a></li>
         <?php } else { ?>
-            <li><a href="#user-log-in" class="btn modal-trigger">Log in</a></li>
+            <li><a href="#user-log-in" class="btn modal-trigger waves-effect waves-light">Log in</a></li>
         <?php } ?>
         
       </ul>
@@ -44,7 +44,7 @@
                     <label for="user_password">Password</label>
                   </div>
                 </div>
-                <button class="btn" type="submit" name="action">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
                   Log in
                 </button>                
               </form>
