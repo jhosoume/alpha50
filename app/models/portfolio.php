@@ -101,7 +101,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 
   public function get_value_at_date($date, $sector) {
     $column = $sector ? $sector : 'portfolio_value' ;
-    if (date('Y-m-d') === date('Y-m-d', strtotime($this->created_at))) {
+    if (date('Y-m-d') == $date) {
       return $val = 0;
     };
     $val = PortfolioValuation::first([
@@ -111,7 +111,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
   }
 
   public function get_total_return_from($date) {
-    if (date('Y-m-d') == date('Y-m-d', strtotime($this->created_at))) {
+    if (date('Y-m-d') == $date) {
       return $total_return = 0;
     }
     $total_return = ($this::get_current_value()-$this::get_value_at_date($date, null))/$this::get_value_at_date($date, null);
@@ -119,6 +119,9 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
   }
 
   public function get_comparable_index_valuation($column) {
+    if (date('Y-m-d',strtotime($this->created_at)) == date('Y-m-d')) {
+      return $index_valuation_data = [];
+    }
     $created_date = date('Y-m-d', strtotime(PortfolioValuation::first('all', ['conditions' => ['portfolio_id = ?', $this->id],'order'=>'created_at asc'])->created_at));
     $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
     $index_portfolio = Portfolio::first([

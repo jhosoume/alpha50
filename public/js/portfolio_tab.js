@@ -87,7 +87,8 @@ function createChartArray(valuations) {
 }
 
 function renderTimeChart(chartArrays, container, chartName, seriesName) {
-  if ((Array.isArray(chartArrays) && chartArrays.length < 2) || (chartArrays['user'] && chartArrays['user'].length < 2)) {
+  if ((Array.isArray(chartArrays) && chartArrays.length < 2) || (chartArrays['User'] != undefined && chartArrays['User'].length < 2)) {
+    console.log('boom');
     container.height(0);
     return false;
   }
