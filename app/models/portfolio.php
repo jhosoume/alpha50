@@ -3,7 +3,7 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
 	static $after_create = array('create_all_stocks_portfolios', 'create_monkey_portfolio');
 	static $has_many = array(
 		array('stocks_portfolios'),
-    array('portfolio_valuations'),
+    	array('portfolio_valuations'),
 	);
 
 	static $has_one = array(
@@ -97,6 +97,24 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
       $val += $sp->quantity_held * $sp->stock->latest_price;
     }
     return $val;
+  }
+
+  public function get_current_valuations() {
+  	$valuations = array();
+  	$total_value = $this->total_cash;
+  	$stocks_portfolios = StocksPortfolio::find('all', array('conditions'=>['portfolio_id = ?', $this->id], 'include' => array('stock')));
+
+	foreach ($stocks_portfolios as $sp) {
+		$value = $sp->quantity_held * $sp->stock->latest_price;
+		$total_value += $value;
+		$sector = $sp->stock->sector;
+		$sector = str_replace(" ","_",strtolower($sector));
+      	if (!isset($valuations[$sector])) $valuations[$sector] = 0;
+      	$valuations[$sector] += $value;
+    }
+
+    $valuations['portfolio_value'] = $total_value;
+  	return $valuations;
   }
 
   public function get_value_at_date($date, $sector) {

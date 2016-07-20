@@ -140,6 +140,12 @@ class PortfoliosController extends Spark\BaseController {
         }
       }
     }
+
+    // Make the inital valuation.
+    $valuations = $portfolio->get_current_valuations();
+    $portfolio->create_portfolio_valuation(
+      $valuations
+    );
  
     redirect_to('/portfolios/'.$portfolio->id.'#all-stocks-tab');
   }
