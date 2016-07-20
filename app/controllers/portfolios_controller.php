@@ -30,10 +30,16 @@ class PortfoliosController extends Spark\BaseController {
       'conditions'=>['user_id = ?', $admin->id],
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
-    $monkey_portfolio = Portfolio::first([
-      'conditions'=>['parent = ?', $portfolio->id],
-      'include'=>['stocks_portfolios'=>['stock']],
-    ]);
+
+    if ($portfolio == $index_portfolio) {
+      $monkey_portfolio = $portfolio;
+    } else {
+      $monkey_portfolio = Portfolio::first([
+        'conditions'=>['parent = ?', $portfolio->id],
+        'include'=>['stocks_portfolios'=>['stock']],
+      ]);      
+    }
+
     $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ? AND parent IS NULL', current_user()->id]]); 
     $portfolio->sort_by_quantity_held();
     $all_trades = array();
@@ -68,7 +74,7 @@ class PortfoliosController extends Spark\BaseController {
       'index_portfolio' => $index_portfolio,
       'monkey_portfolio' => $monkey_portfolio,
       'index_stocks_portfolios' => $index_portfolio->stocks_portfolios,
-      'monkey_stocks_portfolios' =>$monkey_portfolio->stocks_portfolios,
+      'monkey_stocks_portfolios' => $monkey_portfolio->stocks_portfolios,
       'index_portfolio_value' => $index_portfolio->current_value,
       'monkey_portfolio_value' => $monkey_portfolio->current_value,
     ];

@@ -6,6 +6,7 @@
   height:72vh;
   width: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .portfolio-content > div {
@@ -20,11 +21,6 @@
   margin: auto;
   margin-top: 30vh;
 }
-/*
-.portfolio-section {
-  width:85%;
-  margin:auto;
-}*/
 
 .container{
   width: 90% !important;
@@ -107,6 +103,9 @@ table.holdings-comparison th:nth-child(n+2), table.holdings-comparison td:nth-ch
 
 #analysis-tab form .select-wrapper input.select-dropdown {
   font-size: 1.2rem;
+  margin-left: 2%;
+  margin-right: 2%;
+  width:96%;
 }
 
 #analysis-tab .input-field {
@@ -160,6 +159,6 @@ table.holdings-comparison th:nth-child(n+2), table.holdings-comparison td:nth-ch
   background-color: #e0f2f1;
 }
 
-.highcharts-container tspan {
-  color:#004d40;
+#sector-overview-chart, #portfolio-overview-chart {
+  width:100%;
 }
