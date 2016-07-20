@@ -51,6 +51,7 @@ $(function () {
 
     function renderSectorOverviewChart(container, seriesData) {
         var options = {
+          colors: ["#512da8","#283593","#ad1457","#1976d2","#4fc3f7","#009688","#757575","#212121"],
           chart: {
               type: 'bar'
           },
@@ -86,20 +87,23 @@ $(function () {
                 fontSize: "10px"
               },
               labelFormatter: function() {
-                var valData = '$'+ this.yData[this.yData.length - 1].toLocaleString();
+                var valData = '$'+ Math.floor(this.yData[this.yData.length - 1]).toLocaleString();
                 return this.name + " " + valData;
-              }
+              },
+              itemWidth:240
           },
           plotOptions: {
               series: {
                   stacking: 'normal',
                   dataLabels: {
-                    // enabled: true
+                    enabled: true,
+                    formatter: formatPct
                   }
               }
           },
           series: []
         };
+
         var total_value = 0;
         $.each(seriesData, function(key, value) {
           var s = {
@@ -110,8 +114,12 @@ $(function () {
           total_value += value;
           options.series.push(s);
         })
+        options.yAxis.max = total_value;
 
-        // options.plotOptions.series.format = '{point.y / total_value}';
+        function formatPct() {
+          var pcnt = (this.y/total_value) * 100;
+          return Highcharts.numberFormat(pcnt)+"%";
+        };
 
         container.highcharts(options);        
     }

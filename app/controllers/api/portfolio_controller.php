@@ -67,6 +67,7 @@ class PortfoliosController extends \Spark\BaseController {
       $sector_values[$sector] = $portfolio_valuations->$column;
     };
     $sector_values['Cash'] = $portfolio->total_cash;
+    asort($sector_values);
 
     $this->render($sector_values, ['content_type' => 'JSON', 'enable_cors'=>true]);
   }
