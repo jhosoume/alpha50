@@ -8,7 +8,7 @@
 	      <h2 class="header col s12 light head-text-blur-dark">Test your ability to make money like a professional investment manager.</h2>
 	    </div>
 	    <div class="row center">
-		    <a href="#user-sign-up" class='btn modal-trigger'>Sign up</a>
+		    <a href="#user-sign-up" class='btn modal-trigger waves-effect waves-light'>Sign up</a>
 	    </div>
 	    <br><br>
 
@@ -25,7 +25,7 @@
     <div class="row features">
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center orange-text text-darken-4"><i class="material-icons">library_books</i></h2>
+          <h2 class="center teal-text"><i class="material-icons">library_books</i></h2>
           <h5 class="center">Create Own Custom Portfolios</h5>
 
           <p class="light">Create up to five investment portfolios. You have $1 million to invest in
@@ -36,7 +36,7 @@
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center orange-text text-darken-4"><i class="material-icons">group</i></h2>
+          <h2 class="center teal-text"><i class="material-icons">group</i></h2>
           <h5 class="center">Compare Performance</h5>
 
           <p class="light">What fun would it be to create a portfolio if you couldn't track your
@@ -47,7 +47,7 @@
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center orange-text text-darken-4"><i class="material-icons">assessment</i></h2>
+          <h2 class="center teal-text"><i class="material-icons">assessment</i></h2>
           <h5 class="center">Beat the Index</h5>
 
           <p class="light">The whole investment industry relies on benchmarks. Benchmarks make it 
