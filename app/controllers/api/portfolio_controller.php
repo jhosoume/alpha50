@@ -25,11 +25,15 @@ class PortfoliosController extends \Spark\BaseController {
   }
 
   private function send_hist_valuation($portfolio_id, $sector, $limit) {
+    $portfolio = \Portfolio::first([
+      'conditions'=>['id = ?', $portfolio_id],
+      'include'=>['stocks_portfolios'=>['stock']],
+    ]);
 
-    $user_portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $portfolio_id], 'limit' => $limit]);
+    $user_portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $portfolio_id], 'order'=>'created_at asc', 'limit' => $limit]);
 
     $monkey_portfolio = \Portfolio::first(['conditions' => ['parent = ?', $portfolio_id]]);
-    $monkey_portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $monkey_portfolio->id], 'limit' => $limit]);
+    $monkey_portfolio_valuations = \PortfolioValuation::find('all',['conditions' => ['portfolio_id = ?', $monkey_portfolio->id], 'order' => 'created_at asc', 'limit' => $limit]);
 
     $all_valuation_data = array();
 
@@ -44,12 +48,13 @@ class PortfoliosController extends \Spark\BaseController {
     }
 
     for ($i = 0; $i < count($user_portfolio_valuations); $i++) {
-      array_push($user_valuation_data, array(date('Y-m-d H:i:s', strtotime($user_portfolio_valuations[$i]->created_at)), $user_portfolio_valuations[$i]->$column));
-      array_push($monkey_valuation_data, array(date('Y-m-d H:i:s', strtotime($monkey_portfolio_valuations[$i]->created_at)), $monkey_portfolio_valuations[$i]->$column));
+      array_push($user_valuation_data, array(date('Y-m-d', strtotime($user_portfolio_valuations[$i]->created_at)), $user_portfolio_valuations[$i]->$column));
+      array_push($monkey_valuation_data, array(date('Y-m-d', strtotime($monkey_portfolio_valuations[$i]->created_at)), $monkey_portfolio_valuations[$i]->$column));
     }
 
     $all_valuation_data['user'] = $user_valuation_data;
     $all_valuation_data['monkey'] = $monkey_valuation_data;
+    $all_valuation_data['index'] = $portfolio->get_comparable_index_valuation($column);
 
     $this->render($all_valuation_data, ['content_type'=>'JSON', 'enable_cors'=>true]);
   }

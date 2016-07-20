@@ -117,6 +117,26 @@ class Portfolio extends ActiveRecord\Model implements JsonSerializable {
     return $total_return;
   }
 
+  public function get_comparable_index_valuation($column) {
+    $created_date = date('Y-m-d', strtotime(PortfolioValuation::first('all', ['conditions' => ['portfolio_id = ?', $this->id],'order'=>'created_at asc'])->created_at));
+    $admin = User::first(['conditions'=>['email = ?', 'admin@alpha50']]);
+    $index_portfolio = Portfolio::first([
+      'conditions'=>['user_id = ?', $admin->id],
+      'include'=>['stocks_portfolios'=>['stock']],
+    ]);
+
+    $index_portfolio_valuations = PortfolioValuation::find('all',['conditions' => ['portfolio_id = ? AND created_at >= ?', $index_portfolio->id, $created_date], 'order'=>'created_at asc']);
+
+    $index_valuation_data = [];
+    $starting_capital = 1000000;
+    for ($i = 0; $i < count($index_portfolio_valuations); $i++) {
+      $value = $index_portfolio_valuations[$i]->$column * $starting_capital / $index_portfolio_valuations[0]->$column;
+      array_push($index_valuation_data, array(date('Y-m-d', strtotime($index_portfolio_valuations[$i]->created_at)), $value));
+    }
+    return $index_valuation_data;
+    // return [count($index_valuations)];
+  }
+
 	public function jsonSerialize()
     {
         return json_decode($this->to_json());

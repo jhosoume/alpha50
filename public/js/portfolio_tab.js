@@ -65,6 +65,7 @@ function createChartArray(valuations) {
   var dailyDatePrice = {};
   var user = [];
   var monkey = [];
+  var index = [];
 
   $.each(valuations['user'],function(idx,valuation) {
     user.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
@@ -72,16 +73,21 @@ function createChartArray(valuations) {
   $.each(valuations['monkey'],function(idx,valuation) {
     monkey.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
   });
+  $.each(valuations['index'],function(idx,valuation) {
+    index.push([Date.parse(valuation[0]),parseInt(valuation[1])]);
+  });
 
   user.sort(function(a, b){return a[0]-b[0]}); 
   monkey.sort(function(a,b){return a[0]-b[0]});
   dailyDatePrice['User'] = user;
   dailyDatePrice['Monkey'] = monkey;
+  dailyDatePrice['Index'] = index;
   return dailyDatePrice;
 
 }
 
 function renderTimeChart(chartArrays, container, chartName, seriesName) {
+  console.log(chartArrays);
   if ((Array.isArray(chartArrays) && chartArrays.length < 2) || (chartArrays['user'] && chartArrays['user'].length < 2)) {
     container.height(0);
     return false;
@@ -101,34 +107,30 @@ function renderTimeChart(chartArrays, container, chartName, seriesName) {
     },
     legend: {
       enabled:true
-    },
-    series: {
-      name: "hello",
-      data: chartArrays
     }
   };
-  // var seriesOptions = [];
+  var seriesOptions = [];
 
-  // if (Array.isArray(chartArrays)) {
-  //   console.log(chartArrays);
-  //   seriesOptions = {
-  //     name: 'Daily Trade Amount',
-  //     data: [chartArrays]
-  //   }
-  // } else {
-  //   var i = 0;
-  //   $.each(chartArrays, function(key, arr) {
-  //     seriesOptions[i] = {
-  //       name: key,
-  //       data: arr
-  //     }
-  //   i++;
-  //   });
-  // };
+  if (Array.isArray(chartArrays)) {
+    console.log(chartArrays);
+    seriesOptions = [{
+      name: 'Daily Trade Amount',
+      data: chartArrays
+    }]
+  } else {
+    var i = 0;
+    $.each(chartArrays, function(key, arr) {
+      seriesOptions[i] = {
+        name: key,
+        data: arr
+      }
+    i++;
+    });
+  };
 
-  // console.log(seriesOptions);
+  console.log(seriesOptions);
 
-  // options.series = seriesOptions;
+  options.series = seriesOptions;
 
   container.highcharts('StockChart', options);
 }
