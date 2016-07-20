@@ -6,3 +6,4 @@ __pycache__
 phinx.yml
 config/db.php
 python/config.py
+public/assets/
