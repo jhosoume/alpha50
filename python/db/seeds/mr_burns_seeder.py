@@ -14,7 +14,7 @@ VALUATIONS_DEFINITION = '../csvs/mr_burns/portfolio_values.csv'
 PORTFOLIO_CREATION_DATE = arrow.get('2016-02-29T16:00:00-07:00')
 TOTAL_CASH = 11.63
 USER_EMAIL = 'mr_burns@alpha50.com'
-PORTFOLIO_NAME = 'MyBestPortfolio'
+PORTFOLIO_NAME = 'Random'
 
 MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/mr_burns/monkey_stock_portfolio.csv'
 MONKEY_TRADES_DEFINITION = '../csvs/mr_burns/monkey_trades.csv'

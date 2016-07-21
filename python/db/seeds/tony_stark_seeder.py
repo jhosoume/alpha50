@@ -15,7 +15,7 @@ VALUATIONS_DEFINITION = '../csvs/tony_stark/portfolio_values.csv'
 PORTFOLIO_CREATION_DATE = arrow.get('2016-01-20T10:00:00-07:00')
 TOTAL_CASH = 31014.73
 USER_EMAIL = 'tony_stark@alpha50.com'
-PORTFOLIO_NAME = 'Tech'
+PORTFOLIO_NAME = 'Tech-Finance'
 
 HAS_MONKEY = True
 MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/tony_stark/monkey_stock_portfolio.csv'

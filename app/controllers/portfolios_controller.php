@@ -100,7 +100,7 @@ class PortfoliosController extends Spark\BaseController {
       'conditions'=>['user_id = ?', $admin->id],
       'include'=>['stocks_portfolios'=>['stock']],
     ]);
-    $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ?', current_user()->id]]);
+    $all_portfolios = Portfolio::find('all',['conditions' => ['user_id = ? AND parent IS NULL', current_user()->id]]); 
 
     $index_portfolio->sort_by_ticker();
 
@@ -140,6 +140,12 @@ class PortfoliosController extends Spark\BaseController {
         }
       }
     }
+
+    // Make the inital valuation.
+    $valuations = $portfolio->get_current_valuations();
+    $portfolio->create_portfolio_valuation(
+      $valuations
+    );
  
     redirect_to('/portfolios/'.$portfolio->id.'#all-stocks-tab');
   }

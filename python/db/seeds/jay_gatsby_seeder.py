@@ -14,7 +14,7 @@ VALUATIONS_DEFINITION = '../csvs/jay_gatsby/portfolio_values.csv'
 PORTFOLIO_CREATION_DATE = arrow.get('2016-03-18T10:00:00-07:00')
 TOTAL_CASH = 66.02
 USER_EMAIL = 'jay_gatsby@alpha50.com'
-PORTFOLIO_NAME = 'FavoriteRichestPortfolio'
+PORTFOLIO_NAME = 'Favorite8Stocks'
 
 HAS_MONKEY = True
 MONKEY_STOCKS_PORTFOLIOS_DEFINITION = '../csvs/jay_gatsby/monkey_stock_portfolio.csv'

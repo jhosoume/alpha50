@@ -3,6 +3,10 @@
 
 }
 
+#inter-portfolio-nav > li.current {
+  background:#e0e0e0;
+}
+
 .portfolio-content {
   height:72vh;
   width: 100%;

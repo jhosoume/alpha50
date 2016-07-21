@@ -12,14 +12,14 @@
       <input class="validate" type="text" value="My Awesome Portoflio" name="name" form="newPortfolioForm" pattern=".{2,}" required title="2 characters minimum">
     </div>
     </div>
-    <p> Instructions </p>
+    <p> You are presented with a choice of 50 stocks. The current allocation represents a market-cap weighted index of these stocks. Go ahead and see whether you can allocate $1,000,000 better than the index! When you are finished making changes, click "Create Portfolio" at the bottom of the page. </p>
     <p><strong>Cash: </strong><span class='cash-holdings'></span></p>
     <p><strong>Allocated Capital: </strong><span class='equity-holdings'></span></p>
   </div>
 
   <div class='new-portfolio-data'>
     <table class='bordered'>
-      <thead>
+      <thead class='teal-text'>
         <tr>
           <th data-field="stock-ticker">Ticker</th>
           <th data-field="stock-name">Company Name</th>

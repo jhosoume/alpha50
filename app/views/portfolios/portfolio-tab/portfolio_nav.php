@@ -17,7 +17,7 @@
 <ul id="inter-portfolio-nav" class="dropdown-content">
   <?php $all_portfolios = Spark\locals()['all_portfolios'] ?>
   <?php foreach($all_portfolios as $portfolio): ?>
-    <?php $name = strlen($portfolio->name) > 20 ? substr($portfolio->name,0,20)."..." : $portfolio->name; ?>
+    <?php $name = strlen($portfolio->name) > 30 ? substr($portfolio->name,0,30)."..." : $portfolio->name; ?>
     <li><a href="/portfolios/<?= $portfolio->id ?>"><?= $name ?> </a></li>
   <?php endforeach ; ?>
 
