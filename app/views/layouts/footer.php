@@ -4,6 +4,17 @@
   		<div id="about-us" class="col s5">
 		    <h5>About Us</h5>
 		    <p>We are a Vancouver based team passionate about the investment industry (in particular, our colleague Matt). We've dreamt about a platform that treats investments much like professionals do. Alpha 50 is life!</p>
+		    <br>
+		    <blockquote>
+			    How to make a million in the stock market?
+				Start with two!
+			</blockquote>
+		    <blockquote>
+				You know you’ve gone to the wrong stockbroker when you ask him to buy shares in IBM and he asks you the ticker.
+			</blockquote>
+		    <blockquote>
+			    The most successful investor was Noah. He floated stock, while everything around him went into liquidation.
+			</blockquote>
 	    </div>
 	    <div id="" class="col s5 right">
 	    	<h5>Address</h5>
