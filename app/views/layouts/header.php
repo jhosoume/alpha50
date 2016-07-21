@@ -9,9 +9,9 @@
           <li><a class='welcome-message'>Welcome, <?= $user->email ?></a></li>
           <li><a href="#user-log-out" class="btn modal-trigger waves-effect waves-light">Log out</a></li>
         <?php } else { ?>
-          <li><a href="#about-us">About us</a></li>
-          <li><a href="#why-join">Why join?</a></li>
           <li><a href="#features">Features</a></li>
+          <li><a href="#why-join">Why join?</a></li>
+          <li><a href="#about-us">About us</a></li>
           <li><a href="#user-log-in" class="btn modal-trigger waves-effect waves-light">Log in</a></li>
         <?php } ?>
       </ul>
@@ -61,7 +61,7 @@
                   </div>
                 </div>
                 <input type='hidden' name="_method" value="DELETE">
-                <input type='submit' value="Log out">               
+                <input type='submit' class="btn waves-effect waves-light" value="Log out">               
               </form>
             </div>
           </div>
