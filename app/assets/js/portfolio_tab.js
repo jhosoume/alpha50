@@ -114,7 +114,7 @@ function renderTimeChart(chartArrays, container, chartName, seriesName) {
   var seriesOptions = [];
 
   if (Array.isArray(chartArrays)) {
-    console.log(chartArrays);
+    //console.log(chartArrays);
     seriesOptions = [{
       name: 'Daily Trade Amount',
       data: chartArrays
