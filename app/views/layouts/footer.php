@@ -5,9 +5,22 @@
 		    <h5>About Us</h5>
 		    <p>We are a Vancouver based team passionate about the investment industry (in particular, our colleague Matt). We've dreamt about a platform that treats investments much like professionals do. Alpha 50 is life!</p>
 	    </div>
-	    <div class="col s5 right">
+	    <div id="" class="col s5 right">
 	    	<h5>Address</h5>
-		    <p>We are a Vancouver based team passionate about the investment industry (in particular, our colleague Matt). We've dreamt about a platform that treats investments much like professionals do. Alpha 50 is life!</p>
+		    <address>285 Fulton St, New York, NY 10007, United States</address>
+		    <h5>Info</h5>
+		    <p>One World Trade Center (also known as the Freedom Tower,1 World Trade Center, One WTC and 1 WTC) is the main building of the rebuilt World Trade Center complex in Lower Manhattan, New York City. It is the tallest building in the Western Hemisphere, and the sixth-tallest in the world. Source: <a href="https://en.wikipedia.org/wiki/One_World_Trade_Center">Wiki</a></p>
+		    <div class="row">
+				<div class="col s4">		    
+				    <a class="white-text" href="http://cant-not-tweet-this.com/"><i class="medium material-icons">language</i></a>
+			    </div>
+			    <div class="col s4">
+				    <a class="white-text" href="http://heeeeeeeey.com/"><i class="medium material-icons">contact_phone</i></a>
+			    </div>
+			     <div class="col s4">
+				    <a class="white-text" href="http://cant-not-tweet-this.com//"><i class="medium material-icons">theaters</i></a>
+			    </div>
+		    </div>
 	    </div>
 	</div>
   </div>
