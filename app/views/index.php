@@ -18,7 +18,7 @@
 </div>
 <?php render_file('sign-up-modal.php') ?>
 
-<div class="container">
+<div id="features" class="container">
   <div class="section">
 
     <!--   Icon Section   -->
@@ -77,7 +77,7 @@
   <div class="section">
 
     <div class="row">
-      <div class="col s12 center">
+      <div id="why-join" class="col s12 center">
         <h3><i class="mdi-content-send brown-text"></i></h3>
         <h4>Why join?</h4>
         <p class="left-align light">Test your ability to make money much like a professional
