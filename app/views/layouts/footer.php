@@ -35,6 +35,7 @@
 	    </div>
 	</div>
   </div>
+  <br>
   <div class="footer-copyright">
   	<p>&copy; 2016 LHLers. All rights reserved.</p>
   </div>

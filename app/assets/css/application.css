@@ -105,7 +105,7 @@ footer.page-footer .footer-copyright {
 }
 
 footer.page-footer .container {
-  height: 370px;
+  min-height: 370px;
 }
 
 .about-us-blurb ~ a {
