@@ -8,7 +8,7 @@ $(function () {
         data: {'request_type':'current_valuation'},
         contentType: 'JSON',
         success: function(res) {
-          console.log(res);
+          //console.log(res);
           renderSectorOverviewChart($('#sector-breakdown-chart'), res);
         }
       })
@@ -118,7 +118,7 @@ $(function () {
         })
 
         options.yAxis.max = Math.floor(total_value);
-        console.log(total_value);
+        //console.log(total_value);
 
         function formatPct() {
           var pcnt = (this.y/total_value) * 100;
