@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Alpha50</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
     <?= Spark\load_assets(); ?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
