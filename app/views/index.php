@@ -70,7 +70,7 @@
       </div>
     </div>
   </div> -->
-  <div class="parallax"><img id="second-image-landing" src="/images/man_business.jpeg"></div>
+  <div class="parallax"><img id="second-image-landing" src="/images/man_business.jpg"></div>
 </div>
 
 <div class="container">
