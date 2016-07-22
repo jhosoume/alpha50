@@ -29,7 +29,7 @@
 				    <a class="white-text" href="http://heeeeeeeey.com/"><i class="medium material-icons">contact_phone</i></a>
 			    </div>
 			     <div class="col s4">
-				    <a class="white-text" href="http://cant-not-tweet-this.com//"><i class="medium material-icons">theaters</i></a>
+				    <a class="white-text" href="http://burymewithmymoney.com/"><i class="medium material-icons">theaters</i></a>
 			    </div>
 		    </div>
 	    </div>
